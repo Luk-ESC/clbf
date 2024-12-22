@@ -1,4 +1,4 @@
-use std::sync::mpsc::Receiver;
+use std::{path::PathBuf, sync::mpsc::Receiver};
 
 use crate::preopts::IrNode;
 use codegen::ir::FuncRef;
@@ -125,7 +125,7 @@ fn declare_getchar(module: &mut ObjectModule) -> FuncId {
         .unwrap()
 }
 
-pub fn generate(recv: Receiver<IrNode>) {
+pub fn generate(recv: Receiver<IrNode>, output: PathBuf) -> std::io::Result<()> {
     let isa = cranelift_native::builder()
         .unwrap()
         .finish(settings::Flags::new(settings::builder()))
@@ -192,5 +192,5 @@ pub fn generate(recv: Receiver<IrNode>) {
     // Write object to file (optional)
     let product = module.finish();
     let obj = product.emit().unwrap();
-    std::fs::write("bin/output.o", obj).unwrap();
+    std::fs::write(output, obj)
 }
