@@ -18,17 +18,21 @@ fn codegen_inner(
     while let Some(val) = recv.next() {
         println!("{val:?}");
         match val {
-            IrNode::SetValue(x) => {
+            IrNode::SetValue(x, offset) => {
                 let ptr_val = builder.use_var(ptr);
                 let value = builder.ins().iconst(types::I8, x as i64);
-                builder.ins().store(MemFlags::new(), value, ptr_val, 0);
+                builder.ins().store(MemFlags::new(), value, ptr_val, offset);
             }
-            IrNode::ChangeValue(x) => {
+            IrNode::ChangeValue(x, offset) => {
                 let ptr_val = builder.use_var(ptr);
-                let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                let value = builder
+                    .ins()
+                    .load(types::I8, MemFlags::new(), ptr_val, offset);
                 assert!(x < 255);
                 let new_val = builder.ins().iadd_imm(value, x as i64);
-                builder.ins().store(MemFlags::new(), new_val, ptr_val, 0);
+                builder
+                    .ins()
+                    .store(MemFlags::new(), new_val, ptr_val, offset);
             }
             IrNode::ChangePtr(x) => {
                 let ptr_val = builder.use_var(ptr);

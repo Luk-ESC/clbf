@@ -60,7 +60,7 @@ mod repetition {
 
         pub fn to_ir_node(self) -> Option<IrNode> {
             match self {
-                Repeating::Value(x) => Some(IrNode::ChangeValue(x)),
+                Repeating::Value(x) => Some(IrNode::ChangeValue(x, 0)),
                 Repeating::Ptr(x) => Some(IrNode::ChangePtr(x)),
                 Repeating::None => None,
             }
