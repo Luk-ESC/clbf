@@ -34,6 +34,35 @@ fn codegen_inner(
                     .ins()
                     .store(MemFlags::new(), new_val, ptr_val, offset);
             }
+            IrNode::DynamicChangeValue(1, offset) => {
+                let ptr_val = builder.use_var(ptr);
+
+                let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                let base = builder
+                    .ins()
+                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+
+                let new_value = builder.ins().iadd(base, multiplier);
+
+                builder
+                    .ins()
+                    .store(MemFlags::new(), new_value, ptr_val, offset);
+            }
+            IrNode::DynamicChangeValue(x, offset) => {
+                let ptr_val = builder.use_var(ptr);
+
+                let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                let base = builder
+                    .ins()
+                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+
+                let total_change = builder.ins().imul_imm(multiplier, x as i64);
+                let new_value = builder.ins().iadd(base, total_change);
+
+                builder
+                    .ins()
+                    .store(MemFlags::new(), new_value, ptr_val, offset);
+            }
             IrNode::ChangePtr(x) => {
                 let ptr_val = builder.use_var(ptr);
                 let new_val = builder.ins().iadd_imm(ptr_val, x as i64);
@@ -157,6 +186,7 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
 
         {
             let grid_ptr = builder.ins().global_value(types::I64, local_data);
+            let grid_ptr = builder.ins().iadd_imm(grid_ptr, 15000);
             builder.def_var(ptr, grid_ptr);
         };
 

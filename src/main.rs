@@ -60,6 +60,40 @@ fn main() {
                     writeln!(&mut debug, "{}grid[ptr{offset}] += {};", indent, x).unwrap();
                 }
             }
+
+            midopts::IrNode::DynamicChangeValue(1, offset) => {
+                let offset = match offset.cmp(&0) {
+                    Ordering::Less => format!(" - {}", offset.abs()),
+                    Ordering::Equal => String::new(),
+                    Ordering::Greater => format!(" + {offset}"),
+                };
+
+                writeln!(&mut debug, "{}grid[ptr{offset}] += grid[ptr];", indent).unwrap();
+            }
+            midopts::IrNode::DynamicChangeValue(x, offset) => {
+                let offset = match offset.cmp(&0) {
+                    Ordering::Less => format!(" - {}", offset.abs()),
+                    Ordering::Equal => String::new(),
+                    Ordering::Greater => format!(" + {offset}"),
+                };
+
+                if *x < 0 {
+                    writeln!(
+                        &mut debug,
+                        "{}grid[ptr{offset}] -= {} * grid[ptr];",
+                        indent,
+                        x.abs()
+                    )
+                    .unwrap();
+                } else {
+                    writeln!(
+                        &mut debug,
+                        "{}grid[ptr{offset}] += {} * grid[ptr];",
+                        indent, x
+                    )
+                    .unwrap();
+                }
+            }
             midopts::IrNode::ChangePtr(p) => {
                 if *p < 0 {
                     writeln!(&mut debug, "{}ptr -= {};", indent, p.abs()).unwrap();
