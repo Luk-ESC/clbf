@@ -164,6 +164,8 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
             continue;
         }
 
+        assert!(i < loop_end);
+        assert!(nodes[i] == IrNode::LoopStart);
         to_replace.push((i, loop_end));
     }
 
@@ -175,7 +177,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
         for (i, node) in nodes[start..end - 1].iter_mut().enumerate() {
             *node = match &node {
                 IrNode::ChangeValue(_, 0) => {
-                    to_remove.push(i);
+                    to_remove.push(start + i);
                     continue;
                 }
                 IrNode::SetValue(v, o) => IrNode::SetValue(*v, *o),
