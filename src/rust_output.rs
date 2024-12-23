@@ -39,7 +39,15 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
                     writeln!(&mut debug, "{}grid[ptr{offset}] += {};", indent, x).unwrap();
                 }
             }
+            IrNode::DynamicChangeValue(-1, offset) => {
+                let offset = match offset.cmp(&0) {
+                    Ordering::Less => format!(" - {}", offset.abs()),
+                    Ordering::Equal => String::new(),
+                    Ordering::Greater => format!(" + {offset}"),
+                };
 
+                writeln!(&mut debug, "{}grid[ptr{offset}] -= grid[ptr];", indent).unwrap();
+            }
             IrNode::DynamicChangeValue(1, offset) => {
                 let offset = match offset.cmp(&0) {
                     Ordering::Less => format!(" - {}", offset.abs()),

@@ -34,7 +34,20 @@ fn codegen_inner(
                     .ins()
                     .store(MemFlags::new(), new_val, ptr_val, offset);
             }
-            // TODO: -1
+            IrNode::DynamicChangeValue(-1, offset) => {
+                let ptr_val = builder.use_var(ptr);
+
+                let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                let base = builder
+                    .ins()
+                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+
+                let new_value = builder.ins().isub(base, multiplier);
+
+                builder
+                    .ins()
+                    .store(MemFlags::new(), new_value, ptr_val, offset);
+            }
             IrNode::DynamicChangeValue(1, offset) => {
                 let ptr_val = builder.use_var(ptr);
 
