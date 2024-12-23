@@ -11,6 +11,10 @@ pub struct Args {
     pub input: PathBuf,
 
     /// Output file
-    #[arg(short, long, default_value = "a.out")]
+    #[arg(short, long)]
     pub output: PathBuf,
+
+    /// Rust output file
+    #[arg(short, long)]
+    pub rust: Option<PathBuf>,
 }
