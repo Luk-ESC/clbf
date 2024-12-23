@@ -34,6 +34,7 @@ fn codegen_inner(
                     .ins()
                     .store(MemFlags::new(), new_val, ptr_val, offset);
             }
+            // TODO: -1
             IrNode::DynamicChangeValue(1, offset) => {
                 let ptr_val = builder.use_var(ptr);
 
