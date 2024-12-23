@@ -58,15 +58,20 @@ fn codegen_inner(
                 builder.ins().store(MemFlags::new(), char, ptr_val, 0);
             }
             IrNode::LoopStart => {
-                // create new block and switch to it
+                // Loop block: The block that contains the loop body. Always jumps back to the check block
                 let loop_block = builder.create_block();
-                let skip_block = builder.create_block();
+
+                // Check block: The block that checks if the value at the current pointer is zero.
+                // If it is, it jumps to the next block, otherwise it jumps to the loop block (does a new iteration)
+                let check_block = builder.create_block();
+
+                // Next block: The code after the loop.
                 let next_block = builder.create_block();
 
-                // Jump from current block to skip block
-                builder.ins().jump(skip_block, &[]);
+                // Jump from current block to check block
+                builder.ins().jump(check_block, &[]);
 
-                builder.switch_to_block(skip_block);
+                builder.switch_to_block(check_block);
                 // If the value at the current pointer is nonzero, jump to loop block, otherwise jump to next block
                 {
                     let ptr_val = builder.use_var(ptr);
@@ -76,15 +81,12 @@ fn codegen_inner(
                 }
 
                 builder.switch_to_block(loop_block);
-                codegen_inner(recv, builder, ptr, putchar_func, getchar_func);
+                {
+                    codegen_inner(recv, builder, ptr, putchar_func, getchar_func);
 
-                // Add branch instruction to loop block
-                let ptr_val = builder.use_var(ptr);
-                let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
-
-                // If non-zero, jump back to loop start
-                // If zero, jump to next loop
-                builder.ins().brif(value, loop_block, &[], next_block, &[]);
+                    // Jump back to check block
+                    builder.ins().jump(check_block, &[]);
+                }
 
                 builder.switch_to_block(next_block);
                 continue;
