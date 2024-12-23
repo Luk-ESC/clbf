@@ -88,55 +88,57 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
         }
     }
 
-    // Search for the following pattern:
-    // ChangePtr(x), SetValue | ChangeValue, ChangePtr(-x)
-    // Replace with SetValue | ChangeValue and adjusted offset
-    let mut to_replace = vec![];
-    for (i, window) in nodes.windows(3).enumerate() {
-        match window {
-            [IrNode::ChangePtr(x), IrNode::SetValue(value, offset), IrNode::ChangePtr(y)]
-                if (x.signum() != y.signum()) =>
-            {
-                assert!(*x != 0 && *y != 0);
-                to_replace.push((true, *value, (offset + x), i, x + y))
+    for i in 0..5 {
+        // Search for the following pattern:
+        // ChangePtr(x), SetValue | ChangeValue, ChangePtr(-x)
+        // Replace with SetValue | ChangeValue and adjusted offset
+        let mut to_replace = vec![];
+        for (i, window) in nodes.windows(3).enumerate() {
+            match window {
+                [IrNode::ChangePtr(x), IrNode::SetValue(value, offset), IrNode::ChangePtr(y)]
+                    if (x.signum() != y.signum()) =>
+                {
+                    assert!(*x != 0 && *y != 0);
+                    to_replace.push((true, *value, (offset + x), i, x + y))
+                }
+
+                [IrNode::ChangePtr(x), IrNode::ChangeValue(value, offset), IrNode::ChangePtr(y)]
+                    if (x.signum() != y.signum()) =>
+                {
+                    assert!(*x != 0 && *y != 0);
+                    to_replace.push((false, *value, (offset + x), i, x + y))
+                }
+
+                _ => {}
             }
-
-            [IrNode::ChangePtr(x), IrNode::ChangeValue(value, offset), IrNode::ChangePtr(y)]
-                if (x.signum() != y.signum()) =>
-            {
-                assert!(*x != 0 && *y != 0);
-                to_replace.push((false, *value, (offset + x), i, x + y))
-            }
-
-            _ => {}
-        }
-    }
-
-    for (set, value, offset, start_idx, after_offset) in to_replace.into_iter().rev() {
-        if !matches!(
-            &nodes[start_idx..start_idx + 3],
-            &[
-                IrNode::ChangePtr(x),
-                IrNode::ChangeValue(_, _) | IrNode::SetValue(_, _),
-                IrNode::ChangePtr(y)
-                ] if (x.signum() != y.signum())
-        ) {
-            // TODO: If you have CP CV CP CV CP, they overwrite each other............
-            // Maybe just run optim again?
-            continue;
         }
 
-        nodes[start_idx] = if set {
-            IrNode::SetValue(value, offset)
-        } else {
-            IrNode::ChangeValue(value, offset)
-        };
+        for (set, value, offset, start_idx, after_offset) in to_replace.into_iter().rev() {
+            if !matches!(
+                &nodes[start_idx..start_idx + 3],
+                &[
+                    IrNode::ChangePtr(x),
+                    IrNode::ChangeValue(_, _) | IrNode::SetValue(_, _),
+                    IrNode::ChangePtr(y)
+                    ] if (x.signum() != y.signum())
+            ) {
+                // TODO: If you have CP CV CP CV CP, they overwrite each other............
+                // Maybe just run optim again?
+                continue;
+            }
 
-        nodes.remove(start_idx + 2);
-        if after_offset == 0 {
-            nodes.remove(start_idx + 1);
-        } else {
-            nodes[start_idx + 1] = IrNode::ChangePtr(after_offset)
+            nodes[start_idx] = if set {
+                IrNode::SetValue(value, offset)
+            } else {
+                IrNode::ChangeValue(value, offset)
+            };
+
+            nodes.remove(start_idx + 2);
+            if after_offset == 0 {
+                nodes.remove(start_idx + 1);
+            } else {
+                nodes[start_idx + 1] = IrNode::ChangePtr(after_offset)
+            }
         }
     }
 
