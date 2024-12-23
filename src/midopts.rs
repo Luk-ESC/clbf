@@ -128,7 +128,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
     // TODO: This optimisation does not actually hold... idk i like it anyways
     let mut iter = nodes.iter().enumerate();
     let mut to_replace = vec![];
-    while let Some((i, loop_start)) = iter.next() {
+    while let Some((mut loop_start_i, loop_start)) = iter.next() {
         if !matches!(loop_start, IrNode::LoopStart) {
             continue;
         }
@@ -153,6 +153,13 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
                     loop_end = i;
                     break;
                 }
+                // LoopStart can't be part of multiplication, so let's reset everything and start a new search
+                IrNode::LoopStart => {
+                    do_optimisation = true;
+                    change_to_this = 0;
+                    loop_end = 0;
+                    loop_start_i = i;
+                }
                 _ => {
                     do_optimisation = false;
                     break;
@@ -164,9 +171,9 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
             continue;
         }
 
-        assert!(i < loop_end);
-        assert!(nodes[i] == IrNode::LoopStart);
-        to_replace.push((i, loop_end));
+        assert!(loop_start_i < loop_end);
+        assert!(nodes[loop_start_i] == IrNode::LoopStart);
+        to_replace.push((loop_start_i, loop_end));
     }
 
     for (start, end) in to_replace.into_iter().rev() {
