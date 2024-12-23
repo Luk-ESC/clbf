@@ -43,8 +43,9 @@ fn codegen_inner(
             }
             IrNode::PrintChar => {
                 let ptr_val = builder.use_var(ptr);
-                let char = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
-                let char = builder.ins().uextend(types::I32, char);
+                let char = builder
+                    .ins()
+                    .uload8(types::I32, MemFlags::new(), ptr_val, 0);
                 let putchar_call = builder.ins().call(putchar_func, &[char]);
                 let _putchar_result = builder.inst_results(putchar_call)[0];
             }
