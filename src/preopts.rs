@@ -2,6 +2,74 @@ use std::sync::mpsc::Sender;
 
 use crate::parsing::Token;
 
+mod repetition {
+    use crate::parsing::Token;
+
+    use super::IrNode;
+
+    #[derive(Debug, PartialEq, Eq, Clone, Copy)]
+    pub enum Repeating {
+        Value(i32),
+        Ptr(i32),
+        None,
+    }
+
+    impl Repeating {
+        pub fn new() -> Self {
+            Repeating::None
+        }
+
+        pub fn add(&mut self, token: Token) -> Option<IrNode> {
+            let old = self.to_ir_node();
+            let (change_amount, is_ptr) = match token {
+                Token::Left => (-1, true),
+                Token::Right => (1, true),
+                Token::Minus => (-1, false),
+                Token::Plus => (1, false),
+                _ => {
+                    *self = Repeating::None;
+                    return old;
+                }
+            };
+
+            match self {
+                Repeating::Value(v) => {
+                    if is_ptr {
+                        *self = Repeating::Ptr(change_amount);
+                        return old;
+                    }
+
+                    *v += change_amount;
+                }
+                Repeating::Ptr(p) => {
+                    if !is_ptr {
+                        *self = Repeating::Value(change_amount);
+                        return old;
+                    }
+
+                    *p += change_amount;
+                }
+                Repeating::None => {
+                    if is_ptr {
+                        *self = Repeating::Ptr(change_amount);
+                    } else {
+                        *self = Repeating::Value(change_amount);
+                    }
+                }
+            }
+            None
+        }
+
+        pub fn to_ir_node(self) -> Option<IrNode> {
+            match self {
+                Repeating::Value(x) => Some(IrNode::ChangeValue(x)),
+                Repeating::Ptr(x) => Some(IrNode::ChangePtr(x)),
+                Repeating::None => None,
+            }
+        }
+    }
+}
+
 #[derive(Debug, PartialEq, Eq)]
 pub enum IrNode {
     // Change the value at the current pointer by the given amount
@@ -30,33 +98,18 @@ pub enum IrNode {
 }
 
 pub fn process(
-    mut tokens: impl Iterator<Item = std::io::Result<Token>>,
+    tokens: impl Iterator<Item = std::io::Result<Token>>,
     sender: Sender<IrNode>,
 ) -> std::io::Result<()> {
-    let mut last_kind = Some(tokens.next().unwrap()?);
-    let mut repeat_count = 1;
-
+    let mut repeating = repetition::Repeating::new();
     // TODO: Implement optimizations
     for token in tokens {
         let token = token?;
 
-        if last_kind == Some(token) {
-            repeat_count += 1;
-            continue;
-        } else if let Some(last_kind) = last_kind {
-            // Not equal, but last_kind is Some
-            match last_kind {
-                Token::Left => sender.send(IrNode::ChangePtr(-repeat_count)).unwrap(),
-                Token::Right => sender.send(IrNode::ChangePtr(repeat_count)).unwrap(),
-                Token::Plus => sender.send(IrNode::ChangeValue(repeat_count)).unwrap(),
-                Token::Minus => sender.send(IrNode::ChangeValue(-repeat_count)).unwrap(),
-                e => unreachable!("non repeatable token in last_kind: {e:?}"),
-            }
-
-            repeat_count = 1;
+        if let Some(ir_node) = repeating.add(token) {
+            sender.send(ir_node).unwrap();
         }
 
-        let mut next_last_kind = None;
         match token {
             Token::Dot => sender.send(IrNode::PrintChar).unwrap(),
             Token::Comma => sender.send(IrNode::ReadChar).unwrap(),
@@ -66,23 +119,12 @@ pub fn process(
             Token::CloseBracket => {
                 sender.send(IrNode::LoopEnd).unwrap();
             }
-            _ => {
-                next_last_kind = Some(token);
-            }
-        }
-
-        last_kind = next_last_kind;
-    }
-
-    if let Some(last_kind) = last_kind {
-        match last_kind {
-            Token::Left => sender.send(IrNode::ChangePtr(-repeat_count)).unwrap(),
-            Token::Right => sender.send(IrNode::ChangePtr(repeat_count)).unwrap(),
-            Token::Plus => sender.send(IrNode::ChangeValue(repeat_count)).unwrap(),
-            Token::Minus => sender.send(IrNode::ChangeValue(-repeat_count)).unwrap(),
-            _ => unreachable!("non repeatable token in last_kind"),
+            _ => {}
         }
     }
 
+    if let Some(ir_node) = repeating.to_ir_node() {
+        sender.send(ir_node).unwrap();
+    }
     Ok(())
 }
