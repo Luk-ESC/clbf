@@ -3,7 +3,7 @@ use std::{path::PathBuf, sync::mpsc::Receiver};
 use crate::preopts::IrNode;
 use codegen::ir::FuncRef;
 use cranelift::prelude::*;
-use cranelift_module::{FuncId, Linkage, Module};
+use cranelift_module::{DataDescription, FuncId, Init, Linkage, Module};
 use cranelift_object::{ObjectBuilder, ObjectModule};
 use types::I64;
 
@@ -96,17 +96,6 @@ fn codegen_inner(
     }
 }
 
-fn declare_calloc(module: &mut ObjectModule) -> FuncId {
-    let mut calloc_sig = module.make_signature();
-    calloc_sig.params.push(AbiParam::new(types::I64)); // num
-    calloc_sig.params.push(AbiParam::new(types::I64)); // size
-    calloc_sig.returns.push(AbiParam::new(types::I64)); // return pointer
-
-    module
-        .declare_function("calloc", Linkage::Import, &calloc_sig)
-        .unwrap()
-}
-
 fn declare_putchar(module: &mut ObjectModule) -> FuncId {
     let mut putchar_sig = module.make_signature();
     putchar_sig.params.push(AbiParam::new(types::I32)); // c
@@ -136,7 +125,10 @@ pub fn generate(recv: Receiver<IrNode>, output: PathBuf) -> std::io::Result<()> 
         ObjectBuilder::new(isa, "example", cranelift_module::default_libcall_names()).unwrap();
     let mut module = ObjectModule::new(builder);
 
-    let calloc_func = declare_calloc(&mut module);
+    let data = module
+        .declare_data("grid_memory", Linkage::Local, true, false)
+        .unwrap();
+
     let putchar_func = declare_putchar(&mut module);
     let getchar_func = declare_getchar(&mut module);
 
@@ -151,28 +143,20 @@ pub fn generate(recv: Receiver<IrNode>, output: PathBuf) -> std::io::Result<()> 
     let mut func_ctx = FunctionBuilderContext::new();
     {
         let mut builder = FunctionBuilder::new(&mut context.func, &mut func_ctx);
-        let grid = Variable::new(0);
         let ptr = Variable::new(1);
 
-        builder.declare_var(grid, I64);
         builder.declare_var(ptr, I64);
 
         let block = builder.create_block();
         builder.switch_to_block(block);
 
-        let local_calloc = module.declare_func_in_func(calloc_func, builder.func);
         let local_putchar = module.declare_func_in_func(putchar_func, builder.func);
         let local_getchar = module.declare_func_in_func(getchar_func, builder.func);
+        let local_data = module.declare_data_in_func(data, builder.func);
 
         {
-            let one = builder.ins().iconst(I64, 1);
-            let thirty_thousand = builder.ins().iconst(I64, 30000);
-
-            let calloc_call = builder.ins().call(local_calloc, &[one, thirty_thousand]);
-            let value = builder.inst_results(calloc_call)[0];
-
-            builder.def_var(grid, value);
-            builder.def_var(ptr, value);
+            let grid_ptr = builder.ins().global_value(types::I64, local_data);
+            builder.def_var(ptr, grid_ptr);
         };
 
         let mut recv = recv.iter();
@@ -189,6 +173,11 @@ pub fn generate(recv: Receiver<IrNode>, output: PathBuf) -> std::io::Result<()> 
         .declare_function("main", Linkage::Export, &context.func.signature)
         .unwrap();
     module.define_function(id, &mut context).unwrap();
+
+    let mut data_description = DataDescription::new();
+    data_description.init = Init::Zeros { size: 30000 };
+    data_description.align = Some(1);
+    module.define_data(data, &data_description).unwrap();
 
     // Write object to file (optional)
     let product = module.finish();
