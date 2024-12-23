@@ -4,17 +4,11 @@ use crate::parsing::Token;
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum IrNode {
-    // Increment the value at the current pointer by the given amount
-    Incr(u32),
+    // Change the value at the current pointer by the given amount
+    ChangeValue(i32),
 
-    // Decrement the value at the current pointer by the given amount
-    Decr(u32),
-
-    // Move the pointer to the right by the given amount
-    IncrPtr(u32),
-
-    // Move the pointer to the left by the given amount
-    DecrPtr(u32),
+    // Move the pointer to by the given amount
+    ChangePtr(i32),
 
     // Print the value at the current pointer
     PrintChar,
@@ -52,10 +46,10 @@ pub fn process(
         } else if let Some(last_kind) = last_kind {
             // Not equal, but last_kind is Some
             match last_kind {
-                Token::Left => sender.send(IrNode::DecrPtr(repeat_count)).unwrap(),
-                Token::Right => sender.send(IrNode::IncrPtr(repeat_count)).unwrap(),
-                Token::Plus => sender.send(IrNode::Incr(repeat_count)).unwrap(),
-                Token::Minus => sender.send(IrNode::Decr(repeat_count)).unwrap(),
+                Token::Left => sender.send(IrNode::ChangePtr(-repeat_count)).unwrap(),
+                Token::Right => sender.send(IrNode::ChangePtr(repeat_count)).unwrap(),
+                Token::Plus => sender.send(IrNode::ChangeValue(repeat_count)).unwrap(),
+                Token::Minus => sender.send(IrNode::ChangeValue(-repeat_count)).unwrap(),
                 e => unreachable!("non repeatable token in last_kind: {e:?}"),
             }
 
@@ -82,10 +76,10 @@ pub fn process(
 
     if let Some(last_kind) = last_kind {
         match last_kind {
-            Token::Left => sender.send(IrNode::DecrPtr(repeat_count)).unwrap(),
-            Token::Right => sender.send(IrNode::IncrPtr(repeat_count)).unwrap(),
-            Token::Plus => sender.send(IrNode::Incr(repeat_count)).unwrap(),
-            Token::Minus => sender.send(IrNode::Decr(repeat_count)).unwrap(),
+            Token::Left => sender.send(IrNode::ChangePtr(-repeat_count)).unwrap(),
+            Token::Right => sender.send(IrNode::ChangePtr(repeat_count)).unwrap(),
+            Token::Plus => sender.send(IrNode::ChangeValue(repeat_count)).unwrap(),
+            Token::Minus => sender.send(IrNode::ChangeValue(-repeat_count)).unwrap(),
             _ => unreachable!("non repeatable token in last_kind"),
         }
     }
