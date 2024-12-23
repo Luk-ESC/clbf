@@ -49,12 +49,17 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
         match &window {
             // TODO: Can we use offset here?
             &[b, IrNode::LoopStart, IrNode::ChangeValue(x, 0), IrNode::LoopEnd, l] if *x < 0 => {
+                // Make sure offset is 0
+                if matches!(l, IrNode::ChangeValue(_, x) if *x != 0) {
+                    continue;
+                }
+
                 let y = match l {
                     IrNode::ChangeValue(y, 0) => Some(*y),
                     _ => None,
                 };
 
-                let remove_first = matches!(b, IrNode::ChangeValue(_, _));
+                let remove_first = matches!(b, IrNode::ChangeValue(_, 0));
 
                 to_replace.push((first_index, y, remove_first));
             }
