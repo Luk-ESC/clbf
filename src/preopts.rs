@@ -1,11 +1,9 @@
-use std::sync::mpsc::Sender;
-
 use crate::parsing::Token;
 
 mod repetition {
     use crate::parsing::Token;
 
-    use super::IrNode;
+    use super::SimpleIrNode;
 
     #[derive(Debug, PartialEq, Eq, Clone, Copy)]
     pub enum Repeating {
@@ -19,7 +17,7 @@ mod repetition {
             Repeating::None
         }
 
-        pub fn add(&mut self, token: Token) -> Option<IrNode> {
+        pub fn add(&mut self, token: Token) -> Option<SimpleIrNode> {
             let old = self.to_ir_node();
             let (change_amount, is_ptr) = match token {
                 Token::Left => (-1, true),
@@ -60,10 +58,10 @@ mod repetition {
             None
         }
 
-        pub fn to_ir_node(self) -> Option<IrNode> {
+        pub fn to_ir_node(self) -> Option<SimpleIrNode> {
             match self {
-                Repeating::Value(x) => Some(IrNode::ChangeValue(x)),
-                Repeating::Ptr(x) => Some(IrNode::ChangePtr(x)),
+                Repeating::Value(x) => Some(SimpleIrNode::ChangeValue(x)),
+                Repeating::Ptr(x) => Some(SimpleIrNode::ChangePtr(x)),
                 Repeating::None => None,
             }
         }
@@ -71,7 +69,7 @@ mod repetition {
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum IrNode {
+pub enum SimpleIrNode {
     // Change the value at the current pointer by the given amount
     ChangeValue(i32),
 
@@ -99,32 +97,32 @@ pub enum IrNode {
 
 pub fn process(
     tokens: impl Iterator<Item = std::io::Result<Token>>,
-    sender: Sender<IrNode>,
-) -> std::io::Result<()> {
+) -> std::io::Result<Vec<SimpleIrNode>> {
     let mut repeating = repetition::Repeating::new();
+    let mut nodes = Vec::new();
     // TODO: Implement optimizations
     for token in tokens {
         let token = token?;
 
         if let Some(ir_node) = repeating.add(token) {
-            sender.send(ir_node).unwrap();
+            nodes.push(ir_node);
         }
 
         match token {
-            Token::Dot => sender.send(IrNode::PrintChar).unwrap(),
-            Token::Comma => sender.send(IrNode::ReadChar).unwrap(),
+            Token::Dot => nodes.push(SimpleIrNode::PrintChar),
+            Token::Comma => nodes.push(SimpleIrNode::ReadChar),
             Token::OpenBracket => {
-                sender.send(IrNode::LoopStart).unwrap();
+                nodes.push(SimpleIrNode::LoopStart);
             }
             Token::CloseBracket => {
-                sender.send(IrNode::LoopEnd).unwrap();
+                nodes.push(SimpleIrNode::LoopEnd);
             }
             _ => {}
         }
     }
 
     if let Some(ir_node) = repeating.to_ir_node() {
-        sender.send(ir_node).unwrap();
+        nodes.push(ir_node);
     }
-    Ok(())
+    Ok(nodes)
 }

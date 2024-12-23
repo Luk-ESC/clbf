@@ -7,6 +7,7 @@ use clap::Parser;
 
 mod cli;
 mod codegen;
+mod midopts;
 mod parsing;
 mod preopts;
 
@@ -15,8 +16,8 @@ fn main() {
 
     let x = BufReader::new(File::open(args.input).unwrap());
     let y = parsing::Token::parse(x.bytes());
-    let (sender, receiver) = std::sync::mpsc::channel();
 
-    preopts::process(y, sender).unwrap();
-    codegen::generate(receiver, args.output).unwrap();
+    let preopts_result = preopts::process(y).unwrap();
+
+    codegen::generate(preopts_result.into_iter(), args.output).unwrap();
 }

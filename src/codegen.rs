@@ -1,6 +1,6 @@
-use std::{path::PathBuf, sync::mpsc::Receiver};
+use std::path::PathBuf;
 
-use crate::preopts::IrNode;
+use crate::preopts::SimpleIrNode;
 use codegen::ir::FuncRef;
 use cranelift::prelude::*;
 use cranelift_module::{DataDescription, FuncId, Init, Linkage, Module};
@@ -8,7 +8,7 @@ use cranelift_object::{ObjectBuilder, ObjectModule};
 use types::I64;
 
 fn codegen_inner(
-    recv: &mut impl Iterator<Item = IrNode>,
+    recv: &mut impl Iterator<Item = SimpleIrNode>,
     builder: &mut FunctionBuilder,
     ptr: Variable,
     putchar_func: FuncRef,
@@ -17,19 +17,19 @@ fn codegen_inner(
     while let Some(val) = recv.next() {
         println!("{val:?}");
         match val {
-            IrNode::ChangeValue(x) => {
+            SimpleIrNode::ChangeValue(x) => {
                 let ptr_val = builder.use_var(ptr);
                 let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 assert!(x < 255);
                 let new_val = builder.ins().iadd_imm(value, x as i64);
                 builder.ins().store(MemFlags::new(), new_val, ptr_val, 0);
             }
-            IrNode::ChangePtr(x) => {
+            SimpleIrNode::ChangePtr(x) => {
                 let ptr_val = builder.use_var(ptr);
                 let new_val = builder.ins().iadd_imm(ptr_val, x as i64);
                 builder.def_var(ptr, new_val);
             }
-            IrNode::PrintChar => {
+            SimpleIrNode::PrintChar => {
                 let ptr_val = builder.use_var(ptr);
                 let char = builder
                     .ins()
@@ -37,7 +37,7 @@ fn codegen_inner(
                 let putchar_call = builder.ins().call(putchar_func, &[char]);
                 let _putchar_result = builder.inst_results(putchar_call)[0];
             }
-            IrNode::ReadChar => {
+            SimpleIrNode::ReadChar => {
                 let ptr_val = builder.use_var(ptr);
                 let getchar_call = builder.ins().call(getchar_func, &[]);
                 let char = builder.inst_results(getchar_call)[0];
@@ -45,7 +45,7 @@ fn codegen_inner(
 
                 builder.ins().store(MemFlags::new(), char, ptr_val, 0);
             }
-            IrNode::LoopStart => {
+            SimpleIrNode::LoopStart => {
                 // Loop block: The block that contains the loop body. Always jumps back to the check block
                 let loop_block = builder.create_block();
 
@@ -79,7 +79,7 @@ fn codegen_inner(
                 builder.switch_to_block(next_block);
                 continue;
             }
-            IrNode::LoopEnd => {
+            SimpleIrNode::LoopEnd => {
                 return;
             }
         }
@@ -105,7 +105,10 @@ fn declare_getchar(module: &mut ObjectModule) -> FuncId {
         .unwrap()
 }
 
-pub fn generate(recv: Receiver<IrNode>, output: PathBuf) -> std::io::Result<()> {
+pub fn generate(
+    mut recv: impl Iterator<Item = SimpleIrNode>,
+    output: PathBuf,
+) -> std::io::Result<()> {
     let isa = cranelift_native::builder()
         .unwrap()
         .finish(settings::Flags::new(settings::builder()))
@@ -149,7 +152,6 @@ pub fn generate(recv: Receiver<IrNode>, output: PathBuf) -> std::io::Result<()> 
             builder.def_var(ptr, grid_ptr);
         };
 
-        let mut recv = recv.iter();
         codegen_inner(&mut recv, &mut builder, ptr, local_putchar, local_getchar);
 
         let zero = builder.ins().iconst(types::I32, 0);
