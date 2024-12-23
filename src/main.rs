@@ -18,6 +18,7 @@ fn main() {
     let y = parsing::Token::parse(x.bytes());
 
     let preopts_result = preopts::process(y).unwrap();
+    let midopts_result = midopts::convert_nodes(preopts_result);
 
-    codegen::generate(preopts_result.into_iter(), args.output).unwrap();
+    codegen::generate(midopts_result.into_iter(), args.output).unwrap();
 }
