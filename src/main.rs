@@ -15,7 +15,7 @@ mod rust_output;
 fn main() {
     let args = cli::Args::parse();
 
-    let x = BufReader::new(File::open(args.input).unwrap());
+    let x = BufReader::new(File::open(&args.input).unwrap());
     let y = parsing::Token::parse(x.bytes());
 
     let preopts_result = preopts::process(y).unwrap();
@@ -33,5 +33,8 @@ fn main() {
         rust_output::write_rust_code(&midopts_result, rust_path);
     }
 
-    codegen::generate(midopts_result.into_iter(), args.output).unwrap();
+    let output_path = args
+        .output
+        .unwrap_or_else(|| args.input.with_extension("o"));
+    codegen::generate(midopts_result.into_iter(), output_path).unwrap();
 }

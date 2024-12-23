@@ -12,7 +12,7 @@ pub struct Args {
 
     /// Output file
     #[arg(short, long)]
-    pub output: PathBuf,
+    pub output: Option<PathBuf>,
 
     /// Rust output file
     #[arg(short, long)]
