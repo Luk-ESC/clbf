@@ -42,7 +42,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
             // TODO: Can we use offset here?
             &[b, IrNode::LoopStart, IrNode::ChangeValue(x, 0), IrNode::LoopEnd, l] if *x < 0 => {
                 // Make sure offset is 0
-                if matches!(l, IrNode::ChangeValue(_, x) if *x != 0) {
+                if !matches!(l, IrNode::ChangeValue(_, 0)) {
                     continue;
                 }
 
@@ -122,11 +122,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
         };
 
         nodes.remove(start_idx + 2);
-        if after_offset == 0 {
-            nodes.remove(start_idx + 1);
-        } else {
-            nodes[start_idx + 1] = IrNode::ChangePtr(after_offset)
-        }
+        nodes[start_idx + 1] = IrNode::ChangePtr(after_offset);
     }
 
     // Search for the following pattern:
