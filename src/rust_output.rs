@@ -5,7 +5,7 @@ use std::{
     path::PathBuf,
 };
 
-use crate::midopts::IrNode;
+use crate::optimisations::IrNode;
 
 pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
     let mut debug = BufWriter::new(File::create(out_path).unwrap());

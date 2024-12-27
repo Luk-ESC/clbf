@@ -7,7 +7,7 @@ use clap::Parser;
 
 mod cli;
 mod codegen;
-mod midopts;
+mod optimisations;
 mod parsing;
 mod preopts;
 mod rust_output;
@@ -20,7 +20,7 @@ fn main() {
 
     let preopts_result = preopts::process(y).unwrap();
     let preopt_node_count = preopts_result.len();
-    let midopts_result = midopts::convert_nodes(preopts_result);
+    let midopts_result = optimisations::convert_nodes(preopts_result);
 
     println!(
         "Reduced node count from {} to {} ({} nodes reduced)",

@@ -6,7 +6,7 @@ use cranelift_module::{DataDescription, FuncId, Init, Linkage, Module};
 use cranelift_object::{ObjectBuilder, ObjectModule};
 use types::I64;
 
-use crate::midopts::IrNode;
+use crate::optimisations::IrNode;
 
 fn codegen_inner(
     recv: &mut impl Iterator<Item = IrNode>,

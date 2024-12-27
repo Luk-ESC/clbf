@@ -1,4 +1,4 @@
-use crate::{midopts::IrNode, parsing::Token};
+use crate::{optimisations::IrNode, parsing::Token};
 
 mod repetition {
     use crate::parsing::Token;
