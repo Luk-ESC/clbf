@@ -60,9 +60,11 @@ mod repetition {
 
         pub fn to_ir_node(self) -> Option<IrNode> {
             match self {
+                Repeating::None => None,
+                Repeating::Value(0) => None,
+                Repeating::Ptr(0) => None,
                 Repeating::Value(x) => Some(IrNode::ChangeValue(x, 0)),
                 Repeating::Ptr(x) => Some(IrNode::ChangePtr(x)),
-                Repeating::None => None,
             }
         }
     }
@@ -73,7 +75,7 @@ pub fn process(
 ) -> std::io::Result<Vec<IrNode>> {
     let mut repeating = repetition::Repeating::new();
     let mut nodes = Vec::new();
-    // TODO: Implement optimizations
+
     for token in tokens {
         let token = token?;
 

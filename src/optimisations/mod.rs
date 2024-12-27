@@ -32,17 +32,6 @@ pub enum IrNode {
 }
 
 pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
-    // Remove ChangeValue(0) and ChangePtr(0), since they don't have any effect.
-    for i in (0..nodes.len()).rev() {
-        if matches!(nodes[i], IrNode::ChangeValue(0, _)) {
-            nodes.remove(i);
-        }
-
-        if matches!(nodes[i], IrNode::ChangePtr(0)) {
-            nodes.remove(i);
-        }
-    }
-
     // Search for the following pattern:
     // ChangeValue(_)? LoopStart ChangeValue(-x) LoopEnd ChangeValue(x)
     // If found replace with SetValue(x)
