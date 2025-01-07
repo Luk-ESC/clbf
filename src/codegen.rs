@@ -4,14 +4,12 @@ use codegen::ir::FuncRef;
 use cranelift::prelude::*;
 use cranelift_module::{DataDescription, FuncId, Init, Linkage, Module};
 use cranelift_object::{ObjectBuilder, ObjectModule};
-use types::I64;
 
 use crate::optimisations::IrNode;
 
 fn codegen_inner(
     recv: &mut impl Iterator<Item = IrNode>,
     builder: &mut FunctionBuilder,
-    ptr: Variable,
     putchar_func: FuncRef,
     getchar_func: FuncRef,
 ) {
@@ -19,23 +17,24 @@ fn codegen_inner(
         println!("{val:?}");
         match val {
             IrNode::SetValue(x, offset) => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let value = builder.ins().iconst(types::I8, x as i64);
                 builder.ins().store(MemFlags::new(), value, ptr_val, offset);
             }
             IrNode::ChangeValue(x, offset) => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let value = builder
                     .ins()
                     .load(types::I8, MemFlags::new(), ptr_val, offset);
                 assert!(x < 255);
+
                 let new_val = builder.ins().iadd_imm(value, x as i64);
                 builder
                     .ins()
                     .store(MemFlags::new(), new_val, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(-1, offset) => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
 
                 let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 let base = builder
@@ -49,7 +48,7 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(1, offset) => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
 
                 let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 let base = builder
@@ -63,7 +62,7 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(x, offset) => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
 
                 let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 let base = builder
@@ -78,12 +77,12 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
             IrNode::ChangePtr(x) => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let new_val = builder.ins().iadd_imm(ptr_val, x as i64);
-                builder.def_var(ptr, new_val);
+                builder.ins().set_pinned_reg(new_val);
             }
             IrNode::PrintChar => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let char = builder
                     .ins()
                     .uload8(types::I32, MemFlags::new(), ptr_val, 0);
@@ -91,7 +90,7 @@ fn codegen_inner(
                 let _putchar_result = builder.inst_results(putchar_call)[0];
             }
             IrNode::ReadChar => {
-                let ptr_val = builder.use_var(ptr);
+                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let getchar_call = builder.ins().call(getchar_func, &[]);
                 let char = builder.inst_results(getchar_call)[0];
                 let char = builder.ins().ireduce(types::I8, char);
@@ -115,7 +114,7 @@ fn codegen_inner(
                 builder.switch_to_block(check_block);
                 // If the value at the current pointer is nonzero, jump to loop block, otherwise jump to next block
                 {
-                    let ptr_val = builder.use_var(ptr);
+                    let ptr_val = builder.ins().get_pinned_reg(types::I64);
                     let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
 
                     builder.ins().brif(value, loop_block, &[], next_block, &[]);
@@ -123,7 +122,7 @@ fn codegen_inner(
 
                 builder.switch_to_block(loop_block);
                 {
-                    codegen_inner(recv, builder, ptr, putchar_func, getchar_func);
+                    codegen_inner(recv, builder, putchar_func, getchar_func);
 
                     // Jump back to check block
                     builder.ins().jump(check_block, &[]);
@@ -162,6 +161,7 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
     let isa = cranelift_native::builder().unwrap();
     let mut builder = settings::builder();
     builder.set("opt_level", "speed").unwrap();
+    builder.set("enable_pinned_reg", "true").unwrap();
 
     let isa = isa.finish(settings::Flags::new(builder)).unwrap();
 
@@ -187,9 +187,6 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
     let mut func_ctx = FunctionBuilderContext::new();
     {
         let mut builder = FunctionBuilder::new(&mut context.func, &mut func_ctx);
-        let ptr = Variable::new(1);
-
-        builder.declare_var(ptr, I64);
 
         let block = builder.create_block();
         builder.switch_to_block(block);
@@ -201,10 +198,10 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
         {
             let grid_ptr = builder.ins().global_value(types::I64, local_data);
             let grid_ptr = builder.ins().iadd_imm(grid_ptr, 15000);
-            builder.def_var(ptr, grid_ptr);
+            builder.ins().set_pinned_reg(grid_ptr);
         };
 
-        codegen_inner(&mut recv, &mut builder, ptr, local_putchar, local_getchar);
+        codegen_inner(&mut recv, &mut builder, local_putchar, local_getchar);
 
         let zero = builder.ins().iconst(types::I32, 0);
 
