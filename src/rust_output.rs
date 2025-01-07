@@ -10,6 +10,19 @@ use crate::optimisations::IrNode;
 pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
     let mut debug = BufWriter::new(File::create(out_path).unwrap());
     let mut indent = String::from("\t");
+
+    /*
+       unsafe extern "C" {
+               fn putchar(char: i32) -> i32;
+               fn getchar() -> i32;
+       }
+    */
+    writeln!(&mut debug, "unsafe extern \"C\" {{").unwrap();
+    writeln!(&mut debug, "\tsafe fn putchar(ch: i32) -> i32;").unwrap();
+    writeln!(&mut debug, "\tsafe fn getchar() -> i32;").unwrap();
+
+    writeln!(&mut debug, "}}\n").unwrap();
+
     writeln!(&mut debug, "fn main() {{").unwrap();
     writeln!(&mut debug, "\tlet mut grid = [0u8; 30000];").unwrap();
     writeln!(&mut debug, "\tlet mut ptr = 15000;").unwrap();
@@ -89,15 +102,10 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
                 }
             }
             IrNode::PrintChar => {
-                writeln!(&mut debug, "{}print!(\"{{}}\", grid[ptr] as char);", indent).unwrap();
+                writeln!(&mut debug, "{}putchar(grid[ptr] as i32);", indent).unwrap();
             }
             IrNode::ReadChar => {
-                writeln!(
-                    &mut debug,
-                    "{}grid[ptr] = std::io::stdin().bytes().next().unwrap().unwrap();",
-                    indent
-                )
-                .unwrap();
+                writeln!(&mut debug, "{}grid[ptr] = getchar() as u8;", indent).unwrap();
             }
             IrNode::LoopStart => {
                 writeln!(&mut debug).unwrap();
