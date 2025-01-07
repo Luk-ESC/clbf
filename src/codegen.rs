@@ -10,19 +10,21 @@ use crate::optimisations::IrNode;
 fn codegen_inner(
     recv: &mut impl Iterator<Item = IrNode>,
     builder: &mut FunctionBuilder,
+    ptr: Option<Value>,
     putchar_func: FuncRef,
     getchar_func: FuncRef,
-) {
+) -> Value {
+    let mut ptr_val =
+        ptr.unwrap_or_else(|| builder.block_params(builder.current_block().unwrap())[0]);
+
     while let Some(val) = recv.next() {
         println!("{val:?}");
         match val {
             IrNode::SetValue(x, offset) => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let value = builder.ins().iconst(types::I8, x as i64);
                 builder.ins().store(MemFlags::new(), value, ptr_val, offset);
             }
             IrNode::ChangeValue(x, offset) => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let value = builder
                     .ins()
                     .load(types::I8, MemFlags::new(), ptr_val, offset);
@@ -34,8 +36,6 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_val, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(-1, offset) => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
-
                 let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 let base = builder
                     .ins()
@@ -48,8 +48,6 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(1, offset) => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
-
                 let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 let base = builder
                     .ins()
@@ -62,8 +60,6 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(x, offset) => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
-
                 let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
                 let base = builder
                     .ins()
@@ -77,12 +73,9 @@ fn codegen_inner(
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
             IrNode::ChangePtr(x) => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
-                let new_val = builder.ins().iadd_imm(ptr_val, x as i64);
-                builder.ins().set_pinned_reg(new_val);
+                ptr_val = builder.ins().iadd_imm(ptr_val, x as i64);
             }
             IrNode::PrintChar => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let char = builder
                     .ins()
                     .uload8(types::I32, MemFlags::new(), ptr_val, 0);
@@ -90,7 +83,6 @@ fn codegen_inner(
                 let _putchar_result = builder.inst_results(putchar_call)[0];
             }
             IrNode::ReadChar => {
-                let ptr_val = builder.ins().get_pinned_reg(types::I64);
                 let getchar_call = builder.ins().call(getchar_func, &[]);
                 let char = builder.inst_results(getchar_call)[0];
                 let char = builder.ins().ireduce(types::I8, char);
@@ -98,44 +90,52 @@ fn codegen_inner(
                 builder.ins().store(MemFlags::new(), char, ptr_val, 0);
             }
             IrNode::LoopStart => {
-                // Loop block: The block that contains the loop body. Always jumps back to the check block
-                let loop_block = builder.create_block();
-
                 // Check block: The block that checks if the value at the current pointer is zero.
                 // If it is, it jumps to the next block, otherwise it jumps to the loop block (does a new iteration)
                 let check_block = builder.create_block();
+                builder.append_block_param(check_block, types::I64);
+
+                // Loop block: The block that contains the loop body. Always jumps back to the check block
+                let loop_block = builder.create_block();
+                builder.append_block_param(loop_block, types::I64);
 
                 // Next block: The code after the loop.
                 let next_block = builder.create_block();
+                builder.append_block_param(next_block, types::I64);
 
                 // Jump from current block to check block
-                builder.ins().jump(check_block, &[]);
+                builder.ins().jump(check_block, &[ptr_val]);
 
                 builder.switch_to_block(check_block);
                 // If the value at the current pointer is nonzero, jump to loop block, otherwise jump to next block
                 {
-                    let ptr_val = builder.ins().get_pinned_reg(types::I64);
+                    let ptr_val = builder.block_params(check_block)[0];
                     let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
 
-                    builder.ins().brif(value, loop_block, &[], next_block, &[]);
+                    builder
+                        .ins()
+                        .brif(value, loop_block, &[ptr_val], next_block, &[ptr_val]);
                 }
 
                 builder.switch_to_block(loop_block);
                 {
-                    codegen_inner(recv, builder, putchar_func, getchar_func);
+                    let ptr_val = codegen_inner(recv, builder, None, putchar_func, getchar_func);
 
                     // Jump back to check block
-                    builder.ins().jump(check_block, &[]);
+                    builder.ins().jump(check_block, &[ptr_val]);
                 }
 
                 builder.switch_to_block(next_block);
+                ptr_val = builder.block_params(next_block)[0];
                 continue;
             }
             IrNode::LoopEnd => {
-                return;
+                return ptr_val;
             }
         }
     }
+
+    ptr_val
 }
 
 fn declare_putchar(module: &mut ObjectModule) -> FuncId {
@@ -161,7 +161,6 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
     let isa = cranelift_native::builder().unwrap();
     let mut builder = settings::builder();
     builder.set("opt_level", "speed").unwrap();
-    builder.set("enable_pinned_reg", "true").unwrap();
 
     let isa = isa.finish(settings::Flags::new(builder)).unwrap();
 
@@ -195,13 +194,18 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
         let local_getchar = module.declare_func_in_func(getchar_func, builder.func);
         let local_data = module.declare_data_in_func(data, builder.func);
 
-        {
+        let grid_ptr = {
             let grid_ptr = builder.ins().global_value(types::I64, local_data);
-            let grid_ptr = builder.ins().iadd_imm(grid_ptr, 15000);
-            builder.ins().set_pinned_reg(grid_ptr);
+            builder.ins().iadd_imm(grid_ptr, 15000)
         };
 
-        codegen_inner(&mut recv, &mut builder, local_putchar, local_getchar);
+        codegen_inner(
+            &mut recv,
+            &mut builder,
+            Some(grid_ptr),
+            local_putchar,
+            local_getchar,
+        );
 
         let zero = builder.ins().iconst(types::I32, 0);
 
