@@ -1,7 +1,7 @@
 #[derive(Debug, PartialEq, Eq)]
 pub enum IrNode {
     // Set the value at the current pointer + offset to the given value
-    SetValue(i32, i32),
+    SetValue(u8, i32),
 
     // Change the value at the current pointer + offset by the given amount
     ChangeValue(i32, i32),
@@ -47,7 +47,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
                 }
 
                 let y = match l {
-                    IrNode::ChangeValue(y, 0) => Some(*y),
+                    IrNode::ChangeValue(y, 0) => Some(*y as u8),
                     _ => None,
                 };
 
@@ -87,7 +87,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
                 if (x.signum() != y.signum()) =>
             {
                 assert!(*x != 0 && *y != 0);
-                to_replace.push((true, *value, (offset + x), i, x + y))
+                to_replace.push((true, *value as i32, (offset + x), i, x + y))
             }
 
             [IrNode::ChangePtr(x), IrNode::ChangeValue(value, offset), IrNode::ChangePtr(y)]
@@ -116,7 +116,8 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
         }
 
         nodes[start_idx] = if set {
-            IrNode::SetValue(value, offset)
+            assert!((0..256).contains(&value));
+            IrNode::SetValue(value as u8, offset)
         } else {
             IrNode::ChangeValue(value, offset)
         };

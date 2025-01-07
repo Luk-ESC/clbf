@@ -12,7 +12,7 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
     let mut indent = String::from("\t");
     writeln!(&mut debug, "fn main() {{").unwrap();
     writeln!(&mut debug, "\tlet mut grid = [0u8; 30000];").unwrap();
-    writeln!(&mut debug, "\tlet mut ptr = 0;").unwrap();
+    writeln!(&mut debug, "\tlet mut ptr = 15000;").unwrap();
     writeln!(&mut debug).unwrap();
 
     for i in nodes.iter() {
