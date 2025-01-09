@@ -79,8 +79,7 @@ fn codegen_inner(
                 let char = builder
                     .ins()
                     .uload8(types::I32, MemFlags::new(), ptr_val, 0);
-                let putchar_call = builder.ins().call(putchar_func, &[char]);
-                let _putchar_result = builder.inst_results(putchar_call)[0];
+                builder.ins().call(putchar_func, &[char]);
             }
             IrNode::ReadChar => {
                 let getchar_call = builder.ins().call(getchar_func, &[]);
@@ -104,7 +103,12 @@ fn codegen_inner(
                 builder.append_block_param(next_block, types::I64);
 
                 // Jump from current block to check block
-                builder.ins().jump(check_block, &[ptr_val]);
+                {
+                    let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                    builder
+                        .ins()
+                        .brif(value, loop_block, &[ptr_val], next_block, &[ptr_val]);
+                }
 
                 builder.switch_to_block(check_block);
                 // If the value at the current pointer is nonzero, jump to loop block, otherwise jump to next block
