@@ -1,9 +1,15 @@
 use super::IrNode;
 
+#[derive(Clone, Copy)]
+enum Instruction {
+    Set,
+    Change,
+}
+
 struct Match {
     start_index: usize,
     end_index: usize,
-    changes: Vec<(i32, i32, bool)>,
+    changes: Vec<(i32, i32, Instruction)>,
     ptr_offset: i32,
 }
 
@@ -22,9 +28,11 @@ impl Match {
             for i in &nodes[start_index..] {
                 match i {
                     IrNode::SetValue(v, o) => {
-                        current_changes.push((*v as i32, o + ptr_offset, true))
+                        current_changes.push((*v as i32, o + ptr_offset, Instruction::Set))
                     }
-                    IrNode::ChangeValue(v, o) => current_changes.push((*v, o + ptr_offset, false)),
+                    IrNode::ChangeValue(v, o) => {
+                        current_changes.push((*v, o + ptr_offset, Instruction::Change))
+                    }
                     IrNode::ChangePtr(ptr) => {
                         change_ptrs += 1;
                         ptr_offset += *ptr;
@@ -61,12 +69,13 @@ impl Match {
 
         let mut i = start_index;
 
-        for (v, o, set) in changes {
-            if set {
-                assert!((0..=255).contains(&v));
-                nodes[i] = IrNode::SetValue(v as u8, o);
-            } else {
-                nodes[i] = IrNode::ChangeValue(v, o);
+        for (v, o, instr) in changes {
+            match instr {
+                Instruction::Set => {
+                    assert!((0..=255).contains(&v));
+                    nodes[i] = IrNode::SetValue(v as u8, o);
+                }
+                Instruction::Change => nodes[i] = IrNode::ChangeValue(v, o),
             }
 
             i += 1;
