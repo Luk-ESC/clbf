@@ -1,4 +1,5 @@
 mod clear;
+mod driveby;
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum IrNode {
@@ -35,56 +36,9 @@ pub enum IrNode {
 
 pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
     clear::clear(&mut nodes);
+    driveby::driveby(&mut nodes);
 
-    // Search for the following pattern:
-    // ChangePtr(x), SetValue | ChangeValue, ChangePtr(-x)
-    // Replace with SetValue | ChangeValue and adjusted offset
-    let mut to_replace = vec![];
-    for (i, window) in nodes.windows(3).enumerate() {
-        match window {
-            [IrNode::ChangePtr(x), IrNode::SetValue(value, offset), IrNode::ChangePtr(y)]
-                if (x.signum() != y.signum()) =>
-            {
-                assert!(*x != 0 && *y != 0);
-                to_replace.push((true, *value as i32, (offset + x), i, x + y))
-            }
-
-            [IrNode::ChangePtr(x), IrNode::ChangeValue(value, offset), IrNode::ChangePtr(y)]
-                if (x.signum() != y.signum()) =>
-            {
-                assert!(*x != 0 && *y != 0);
-                to_replace.push((false, *value, (offset + x), i, x + y))
-            }
-
-            _ => {}
-        }
-    }
-
-    for (set, value, offset, start_idx, after_offset) in to_replace.into_iter().rev() {
-        if !matches!(
-            &nodes[start_idx..start_idx + 3],
-            &[
-                IrNode::ChangePtr(x),
-                IrNode::ChangeValue(_, _) | IrNode::SetValue(_, _),
-                IrNode::ChangePtr(y)
-                ] if (x.signum() != y.signum())
-        ) {
-            // TODO: If you have CP CV CP CV CP, they overwrite each other............
-            // Maybe just run optim again?
-            continue;
-        }
-
-        nodes[start_idx] = if set {
-            assert!((0..256).contains(&value));
-            IrNode::SetValue(value as u8, offset)
-        } else {
-            IrNode::ChangeValue(value, offset)
-        };
-
-        nodes.remove(start_idx + 2);
-        nodes[start_idx + 1] = IrNode::ChangePtr(after_offset);
-    }
-
+    /*
     // Search for the following pattern:
     // StartLoop ChangeValue(-1, 0) (ChangeValue(_, !0) | SetValue(_, !0))* EndLoop
     // Replace With:
@@ -157,10 +111,10 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
             }
         }
 
-        for i in to_remove {
-            nodes.remove(i);
+        for i in to_remove.iter().rev() {
+            nodes.remove(*i);
         }
-    }
+    }*/
 
     nodes
 }
