@@ -4,7 +4,6 @@ struct Match {
     start_index: usize,
     end_index: usize,
     changes: Vec<(i32, i32, bool)>,
-    ptr_offset: i32,
 }
 
 impl Match {
@@ -13,20 +12,27 @@ impl Match {
         // Reused across iterations
         let mut current_changes = vec![];
 
-        let mut start_index = 0;
+        let mut start_index = 1;
         while start_index < nodes.len() {
+            if nodes[start_index - 1] != IrNode::LoopStart {
+                start_index += 1;
+                continue;
+            }
+
             let mut end_index = start_index;
 
             let mut ptr_offset = 0;
-            let mut change_ptrs = 0;
+            let mut change_to_this = 0;
             for i in &nodes[start_index..] {
                 match i {
-                    IrNode::SetValue(v, o) => {
-                        current_changes.push((*v as i32, o + ptr_offset, true))
+                    IrNode::ChangeValue(v, o) => {
+                        if *o == 0 {
+                            change_to_this += *v;
+                        } else {
+                            current_changes.push((*v, o + ptr_offset, false))
+                        }
                     }
-                    IrNode::ChangeValue(v, o) => current_changes.push((*v, o + ptr_offset, false)),
                     IrNode::ChangePtr(ptr) => {
-                        change_ptrs += 1;
                         ptr_offset += *ptr;
                     }
                     _ => break,
@@ -35,19 +41,17 @@ impl Match {
                 end_index += 1;
             }
 
-            if change_ptrs > 1 {
+            if ptr_offset == 0 && nodes[end_index] == IrNode::LoopEnd && change_to_this == -1 {
                 matches.push(Match {
-                    start_index,
+                    start_index: start_index - 1,
                     end_index,
                     changes: current_changes.clone(),
-                    ptr_offset,
                 });
             }
 
             current_changes.clear();
             start_index = end_index + 1;
         }
-
         matches
     }
 
@@ -56,36 +60,36 @@ impl Match {
             start_index,
             end_index,
             changes,
-            ptr_offset,
         } = self;
 
+        assert_eq!(nodes[start_index], IrNode::LoopStart);
+        assert_eq!(nodes[end_index], IrNode::LoopEnd);
         let mut i = start_index;
 
-        for (v, o, set) in changes {
+        for (v, o, set) in changes.iter().copied() {
             if set {
                 assert!((0..=255).contains(&v));
                 nodes[i] = IrNode::SetValue(v as u8, o);
             } else {
-                nodes[i] = IrNode::ChangeValue(v, o);
+                nodes[i] = IrNode::DynamicChangeValue(v, o);
             }
 
             i += 1;
         }
 
-        if ptr_offset != 0 {
-            nodes[i] = IrNode::ChangePtr(ptr_offset);
-            i += 1;
-        }
+        nodes[i] = IrNode::SetValue(0, 0);
+        i += 1;
 
-        assert!(i < end_index);
-        for _ in i..end_index {
+        assert!(i <= end_index);
+        for _ in i..=end_index {
             nodes.remove(i);
         }
     }
 }
 
-pub fn driveby(nodes: &mut Vec<IrNode>) {
+pub fn inline(nodes: &mut Vec<IrNode>) {
     let matches = Match::collect_all(nodes);
+
     for i in matches.into_iter().rev() {
         i.apply(nodes);
     }
