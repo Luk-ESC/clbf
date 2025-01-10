@@ -36,5 +36,5 @@ fn main() {
     let output_path = args
         .output
         .unwrap_or_else(|| args.input.with_extension("o"));
-    codegen::generate(midopts_result.into_iter(), output_path).unwrap();
+    codegen::generate(midopts_result.into_iter(), output_path, args.clif).unwrap();
 }

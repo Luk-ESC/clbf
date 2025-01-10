@@ -161,7 +161,11 @@ fn declare_getchar(module: &mut ObjectModule) -> FuncId {
         .unwrap()
 }
 
-pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std::io::Result<()> {
+pub fn generate(
+    mut recv: impl Iterator<Item = IrNode>,
+    output: PathBuf,
+    clif: Option<PathBuf>,
+) -> std::io::Result<()> {
     let isa = cranelift_native::builder().unwrap();
     let mut builder = settings::builder();
     builder.set("opt_level", "speed").unwrap();
@@ -216,6 +220,10 @@ pub fn generate(mut recv: impl Iterator<Item = IrNode>, output: PathBuf) -> std:
         builder.ins().return_(&[zero]);
         builder.seal_all_blocks();
         builder.finalize();
+    }
+
+    if let Some(clif) = clif {
+        std::fs::write(clif, context.func.to_string()).unwrap();
     }
 
     let id = module

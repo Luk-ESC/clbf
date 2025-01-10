@@ -17,4 +17,8 @@ pub struct Args {
     /// Rust output file
     #[arg(short, long)]
     pub rust: Option<PathBuf>,
+
+    /// Clif output file
+    #[arg(short, long)]
+    pub clif: Option<PathBuf>,
 }
