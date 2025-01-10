@@ -102,6 +102,10 @@ fn codegen_inner(
                 let next_block = builder.create_block();
                 builder.append_block_param(next_block, types::I64);
 
+                builder.insert_block_after(loop_block, builder.current_block().unwrap());
+                builder.insert_block_after(check_block, loop_block);
+                builder.insert_block_after(next_block, check_block);
+
                 // Jump from current block to check block
                 {
                     let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
