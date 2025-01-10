@@ -19,14 +19,8 @@ pub enum IrNode {
     // Print the value at the current pointer
     PrintChar,
 
-    // Print the value from the current pointer to pointer + n (inclusive)
-    //Print(NonZeroU32),
-
     // Read a character from stdin and store it at the current pointer
     ReadChar,
-
-    // Read n characters from stdin and store them at the current pointer to pointer + n (inclusive)
-    //Read(NonZeroU32),
 
     // Start a loop
     LoopStart,
