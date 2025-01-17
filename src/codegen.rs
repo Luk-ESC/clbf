@@ -28,7 +28,8 @@ fn codegen_inner(
                 let value = builder
                     .ins()
                     .load(types::I8, MemFlags::new(), ptr_val, offset);
-                assert!(x < 255);
+                assert!(x != 0);
+                assert!(x.abs() <= 255);
 
                 let new_val = builder.ins().iadd_imm(value, x as i64);
                 builder
