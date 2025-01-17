@@ -32,12 +32,8 @@ for dir in *; do
     tmpdir=$(mktemp -d)
 
     echo "### Compiling $file"
-    $compiler $file -o $tmpdir/out.o -r $tmpdir/out.rs -c $tmpdir/out.clif || exit 1
+    $compiler $file -o $tmpdir/$dir -r $tmpdir/out.rs -c $tmpdir/out.clif || exit 1
     echo "### Compiled $file"
-
-    echo "### Linking $tmpdir/out.o"
-    ld -o $tmpdir/$dir $tmpdir/out.o -lc  /usr/lib/crti.o /usr/lib/crt1.o /usr/lib/crtn.o
-    echo "### Linked $tmpdir/out.o"
 
     echo "### Running $tmpdir/$dir"
     $tmpdir/$dir > $tmpdir/out.txt || exit 3

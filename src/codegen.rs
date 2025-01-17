@@ -1,4 +1,4 @@
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 use codegen::ir::FuncRef;
 use cranelift::prelude::*;
@@ -176,7 +176,7 @@ fn declare_getchar(module: &mut ObjectModule) -> FuncId {
 
 pub fn generate(
     mut recv: impl Iterator<Item = IrNode>,
-    output: PathBuf,
+    output: &Path,
     clif: Option<PathBuf>,
 ) -> std::io::Result<()> {
     let isa = cranelift_native::builder().unwrap();

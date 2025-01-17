@@ -4,9 +4,12 @@ use std::{
 };
 
 use clap::Parser;
+use linking::link_file;
+use tempfile::tempdir;
 
 mod cli;
 mod codegen;
+mod linking;
 mod optimisations;
 mod parsing;
 mod preopts;
@@ -33,8 +36,10 @@ fn main() {
         rust_output::write_rust_code(&midopts_result, rust_path);
     }
 
-    let output_path = args
-        .output
-        .unwrap_or_else(|| args.input.with_extension("o"));
-    codegen::generate(midopts_result.into_iter(), output_path, args.clif).unwrap();
+    let temp_dir = tempdir().unwrap();
+    let obj_file = temp_dir.path().join("out.o");
+    let output_path = args.output.unwrap_or_else(|| args.input.with_extension(""));
+
+    codegen::generate(midopts_result.into_iter(), &obj_file, args.clif).unwrap();
+    link_file(&obj_file, &output_path);
 }
