@@ -45,6 +45,7 @@ for dir in *; do
     if ! $bless; then
         if ! diff $dir.txt $tmpdir/out.txt  --color=always; then
             echo "### FAIL: $dir output changed"
+            read
 
             rm -rf $tmpdir
             exit 1
@@ -53,6 +54,7 @@ for dir in *; do
         # Make sure that tmpdir/out.rs is the same as $dir.rs
         if ! diff $dir.rs $tmpdir/out.rs --color=always; then
             echo "### FAIL: $dir rust output changed"
+            read
 
             rm -rf $tmpdir
             exit 1
@@ -61,6 +63,7 @@ for dir in *; do
         # Make sure that tmpdir/out.clif is the same as $dir.clif
         if ! diff $dir.clif $tmpdir/out.clif --color=always; then
             echo "### FAIL: $dir clif output changed"
+            read
 
             rm -rf $tmpdir
             exit 1

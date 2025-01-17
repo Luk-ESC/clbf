@@ -10,8 +10,8 @@ pub enum IrNode {
     // Change the value at the current pointer + offset by the given amount
     ChangeValue(i32, i32),
 
-    // Change the value at the current pointer + offset by the given amount * current value
-    DynamicChangeValue(i32, i32),
+    // Change the value at the current pointer + offset by the given amount * value at the second_offset
+    DynamicChangeValue(i32, i32, i32),
 
     // Move the pointer to by the given amount
     ChangePtr(i32),
@@ -33,6 +33,7 @@ pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
     clear::clear(&mut nodes);
     driveby::driveby(&mut nodes);
     inline::inline(&mut nodes);
+    driveby::driveby(&mut nodes);
 
     nodes
 }

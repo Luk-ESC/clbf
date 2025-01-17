@@ -71,7 +71,7 @@ impl Match {
                 assert!((0..=255).contains(&v));
                 nodes[i] = IrNode::SetValue(v as u8, o);
             } else {
-                nodes[i] = IrNode::DynamicChangeValue(v, o);
+                nodes[i] = IrNode::DynamicChangeValue(v, o, 0);
             }
 
             i += 1;

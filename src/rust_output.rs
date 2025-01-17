@@ -7,6 +7,14 @@ use std::{
 
 use crate::optimisations::IrNode;
 
+fn add(amount: i32) -> String {
+    match amount.cmp(&0) {
+        Ordering::Less => format!(" - {}", amount.abs()),
+        Ordering::Equal => String::new(),
+        Ordering::Greater => format!(" + {amount}"),
+    }
+}
+
 pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
     let mut debug = BufWriter::new(File::create(out_path).unwrap());
     let mut indent = String::from("\t");
@@ -31,11 +39,7 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
     for i in nodes.iter() {
         match i {
             IrNode::SetValue(x, offset) => {
-                let offset = match offset.cmp(&0) {
-                    Ordering::Less => format!(" - {}", offset.abs()),
-                    Ordering::Equal => String::new(),
-                    Ordering::Greater => format!(" + {offset}"),
-                };
+                let offset = add(*offset);
 
                 writeln!(&mut debug, "{}grid[ptr{offset}] = {};", indent, x).unwrap();
             }
@@ -52,35 +56,36 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
                     writeln!(&mut debug, "{}grid[ptr{offset}] += {};", indent, x).unwrap();
                 }
             }
-            IrNode::DynamicChangeValue(-1, offset) => {
-                let offset = match offset.cmp(&0) {
-                    Ordering::Less => format!(" - {}", offset.abs()),
-                    Ordering::Equal => String::new(),
-                    Ordering::Greater => format!(" + {offset}"),
-                };
+            IrNode::DynamicChangeValue(-1, offset, mult_offset) => {
+                let offset = add(*offset);
+                let mult_offset = add(*mult_offset);
 
-                writeln!(&mut debug, "{}grid[ptr{offset}] -= grid[ptr];", indent).unwrap();
+                writeln!(
+                    &mut debug,
+                    "{}grid[ptr{offset}] -= grid[ptr{mult_offset}];",
+                    indent
+                )
+                .unwrap();
             }
-            IrNode::DynamicChangeValue(1, offset) => {
-                let offset = match offset.cmp(&0) {
-                    Ordering::Less => format!(" - {}", offset.abs()),
-                    Ordering::Equal => String::new(),
-                    Ordering::Greater => format!(" + {offset}"),
-                };
+            IrNode::DynamicChangeValue(1, offset, mult_offset) => {
+                let offset = add(*offset);
+                let mult_offset = add(*mult_offset);
 
-                writeln!(&mut debug, "{}grid[ptr{offset}] += grid[ptr];", indent).unwrap();
+                writeln!(
+                    &mut debug,
+                    "{}grid[ptr{offset}] += grid[ptr{mult_offset}];",
+                    indent
+                )
+                .unwrap();
             }
-            IrNode::DynamicChangeValue(x, offset) => {
-                let offset = match offset.cmp(&0) {
-                    Ordering::Less => format!(" - {}", offset.abs()),
-                    Ordering::Equal => String::new(),
-                    Ordering::Greater => format!(" + {offset}"),
-                };
+            IrNode::DynamicChangeValue(x, offset, mult_offset) => {
+                let offset = add(*offset);
+                let mult_offset = add(*mult_offset);
 
                 if *x < 0 {
                     writeln!(
                         &mut debug,
-                        "{}grid[ptr{offset}] -= {} * grid[ptr];",
+                        "{}grid[ptr{offset}] -= {} * grid[ptr{mult_offset}];",
                         indent,
                         x.abs()
                     )

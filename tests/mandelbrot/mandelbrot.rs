@@ -118,15 +118,13 @@ fn main() {
 			ptr += 6;
 
 			while grid[ptr] != 0 {
-				ptr += 7;
-				grid[ptr - 6] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 6;
-				grid[ptr + 6] += grid[ptr];
-				grid[ptr + 4] += grid[ptr];
-				grid[ptr + 1] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 8;
+				grid[ptr + 1] += grid[ptr + 7];
+				grid[ptr + 7] = 0;
+				grid[ptr + 7] += grid[ptr + 1];
+				grid[ptr + 5] += grid[ptr + 1];
+				grid[ptr + 2] += grid[ptr + 1];
+				grid[ptr + 1] = 0;
+				ptr += 9;
 			}
 
 			ptr -= 9;
@@ -138,15 +136,13 @@ fn main() {
 			ptr += 9;
 
 			while grid[ptr] != 0 {
-				ptr += 8;
-				grid[ptr - 7] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 7;
-				grid[ptr + 7] += grid[ptr];
-				grid[ptr + 5] += grid[ptr];
-				grid[ptr + 2] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 8;
+				grid[ptr + 1] += grid[ptr + 8];
+				grid[ptr + 8] = 0;
+				grid[ptr + 8] += grid[ptr + 1];
+				grid[ptr + 6] += grid[ptr + 1];
+				grid[ptr + 3] += grid[ptr + 1];
+				grid[ptr + 1] = 0;
+				ptr += 9;
 			}
 
 			ptr -= 9;
@@ -155,15 +151,13 @@ fn main() {
 				ptr -= 9;
 			}
 
-			ptr += 7;
-			grid[ptr - 7] += grid[ptr];
-			grid[ptr] = 0;
-			ptr -= 7;
+			grid[ptr] += grid[ptr + 7];
+			grid[ptr + 7] = 0;
 			grid[ptr + 7] += grid[ptr];
 			grid[ptr + 5] += grid[ptr];
 			grid[ptr] = 0;
+			grid[ptr + 9] += 15;
 			ptr += 9;
-			grid[ptr] += 15;
 
 			while grid[ptr] != 0 {
 
@@ -207,10 +201,9 @@ fn main() {
 
 			while grid[ptr] != 0 {
 				grid[ptr + 1] -= 1;
-				ptr += 5;
-				grid[ptr - 4] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 4;
+				grid[ptr + 1] += grid[ptr + 5];
+				grid[ptr + 5] = 0;
+				ptr += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -219,10 +212,8 @@ fn main() {
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
-						ptr += 2;
-						grid[ptr - 2] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 2;
+						grid[ptr] += grid[ptr + 2];
+						grid[ptr + 2] = 0;
 						grid[ptr + 2] += grid[ptr];
 						grid[ptr + 4] += grid[ptr];
 						grid[ptr] = 0;
@@ -247,17 +238,15 @@ fn main() {
 				ptr -= 9;
 
 				while grid[ptr] != 0 {
-					ptr += 1;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 10;
+					grid[ptr + 10] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr -= 9;
 				}
 
-				ptr += 1;
-				grid[ptr + 9] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr - 1] += 1;
-				ptr += 7;
+				grid[ptr + 10] += grid[ptr + 1];
+				grid[ptr + 1] = 0;
+				grid[ptr] += 1;
+				ptr += 8;
 			}
 
 			ptr -= 9;
@@ -270,21 +259,17 @@ fn main() {
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr - 4] += 1;
-					ptr -= 3;
-					grid[ptr - 1] -= grid[ptr];
-					grid[ptr - 6] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 1;
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 4;
+					grid[ptr - 4] -= grid[ptr - 3];
+					grid[ptr - 9] += grid[ptr - 3];
+					grid[ptr - 3] = 0;
+					grid[ptr - 3] += grid[ptr - 4];
+					grid[ptr - 4] = 0;
 				}
 
-				ptr -= 3;
-				grid[ptr + 3] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr - 1] += 1;
-				ptr -= 10;
+				grid[ptr] += grid[ptr - 3];
+				grid[ptr - 3] = 0;
+				grid[ptr - 4] += 1;
+				ptr -= 13;
 			}
 
 			ptr += 9;
@@ -304,10 +289,9 @@ fn main() {
 
 			while grid[ptr] != 0 {
 				grid[ptr + 1] -= 1;
-				ptr += 6;
-				grid[ptr - 5] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 5;
+				grid[ptr + 1] += grid[ptr + 6];
+				grid[ptr + 6] = 0;
+				ptr += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -316,10 +300,8 @@ fn main() {
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
-						ptr += 3;
-						grid[ptr - 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 3;
+						grid[ptr] += grid[ptr + 3];
+						grid[ptr + 3] = 0;
 						grid[ptr + 3] += grid[ptr];
 						grid[ptr + 4] += grid[ptr];
 						grid[ptr] = 0;
@@ -344,17 +326,15 @@ fn main() {
 				ptr -= 9;
 
 				while grid[ptr] != 0 {
-					ptr += 2;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 11;
+					grid[ptr + 11] += grid[ptr + 2];
+					grid[ptr + 2] = 0;
+					ptr -= 9;
 				}
 
-				ptr += 2;
-				grid[ptr + 9] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr - 2] += 1;
-				ptr += 6;
+				grid[ptr + 11] += grid[ptr + 2];
+				grid[ptr + 2] = 0;
+				grid[ptr] += 1;
+				ptr += 8;
 			}
 
 			ptr -= 9;
@@ -367,30 +347,25 @@ fn main() {
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr - 4] += 1;
-					ptr -= 3;
-					grid[ptr - 1] -= grid[ptr];
-					grid[ptr - 6] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 1;
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 4;
+					grid[ptr - 4] -= grid[ptr - 3];
+					grid[ptr - 9] += grid[ptr - 3];
+					grid[ptr - 3] = 0;
+					grid[ptr - 3] += grid[ptr - 4];
+					grid[ptr - 4] = 0;
 				}
 
-				ptr -= 3;
-				grid[ptr + 3] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr - 1] += 1;
-				ptr -= 10;
+				grid[ptr] += grid[ptr - 3];
+				grid[ptr - 3] = 0;
+				grid[ptr - 4] += 1;
+				ptr -= 13;
 			}
 
 			ptr += 9;
 
 			while grid[ptr] != 0 {
-				ptr += 4;
-				grid[ptr - 36] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 5;
+				grid[ptr - 32] += grid[ptr + 4];
+				grid[ptr + 4] = 0;
+				ptr += 9;
 			}
 
 			ptr -= 9;
@@ -430,19 +405,15 @@ fn main() {
 			ptr += 9;
 
 			while grid[ptr] != 0 {
-				ptr += 3;
-				grid[ptr - 3] -= grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr -= 3;
+				grid[ptr] -= grid[ptr + 3];
+				grid[ptr + 3] = 0;
+				grid[ptr + 3] += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr + 3] -= 1;
-					ptr += 4;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
+					grid[ptr] += grid[ptr + 4];
+					grid[ptr + 4] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -466,19 +437,15 @@ fn main() {
 				}
 
 				grid[ptr] += 1;
-				ptr += 4;
-				grid[ptr - 4] -= grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr -= 4;
+				grid[ptr] -= grid[ptr + 4];
+				grid[ptr + 4] = 0;
+				grid[ptr + 4] += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr + 4] -= 1;
-					ptr += 3;
-					grid[ptr - 3] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 3;
+					grid[ptr] += grid[ptr + 3];
+					grid[ptr + 3] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -524,15 +491,12 @@ fn main() {
 				ptr -= 9;
 			}
 
-			ptr -= 7;
-			grid[ptr + 1] += grid[ptr];
-			grid[ptr + 4] -= grid[ptr];
-			grid[ptr] = 0;
-			grid[ptr + 9] += 26;
-			ptr += 11;
-			grid[ptr - 4] += grid[ptr];
-			grid[ptr] = 0;
-			ptr -= 4;
+			grid[ptr - 6] += grid[ptr - 7];
+			grid[ptr - 3] -= grid[ptr - 7];
+			grid[ptr - 7] = 0;
+			grid[ptr + 2] += 26;
+			grid[ptr] += grid[ptr + 4];
+			grid[ptr + 4] = 0;
 
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
@@ -558,11 +522,10 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
-					ptr -= 2;
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr + 4] -= grid[ptr];
-					grid[ptr] = 0;
-					ptr += 3;
+					grid[ptr - 1] += grid[ptr - 2];
+					grid[ptr + 2] -= grid[ptr - 2];
+					grid[ptr - 2] = 0;
+					ptr += 1;
 				}
 
 				ptr += 13;
@@ -584,14 +547,12 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 5;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
-					grid[ptr + 4] += grid[ptr];
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					grid[ptr + 5] += grid[ptr + 1];
+					grid[ptr + 2] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -603,10 +564,9 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 2;
-					grid[ptr - 9] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 7;
+					grid[ptr - 7] += grid[ptr + 2];
+					grid[ptr + 2] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -660,10 +620,9 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr + 1] -= 1;
-					ptr += 6;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 5;
+					grid[ptr + 1] += grid[ptr + 6];
+					grid[ptr + 6] = 0;
+					ptr += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -672,10 +631,8 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
-							ptr += 2;
-							grid[ptr - 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr] += grid[ptr + 2];
+							grid[ptr + 2] = 0;
 							grid[ptr + 2] += grid[ptr];
 							grid[ptr + 3] += grid[ptr];
 							grid[ptr] = 0;
@@ -700,17 +657,15 @@ fn main() {
 					ptr -= 9;
 
 					while grid[ptr] != 0 {
-						ptr += 1;
-						grid[ptr + 9] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 10;
+						grid[ptr + 10] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 9;
 					}
 
-					ptr += 1;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr += 7;
+					grid[ptr + 10] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					grid[ptr] += 1;
+					ptr += 8;
 				}
 
 				ptr -= 9;
@@ -723,34 +678,28 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 3] += 1;
-						ptr -= 2;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 7] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 3;
+						grid[ptr - 3] -= grid[ptr - 2];
+						grid[ptr - 9] += grid[ptr - 2];
+						grid[ptr - 2] = 0;
+						grid[ptr - 2] += grid[ptr - 3];
+						grid[ptr - 3] = 0;
 					}
 
-					ptr -= 2;
-					grid[ptr + 2] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 2];
+					grid[ptr - 2] = 0;
+					grid[ptr - 3] += 1;
+					ptr -= 12;
 				}
 
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 6;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 5;
-					grid[ptr + 5] += grid[ptr];
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 6];
+					grid[ptr + 6] = 0;
+					grid[ptr + 6] += grid[ptr + 1];
+					grid[ptr + 2] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -776,10 +725,9 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr + 1] -= 1;
-					ptr += 6;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 5;
+					grid[ptr + 1] += grid[ptr + 6];
+					grid[ptr + 6] = 0;
+					ptr += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -788,10 +736,8 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
-							ptr += 2;
-							grid[ptr - 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr] += grid[ptr + 2];
+							grid[ptr + 2] = 0;
 							grid[ptr + 2] += grid[ptr];
 							grid[ptr + 4] += grid[ptr];
 							grid[ptr] = 0;
@@ -816,17 +762,15 @@ fn main() {
 					ptr -= 9;
 
 					while grid[ptr] != 0 {
-						ptr += 1;
-						grid[ptr + 9] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 10;
+						grid[ptr + 10] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 9;
 					}
 
-					ptr += 1;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr += 7;
+					grid[ptr + 10] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					grid[ptr] += 1;
+					ptr += 8;
 				}
 
 				ptr -= 9;
@@ -839,30 +783,25 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 4] += 1;
-						ptr -= 3;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 6] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 4;
+						grid[ptr - 4] -= grid[ptr - 3];
+						grid[ptr - 9] += grid[ptr - 3];
+						grid[ptr - 3] = 0;
+						grid[ptr - 3] += grid[ptr - 4];
+						grid[ptr - 4] = 0;
 					}
 
-					ptr -= 3;
-					grid[ptr + 3] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 3];
+					grid[ptr - 3] = 0;
+					grid[ptr - 4] += 1;
+					ptr -= 13;
 				}
 
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 4;
-					grid[ptr - 36] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 5;
+					grid[ptr - 32] += grid[ptr + 4];
+					grid[ptr + 4] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -874,10 +813,9 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 3;
-					grid[ptr - 36] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 6;
+					grid[ptr - 33] += grid[ptr + 3];
+					grid[ptr + 3] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -909,14 +847,12 @@ fn main() {
 				grid[ptr] += 1;
 
 				while grid[ptr] != 0 {
-					ptr += 8;
-					grid[ptr - 7] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 7;
-					grid[ptr + 7] += grid[ptr];
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 8];
+					grid[ptr + 8] = 0;
+					grid[ptr + 8] += grid[ptr + 1];
+					grid[ptr + 2] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -939,39 +875,32 @@ fn main() {
 				}
 
 				grid[ptr + 4] += 1;
-				ptr += 5;
-				grid[ptr - 1] -= grid[ptr];
-				grid[ptr - 5] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 1;
+				grid[ptr + 4] -= grid[ptr + 5];
+				grid[ptr] += grid[ptr + 5];
+				grid[ptr + 5] = 0;
+				ptr += 6;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
-					ptr -= 6;
-					grid[ptr + 5] += grid[ptr];
-					grid[ptr + 4] += 2 * grid[ptr];
-					grid[ptr] = 0;
-					ptr += 5;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] -= 1;
-					grid[ptr] += 1;
-					ptr += 1;
+					grid[ptr - 1] += grid[ptr - 6];
+					grid[ptr - 2] += 2 * grid[ptr];
+					grid[ptr - 6] = 0;
+					grid[ptr - 6] += grid[ptr - 1];
+					grid[ptr - 1] = 0;
+					grid[ptr - 2] -= 1;
+					grid[ptr - 1] += 1;
 				}
 
-				ptr -= 1;
-				grid[ptr + 1] += grid[ptr];
+				grid[ptr] += grid[ptr - 1];
+				grid[ptr - 1] = 0;
+				grid[ptr - 1] += grid[ptr - 6];
+				grid[ptr - 6] = 0;
 				grid[ptr] = 0;
-				ptr -= 5;
-				grid[ptr + 5] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr + 6] = 0;
-				grid[ptr] += 1;
-				ptr += 4;
-				grid[ptr - 4] -= grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr -= 4;
+				grid[ptr - 6] += 1;
+				grid[ptr - 6] -= grid[ptr - 2];
+				grid[ptr - 2] = 0;
+				grid[ptr - 2] += 1;
+				ptr -= 6;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -979,19 +908,15 @@ fn main() {
 					ptr += 9;
 
 					while grid[ptr] != 0 {
-						ptr += 2;
-						grid[ptr - 2] -= grid[ptr];
-						grid[ptr] = 0;
-						grid[ptr] += 1;
-						ptr -= 2;
+						grid[ptr] -= grid[ptr + 2];
+						grid[ptr + 2] = 0;
+						grid[ptr + 2] += 1;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr + 2] -= 1;
-							ptr += 3;
-							grid[ptr - 3] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 3;
+							grid[ptr] += grid[ptr + 3];
+							grid[ptr + 3] = 0;
 
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
@@ -1015,19 +940,15 @@ fn main() {
 						}
 
 						grid[ptr] += 1;
-						ptr += 3;
-						grid[ptr - 3] -= grid[ptr];
-						grid[ptr] = 0;
-						grid[ptr] += 1;
-						ptr -= 3;
+						grid[ptr] -= grid[ptr + 3];
+						grid[ptr + 3] = 0;
+						grid[ptr + 3] += 1;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr + 3] -= 1;
-							ptr += 2;
-							grid[ptr - 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr] += grid[ptr + 2];
+							grid[ptr + 2] = 0;
 
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
@@ -1073,10 +994,8 @@ fn main() {
 						ptr -= 9;
 					}
 
-					ptr += 4;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
+					grid[ptr] += grid[ptr + 4];
+					grid[ptr + 4] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -1085,13 +1004,11 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr + 1] += 1;
-							ptr += 3;
-							grid[ptr - 2] -= grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
-							grid[ptr + 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr += 8;
+							grid[ptr + 1] -= grid[ptr + 3];
+							grid[ptr + 3] = 0;
+							grid[ptr + 3] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr += 9;
 						}
 
 						grid[ptr - 8] += 1;
@@ -1109,17 +1026,14 @@ fn main() {
 									grid[ptr] -= 1;
 									grid[ptr + 4] -= 1;
 									grid[ptr - 10] += 1;
-									ptr += 1;
-									grid[ptr + 3] += grid[ptr];
-									grid[ptr] = 0;
-									ptr -= 1;
+									grid[ptr + 4] += grid[ptr + 1];
+									grid[ptr + 1] = 0;
 								}
 
-								ptr += 1;
-								grid[ptr + 3] -= grid[ptr];
-								grid[ptr - 11] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 2;
+								grid[ptr + 4] -= grid[ptr + 1];
+								grid[ptr - 10] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
+								ptr -= 1;
 							}
 
 							ptr += 1;
@@ -1127,26 +1041,21 @@ fn main() {
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
 								grid[ptr + 4] += 1;
-								ptr += 1;
-								grid[ptr + 3] -= grid[ptr];
-								grid[ptr - 11] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr + 4] -= grid[ptr + 1];
+								grid[ptr - 10] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
 							}
 
-							ptr += 1;
-							grid[ptr + 3] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 12;
+							grid[ptr + 4] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr -= 11;
 						}
 
 						grid[ptr + 4] = 0;
 					}
 
-					ptr += 3;
-					grid[ptr - 3] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 3;
+					grid[ptr] += grid[ptr + 3];
+					grid[ptr + 3] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -1155,13 +1064,11 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr + 1] += 1;
-							ptr += 2;
-							grid[ptr - 1] -= grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 1;
-							grid[ptr + 1] += grid[ptr];
-							grid[ptr] = 0;
-							ptr += 8;
+							grid[ptr + 1] -= grid[ptr + 2];
+							grid[ptr + 2] = 0;
+							grid[ptr + 2] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr += 9;
 						}
 
 						grid[ptr - 8] += 1;
@@ -1179,17 +1086,14 @@ fn main() {
 									grid[ptr] -= 1;
 									grid[ptr + 3] -= 1;
 									grid[ptr - 11] += 1;
-									ptr -= 1;
-									grid[ptr + 4] += grid[ptr];
-									grid[ptr] = 0;
-									ptr += 1;
+									grid[ptr + 3] += grid[ptr - 1];
+									grid[ptr - 1] = 0;
 								}
 
-								ptr -= 1;
-								grid[ptr + 4] -= grid[ptr];
-								grid[ptr - 10] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr + 3] -= grid[ptr - 1];
+								grid[ptr - 11] += grid[ptr - 1];
+								grid[ptr - 1] = 0;
+								ptr -= 2;
 							}
 
 							ptr += 2;
@@ -1197,17 +1101,14 @@ fn main() {
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
 								grid[ptr + 3] += 1;
-								ptr -= 1;
-								grid[ptr + 4] -= grid[ptr];
-								grid[ptr - 10] += grid[ptr];
-								grid[ptr] = 0;
-								ptr += 1;
+								grid[ptr + 3] -= grid[ptr - 1];
+								grid[ptr - 11] += grid[ptr - 1];
+								grid[ptr - 1] = 0;
 							}
 
-							ptr -= 1;
-							grid[ptr + 4] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 11;
+							grid[ptr + 3] += grid[ptr - 1];
+							grid[ptr - 1] = 0;
+							ptr -= 12;
 						}
 
 						grid[ptr + 6] += 1;
@@ -1215,10 +1116,8 @@ fn main() {
 
 				}
 
-				ptr += 4;
-				grid[ptr - 4] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 4;
+				grid[ptr] += grid[ptr + 4];
+				grid[ptr + 4] = 0;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -1243,17 +1142,14 @@ fn main() {
 								grid[ptr] -= 1;
 								grid[ptr + 4] -= 1;
 								grid[ptr - 10] += 1;
-								ptr += 1;
-								grid[ptr + 3] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr + 4] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
 							}
 
-							ptr += 1;
-							grid[ptr + 3] -= grid[ptr];
-							grid[ptr - 11] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr + 4] -= grid[ptr + 1];
+							grid[ptr - 10] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr -= 1;
 						}
 
 						ptr += 1;
@@ -1261,17 +1157,14 @@ fn main() {
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr + 4] += 1;
-							ptr += 1;
-							grid[ptr + 3] -= grid[ptr];
-							grid[ptr - 11] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 1;
+							grid[ptr + 4] -= grid[ptr + 1];
+							grid[ptr - 10] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
 						}
 
-						ptr += 1;
-						grid[ptr + 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 12;
+						grid[ptr + 4] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 11;
 					}
 
 				}
@@ -1296,14 +1189,12 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 5;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
-					grid[ptr + 4] += grid[ptr];
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					grid[ptr + 5] += grid[ptr + 1];
+					grid[ptr + 2] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -1357,10 +1248,9 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr + 1] -= 1;
-					ptr += 5;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
+					grid[ptr + 1] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					ptr += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -1369,10 +1259,8 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
-							ptr += 2;
-							grid[ptr - 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr] += grid[ptr + 2];
+							grid[ptr + 2] = 0;
 							grid[ptr + 2] += grid[ptr];
 							grid[ptr + 3] += grid[ptr];
 							grid[ptr] = 0;
@@ -1397,17 +1285,15 @@ fn main() {
 					ptr -= 9;
 
 					while grid[ptr] != 0 {
-						ptr += 1;
-						grid[ptr + 9] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 10;
+						grid[ptr + 10] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 9;
 					}
 
-					ptr += 1;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr += 7;
+					grid[ptr + 10] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					grid[ptr] += 1;
+					ptr += 8;
 				}
 
 				ptr -= 9;
@@ -1420,30 +1306,25 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 3] += 1;
-						ptr -= 2;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 7] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 3;
+						grid[ptr - 3] -= grid[ptr - 2];
+						grid[ptr - 9] += grid[ptr - 2];
+						grid[ptr - 2] = 0;
+						grid[ptr - 2] += grid[ptr - 3];
+						grid[ptr - 3] = 0;
 					}
 
-					ptr -= 2;
-					grid[ptr + 2] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 2];
+					grid[ptr - 2] = 0;
+					grid[ptr - 3] += 1;
+					ptr -= 12;
 				}
 
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 3;
-					grid[ptr - 36] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 6;
+					grid[ptr - 33] += grid[ptr + 3];
+					grid[ptr + 3] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -1476,19 +1357,15 @@ fn main() {
 				grid[ptr] += 1;
 
 				while grid[ptr] != 0 {
-					ptr += 3;
-					grid[ptr - 3] -= grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr] += 1;
-					ptr -= 3;
+					grid[ptr] -= grid[ptr + 3];
+					grid[ptr + 3] = 0;
+					grid[ptr + 3] += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr + 3] -= 1;
-						ptr += 4;
-						grid[ptr - 4] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 4;
+						grid[ptr] += grid[ptr + 4];
+						grid[ptr + 4] = 0;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
@@ -1512,19 +1389,15 @@ fn main() {
 					}
 
 					grid[ptr] += 1;
-					ptr += 4;
-					grid[ptr - 4] -= grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr] += 1;
-					ptr -= 4;
+					grid[ptr] -= grid[ptr + 4];
+					grid[ptr + 4] = 0;
+					grid[ptr + 4] += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr + 4] -= 1;
-						ptr += 3;
-						grid[ptr - 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 3;
+						grid[ptr] += grid[ptr + 3];
+						grid[ptr + 3] = 0;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
@@ -1570,10 +1443,8 @@ fn main() {
 					ptr -= 9;
 				}
 
-				ptr += 3;
-				grid[ptr - 3] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 3;
+				grid[ptr] += grid[ptr + 3];
+				grid[ptr + 3] = 0;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -1582,13 +1453,11 @@ fn main() {
 
 					while grid[ptr] != 0 {
 						grid[ptr + 1] += 1;
-						ptr += 4;
-						grid[ptr - 3] -= grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 3;
-						grid[ptr + 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 8;
+						grid[ptr + 1] -= grid[ptr + 4];
+						grid[ptr + 4] = 0;
+						grid[ptr + 4] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr += 9;
 					}
 
 					grid[ptr - 8] += 1;
@@ -1606,17 +1475,14 @@ fn main() {
 								grid[ptr] -= 1;
 								grid[ptr - 1] -= 1;
 								grid[ptr - 11] += 1;
-								ptr += 1;
-								grid[ptr - 2] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr - 1] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
 							}
 
-							ptr += 1;
-							grid[ptr - 2] -= grid[ptr];
-							grid[ptr - 12] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 3;
+							grid[ptr - 1] -= grid[ptr + 1];
+							grid[ptr - 11] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr -= 2;
 						}
 
 						ptr += 2;
@@ -1624,25 +1490,20 @@ fn main() {
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr - 1] += 1;
-							ptr += 1;
-							grid[ptr - 2] -= grid[ptr];
-							grid[ptr - 12] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 1;
+							grid[ptr - 1] -= grid[ptr + 1];
+							grid[ptr - 11] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
 						}
 
-						ptr += 1;
-						grid[ptr - 2] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 13;
+						grid[ptr - 1] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 12;
 					}
 
 				}
 
-				ptr += 4;
-				grid[ptr - 4] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 4;
+				grid[ptr] += grid[ptr + 4];
+				grid[ptr + 4] = 0;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -1651,13 +1512,11 @@ fn main() {
 
 					while grid[ptr] != 0 {
 						grid[ptr + 1] += 1;
-						ptr += 3;
-						grid[ptr - 2] -= grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 2;
-						grid[ptr + 2] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 8;
+						grid[ptr + 1] -= grid[ptr + 3];
+						grid[ptr + 3] = 0;
+						grid[ptr + 3] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr += 9;
 					}
 
 					grid[ptr - 8] += 1;
@@ -1675,17 +1534,14 @@ fn main() {
 								grid[ptr] -= 1;
 								grid[ptr - 2] -= 1;
 								grid[ptr - 12] += 1;
-								ptr -= 1;
-								grid[ptr - 1] += grid[ptr];
-								grid[ptr] = 0;
-								ptr += 1;
+								grid[ptr - 2] += grid[ptr - 1];
+								grid[ptr - 1] = 0;
 							}
 
-							ptr -= 1;
-							grid[ptr - 1] -= grid[ptr];
-							grid[ptr - 11] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr - 2] -= grid[ptr - 1];
+							grid[ptr - 12] += grid[ptr - 1];
+							grid[ptr - 1] = 0;
+							ptr -= 3;
 						}
 
 						ptr += 3;
@@ -1693,17 +1549,14 @@ fn main() {
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr - 2] += 1;
-							ptr -= 1;
-							grid[ptr - 1] -= grid[ptr];
-							grid[ptr - 11] += grid[ptr];
-							grid[ptr] = 0;
-							ptr += 1;
+							grid[ptr - 2] -= grid[ptr - 1];
+							grid[ptr - 12] += grid[ptr - 1];
+							grid[ptr - 1] = 0;
 						}
 
-						ptr -= 1;
-						grid[ptr - 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 12;
+						grid[ptr - 2] += grid[ptr - 1];
+						grid[ptr - 1] = 0;
+						ptr -= 13;
 					}
 
 					grid[ptr + 5] += 1;
@@ -1729,14 +1582,12 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 7;
-					grid[ptr - 6] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 6;
-					grid[ptr + 6] += grid[ptr];
-					grid[ptr + 2] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 7];
+					grid[ptr + 7] = 0;
+					grid[ptr + 7] += grid[ptr + 1];
+					grid[ptr + 3] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -1746,38 +1597,31 @@ fn main() {
 				}
 
 				grid[ptr + 4] += 1;
-				ptr += 5;
-				grid[ptr - 1] -= grid[ptr];
-				grid[ptr - 5] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 2;
+				grid[ptr + 4] -= grid[ptr + 5];
+				grid[ptr] += grid[ptr + 5];
+				grid[ptr + 5] = 0;
+				ptr += 7;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
-					ptr -= 7;
-					grid[ptr + 5] += grid[ptr];
-					grid[ptr + 4] += 2 * grid[ptr];
-					grid[ptr] = 0;
-					ptr += 5;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] -= 1;
-					grid[ptr] += 1;
-					ptr += 2;
+					grid[ptr - 2] += grid[ptr - 7];
+					grid[ptr - 3] += 2 * grid[ptr];
+					grid[ptr - 7] = 0;
+					grid[ptr - 7] += grid[ptr - 2];
+					grid[ptr - 2] = 0;
+					grid[ptr - 3] -= 1;
+					grid[ptr - 2] += 1;
 				}
 
-				ptr -= 2;
-				grid[ptr + 2] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 5;
-				grid[ptr + 5] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr += 4;
-				grid[ptr - 4] -= grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr -= 4;
+				grid[ptr] += grid[ptr - 2];
+				grid[ptr - 2] = 0;
+				grid[ptr - 2] += grid[ptr - 7];
+				grid[ptr - 7] = 0;
+				grid[ptr - 7] += 1;
+				grid[ptr - 7] -= grid[ptr - 3];
+				grid[ptr - 3] = 0;
+				grid[ptr - 3] += 1;
+				ptr -= 7;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -1785,19 +1629,15 @@ fn main() {
 					ptr += 9;
 
 					while grid[ptr] != 0 {
-						ptr += 3;
-						grid[ptr - 3] -= grid[ptr];
-						grid[ptr] = 0;
-						grid[ptr] += 1;
-						ptr -= 3;
+						grid[ptr] -= grid[ptr + 3];
+						grid[ptr + 3] = 0;
+						grid[ptr + 3] += 1;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr + 3] -= 1;
-							ptr += 2;
-							grid[ptr - 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr] += grid[ptr + 2];
+							grid[ptr + 2] = 0;
 
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
@@ -1821,19 +1661,15 @@ fn main() {
 						}
 
 						grid[ptr] += 1;
-						ptr += 2;
-						grid[ptr - 2] -= grid[ptr];
-						grid[ptr] = 0;
-						grid[ptr] += 1;
-						ptr -= 2;
+						grid[ptr] -= grid[ptr + 2];
+						grid[ptr + 2] = 0;
+						grid[ptr + 2] += 1;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr + 2] -= 1;
-							ptr += 3;
-							grid[ptr - 3] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 3;
+							grid[ptr] += grid[ptr + 3];
+							grid[ptr + 3] = 0;
 
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
@@ -1879,10 +1715,8 @@ fn main() {
 						ptr -= 9;
 					}
 
-					ptr += 3;
-					grid[ptr - 3] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 3;
+					grid[ptr] += grid[ptr + 3];
+					grid[ptr + 3] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -1891,13 +1725,11 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr + 1] += 1;
-							ptr += 2;
-							grid[ptr - 1] -= grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 1;
-							grid[ptr + 1] += grid[ptr];
-							grid[ptr] = 0;
-							ptr += 8;
+							grid[ptr + 1] -= grid[ptr + 2];
+							grid[ptr + 2] = 0;
+							grid[ptr + 2] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr += 9;
 						}
 
 						grid[ptr - 8] += 1;
@@ -1915,17 +1747,14 @@ fn main() {
 									grid[ptr] -= 1;
 									grid[ptr + 2] -= 1;
 									grid[ptr - 11] += 1;
-									ptr -= 1;
-									grid[ptr + 3] += grid[ptr];
-									grid[ptr] = 0;
-									ptr += 1;
+									grid[ptr + 2] += grid[ptr - 1];
+									grid[ptr - 1] = 0;
 								}
 
-								ptr -= 1;
-								grid[ptr + 3] -= grid[ptr];
-								grid[ptr - 10] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr + 2] -= grid[ptr - 1];
+								grid[ptr - 11] += grid[ptr - 1];
+								grid[ptr - 1] = 0;
+								ptr -= 2;
 							}
 
 							ptr += 2;
@@ -1933,33 +1762,26 @@ fn main() {
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
 								grid[ptr + 2] += 1;
-								ptr -= 1;
-								grid[ptr + 3] -= grid[ptr];
-								grid[ptr - 10] += grid[ptr];
-								grid[ptr] = 0;
-								ptr += 1;
+								grid[ptr + 2] -= grid[ptr - 1];
+								grid[ptr - 11] += grid[ptr - 1];
+								grid[ptr - 1] = 0;
 							}
 
-							ptr -= 1;
-							grid[ptr + 3] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 11;
+							grid[ptr + 2] += grid[ptr - 1];
+							grid[ptr - 1] = 0;
+							ptr -= 12;
 						}
 
 						grid[ptr + 5] = 0;
-						ptr += 7;
-						grid[ptr - 7] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 7;
+						grid[ptr] += grid[ptr + 7];
+						grid[ptr + 7] = 0;
 						grid[ptr + 7] += grid[ptr];
 						grid[ptr + 5] += grid[ptr];
 						grid[ptr] = 0;
 					}
 
-					ptr += 4;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
+					grid[ptr] += grid[ptr + 4];
+					grid[ptr + 4] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -1968,13 +1790,11 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr + 1] += 1;
-							ptr += 3;
-							grid[ptr - 2] -= grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
-							grid[ptr + 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr += 8;
+							grid[ptr + 1] -= grid[ptr + 3];
+							grid[ptr + 3] = 0;
+							grid[ptr + 3] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr += 9;
 						}
 
 						grid[ptr - 8] += 1;
@@ -1992,17 +1812,14 @@ fn main() {
 									grid[ptr] -= 1;
 									grid[ptr + 3] -= 1;
 									grid[ptr - 10] += 1;
-									ptr += 1;
-									grid[ptr + 2] += grid[ptr];
-									grid[ptr] = 0;
-									ptr -= 1;
+									grid[ptr + 3] += grid[ptr + 1];
+									grid[ptr + 1] = 0;
 								}
 
-								ptr += 1;
-								grid[ptr + 2] -= grid[ptr];
-								grid[ptr - 11] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 2;
+								grid[ptr + 3] -= grid[ptr + 1];
+								grid[ptr - 10] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
+								ptr -= 1;
 							}
 
 							ptr += 1;
@@ -2010,17 +1827,14 @@ fn main() {
 							while grid[ptr] != 0 {
 								grid[ptr] -= 1;
 								grid[ptr + 3] += 1;
-								ptr += 1;
-								grid[ptr + 2] -= grid[ptr];
-								grid[ptr - 11] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr + 3] -= grid[ptr + 1];
+								grid[ptr - 10] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
 							}
 
-							ptr += 1;
-							grid[ptr + 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 12;
+							grid[ptr + 3] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr -= 11;
 						}
 
 					}
@@ -2028,19 +1842,15 @@ fn main() {
 					grid[ptr + 4] = 0;
 				}
 
-				ptr += 4;
-				grid[ptr - 4] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 4;
+				grid[ptr] += grid[ptr + 4];
+				grid[ptr + 4] = 0;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr + 4] += 1;
 					grid[ptr + 5] = 0;
-					ptr += 7;
-					grid[ptr - 7] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 7;
+					grid[ptr] += grid[ptr + 7];
+					grid[ptr + 7] = 0;
 					grid[ptr + 7] += grid[ptr];
 					grid[ptr + 5] += grid[ptr];
 					grid[ptr] = 0;
@@ -2064,17 +1874,14 @@ fn main() {
 								grid[ptr] -= 1;
 								grid[ptr + 3] -= 1;
 								grid[ptr - 10] += 1;
-								ptr += 1;
-								grid[ptr + 2] += grid[ptr];
-								grid[ptr] = 0;
-								ptr -= 1;
+								grid[ptr + 3] += grid[ptr + 1];
+								grid[ptr + 1] = 0;
 							}
 
-							ptr += 1;
-							grid[ptr + 2] -= grid[ptr];
-							grid[ptr - 11] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr + 3] -= grid[ptr + 1];
+							grid[ptr - 10] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
+							ptr -= 1;
 						}
 
 						ptr += 1;
@@ -2082,17 +1889,14 @@ fn main() {
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
 							grid[ptr + 3] += 1;
-							ptr += 1;
-							grid[ptr + 2] -= grid[ptr];
-							grid[ptr - 11] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 1;
+							grid[ptr + 3] -= grid[ptr + 1];
+							grid[ptr - 10] += grid[ptr + 1];
+							grid[ptr + 1] = 0;
 						}
 
-						ptr += 1;
-						grid[ptr + 2] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 12;
+						grid[ptr + 3] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 11;
 					}
 
 				}
@@ -2116,14 +1920,12 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 5;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
-					grid[ptr + 4] += grid[ptr];
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					grid[ptr + 5] += grid[ptr + 1];
+					grid[ptr + 2] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -2135,14 +1937,12 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 6;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 5;
-					grid[ptr + 5] += grid[ptr];
-					grid[ptr + 2] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] += grid[ptr + 6];
+					grid[ptr + 6] = 0;
+					grid[ptr + 6] += grid[ptr + 1];
+					grid[ptr + 3] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -2196,10 +1996,9 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr + 1] -= 1;
-					ptr += 5;
-					grid[ptr - 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
+					grid[ptr + 1] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					ptr += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -2208,10 +2007,8 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
-							ptr += 2;
-							grid[ptr - 2] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 2;
+							grid[ptr] += grid[ptr + 2];
+							grid[ptr + 2] = 0;
 							grid[ptr + 2] += grid[ptr];
 							grid[ptr + 4] += grid[ptr];
 							grid[ptr] = 0;
@@ -2236,17 +2033,15 @@ fn main() {
 					ptr -= 9;
 
 					while grid[ptr] != 0 {
-						ptr += 1;
-						grid[ptr + 9] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 10;
+						grid[ptr + 10] += grid[ptr + 1];
+						grid[ptr + 1] = 0;
+						ptr -= 9;
 					}
 
-					ptr += 1;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr += 7;
+					grid[ptr + 10] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					grid[ptr] += 1;
+					ptr += 8;
 				}
 
 				ptr -= 9;
@@ -2259,21 +2054,17 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 4] += 1;
-						ptr -= 3;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 6] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 4;
+						grid[ptr - 4] -= grid[ptr - 3];
+						grid[ptr - 9] += grid[ptr - 3];
+						grid[ptr - 3] = 0;
+						grid[ptr - 3] += grid[ptr - 4];
+						grid[ptr - 4] = 0;
 					}
 
-					ptr -= 3;
-					grid[ptr + 3] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 3];
+					grid[ptr - 3] = 0;
+					grid[ptr - 4] += 1;
+					ptr -= 13;
 				}
 
 				ptr += 9;
@@ -2293,10 +2084,9 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr + 1] -= 1;
-					ptr += 6;
-					grid[ptr - 5] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 5;
+					grid[ptr + 1] += grid[ptr + 6];
+					grid[ptr + 6] = 0;
+					ptr += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -2305,10 +2095,8 @@ fn main() {
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
-							ptr += 3;
-							grid[ptr - 3] += grid[ptr];
-							grid[ptr] = 0;
-							ptr -= 3;
+							grid[ptr] += grid[ptr + 3];
+							grid[ptr + 3] = 0;
 							grid[ptr + 3] += grid[ptr];
 							grid[ptr + 4] += grid[ptr];
 							grid[ptr] = 0;
@@ -2333,17 +2121,15 @@ fn main() {
 					ptr -= 9;
 
 					while grid[ptr] != 0 {
-						ptr += 2;
-						grid[ptr + 9] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 11;
+						grid[ptr + 11] += grid[ptr + 2];
+						grid[ptr + 2] = 0;
+						ptr -= 9;
 					}
 
-					ptr += 2;
-					grid[ptr + 9] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 2] += 1;
-					ptr += 6;
+					grid[ptr + 11] += grid[ptr + 2];
+					grid[ptr + 2] = 0;
+					grid[ptr] += 1;
+					ptr += 8;
 				}
 
 				ptr -= 9;
@@ -2356,30 +2142,25 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 4] += 1;
-						ptr -= 3;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 6] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 4;
+						grid[ptr - 4] -= grid[ptr - 3];
+						grid[ptr - 9] += grid[ptr - 3];
+						grid[ptr - 3] = 0;
+						grid[ptr - 3] += grid[ptr - 4];
+						grid[ptr - 4] = 0;
 					}
 
-					ptr -= 3;
-					grid[ptr + 3] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 3];
+					grid[ptr - 3] = 0;
+					grid[ptr - 4] += 1;
+					ptr -= 13;
 				}
 
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 4;
-					grid[ptr - 36] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 5;
+					grid[ptr - 32] += grid[ptr + 4];
+					grid[ptr + 4] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -2419,19 +2200,15 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 3;
-					grid[ptr - 3] -= grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr] += 1;
-					ptr -= 3;
+					grid[ptr] -= grid[ptr + 3];
+					grid[ptr + 3] = 0;
+					grid[ptr + 3] += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr + 3] -= 1;
-						ptr += 4;
-						grid[ptr - 4] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 4;
+						grid[ptr] += grid[ptr + 4];
+						grid[ptr + 4] = 0;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
@@ -2455,19 +2232,15 @@ fn main() {
 					}
 
 					grid[ptr] += 1;
-					ptr += 4;
-					grid[ptr - 4] -= grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr] += 1;
-					ptr -= 4;
+					grid[ptr] -= grid[ptr + 4];
+					grid[ptr + 4] = 0;
+					grid[ptr + 4] += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr + 4] -= 1;
-						ptr += 3;
-						grid[ptr - 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 3;
+						grid[ptr] += grid[ptr + 3];
+						grid[ptr + 3] = 0;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
@@ -2514,10 +2287,8 @@ fn main() {
 				}
 
 				grid[ptr + 2] -= 1;
-				ptr += 4;
-				grid[ptr - 4] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 4;
+				grid[ptr] += grid[ptr + 4];
+				grid[ptr + 4] = 0;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -2529,11 +2300,10 @@ fn main() {
 			}
 
 			grid[ptr - 2] += 1;
-			ptr += 2;
-			grid[ptr - 4] -= grid[ptr];
-			grid[ptr] = 0;
-			grid[ptr] += 1;
-			ptr -= 4;
+			grid[ptr - 2] -= grid[ptr + 2];
+			grid[ptr + 2] = 0;
+			grid[ptr + 2] += 1;
+			ptr -= 2;
 
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
@@ -2607,10 +2377,8 @@ fn main() {
 				ptr -= 9;
 			}
 
-			ptr += 7;
-			grid[ptr - 7] += grid[ptr];
-			grid[ptr] = 0;
-			ptr -= 7;
+			grid[ptr] += grid[ptr + 7];
+			grid[ptr + 7] = 0;
 
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
@@ -2624,10 +2392,9 @@ fn main() {
 				ptr -= 9;
 
 				while grid[ptr] != 0 {
-					ptr += 7;
-					grid[ptr - 6] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 6;
+					grid[ptr + 1] += grid[ptr + 7];
+					grid[ptr + 7] = 0;
+					ptr += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -2647,10 +2414,8 @@ fn main() {
 
 			}
 
-			ptr += 7;
-			grid[ptr - 7] += grid[ptr];
-			grid[ptr] = 0;
-			ptr -= 7;
+			grid[ptr] += grid[ptr + 7];
+			grid[ptr + 7] = 0;
 
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
@@ -2659,23 +2424,20 @@ fn main() {
 
 				while grid[ptr] != 0 {
 					grid[ptr + 1] += 1;
-					ptr += 5;
-					grid[ptr - 4] -= grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 4;
-					grid[ptr + 4] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr + 1] -= grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					grid[ptr + 5] += grid[ptr + 1];
+					grid[ptr + 1] = 0;
+					ptr += 9;
 				}
 
 				grid[ptr - 2] += 1;
 				ptr -= 9;
 
 				while grid[ptr] != 0 {
-					ptr += 5;
-					grid[ptr + 2] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 14;
+					grid[ptr + 7] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					ptr -= 9;
 				}
 
 				ptr += 9;
@@ -2694,21 +2456,17 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 7] += 1;
-						ptr -= 6;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 7;
+						grid[ptr - 7] -= grid[ptr - 6];
+						grid[ptr - 9] += grid[ptr - 6];
+						grid[ptr - 6] = 0;
+						grid[ptr - 6] += grid[ptr - 7];
+						grid[ptr - 7] = 0;
 					}
 
-					ptr -= 6;
-					grid[ptr + 6] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 6];
+					grid[ptr - 6] = 0;
+					grid[ptr - 7] += 1;
+					ptr -= 16;
 				}
 
 				grid[ptr + 7] -= 1;
@@ -2716,11 +2474,9 @@ fn main() {
 			}
 
 			grid[ptr] += 1;
-			ptr += 7;
-			grid[ptr - 7] -= grid[ptr];
-			grid[ptr] = 0;
-			grid[ptr] += 1;
-			ptr -= 7;
+			grid[ptr] -= grid[ptr + 7];
+			grid[ptr + 7] = 0;
+			grid[ptr + 7] += 1;
 
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
@@ -2728,10 +2484,9 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 5;
-					grid[ptr + 2] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 4;
+					grid[ptr + 7] += grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					ptr += 9;
 				}
 
 				ptr -= 9;
@@ -2744,21 +2499,17 @@ fn main() {
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr - 7] += 1;
-						ptr -= 6;
-						grid[ptr - 1] -= grid[ptr];
-						grid[ptr - 3] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 1;
-						grid[ptr + 1] += grid[ptr];
-						grid[ptr] = 0;
-						ptr += 7;
+						grid[ptr - 7] -= grid[ptr - 6];
+						grid[ptr - 9] += grid[ptr - 6];
+						grid[ptr - 6] = 0;
+						grid[ptr - 6] += grid[ptr - 7];
+						grid[ptr - 7] = 0;
 					}
 
-					ptr -= 6;
-					grid[ptr + 6] += grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr - 1] += 1;
-					ptr -= 10;
+					grid[ptr] += grid[ptr - 6];
+					grid[ptr - 6] = 0;
+					grid[ptr - 7] += 1;
+					ptr -= 16;
 				}
 
 				ptr += 1;
@@ -2781,19 +2532,15 @@ fn main() {
 				ptr += 9;
 
 				while grid[ptr] != 0 {
-					ptr += 5;
-					grid[ptr - 5] -= grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr] += 1;
-					ptr -= 5;
+					grid[ptr] -= grid[ptr + 5];
+					grid[ptr + 5] = 0;
+					grid[ptr + 5] += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr + 5] -= 1;
-						ptr += 7;
-						grid[ptr - 7] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 7;
+						grid[ptr] += grid[ptr + 7];
+						grid[ptr + 7] = 0;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
@@ -2817,19 +2564,15 @@ fn main() {
 					}
 
 					grid[ptr] += 1;
-					ptr += 7;
-					grid[ptr - 7] -= grid[ptr];
-					grid[ptr] = 0;
-					grid[ptr] += 1;
-					ptr -= 7;
+					grid[ptr] -= grid[ptr + 7];
+					grid[ptr + 7] = 0;
+					grid[ptr + 7] += 1;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
 						grid[ptr + 7] -= 1;
-						ptr += 5;
-						grid[ptr - 5] += grid[ptr];
-						grid[ptr] = 0;
-						ptr -= 5;
+						grid[ptr] += grid[ptr + 5];
+						grid[ptr + 5] = 0;
 
 						while grid[ptr] != 0 {
 							grid[ptr] -= 1;
@@ -2931,10 +2674,8 @@ fn main() {
 			ptr -= 9;
 		}
 
-		ptr += 8;
-		grid[ptr - 8] += grid[ptr];
-		grid[ptr] = 0;
-		ptr -= 8;
+		grid[ptr] += grid[ptr + 8];
+		grid[ptr + 8] = 0;
 
 		while grid[ptr] != 0 {
 			grid[ptr] -= 1;
@@ -2948,10 +2689,9 @@ fn main() {
 			ptr -= 9;
 
 			while grid[ptr] != 0 {
-				ptr += 8;
-				grid[ptr - 7] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 7;
+				grid[ptr + 1] += grid[ptr + 8];
+				grid[ptr + 8] = 0;
+				ptr += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
@@ -2971,10 +2711,8 @@ fn main() {
 
 		}
 
-		ptr += 8;
-		grid[ptr - 8] += grid[ptr];
-		grid[ptr] = 0;
-		ptr -= 8;
+		grid[ptr] += grid[ptr + 8];
+		grid[ptr + 8] = 0;
 
 		while grid[ptr] != 0 {
 			grid[ptr] -= 1;
@@ -2983,23 +2721,20 @@ fn main() {
 
 			while grid[ptr] != 0 {
 				grid[ptr + 1] += 1;
-				ptr += 6;
-				grid[ptr - 5] -= grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 5;
-				grid[ptr + 5] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 8;
+				grid[ptr + 1] -= grid[ptr + 6];
+				grid[ptr + 6] = 0;
+				grid[ptr + 6] += grid[ptr + 1];
+				grid[ptr + 1] = 0;
+				ptr += 9;
 			}
 
 			grid[ptr - 1] += 1;
 			ptr -= 9;
 
 			while grid[ptr] != 0 {
-				ptr += 6;
-				grid[ptr + 2] += grid[ptr];
-				grid[ptr] = 0;
-				ptr -= 15;
+				grid[ptr + 8] += grid[ptr + 6];
+				grid[ptr + 6] = 0;
+				ptr -= 9;
 			}
 
 			ptr += 9;
@@ -3018,21 +2753,17 @@ fn main() {
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr - 8] += 1;
-					ptr -= 7;
-					grid[ptr - 1] -= grid[ptr];
-					grid[ptr - 2] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 1;
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr - 8] -= grid[ptr - 7];
+					grid[ptr - 9] += grid[ptr - 7];
+					grid[ptr - 7] = 0;
+					grid[ptr - 7] += grid[ptr - 8];
+					grid[ptr - 8] = 0;
 				}
 
-				ptr -= 7;
-				grid[ptr + 7] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr - 1] += 1;
-				ptr -= 10;
+				grid[ptr] += grid[ptr - 7];
+				grid[ptr - 7] = 0;
+				grid[ptr - 8] += 1;
+				ptr -= 17;
 			}
 
 			grid[ptr + 8] -= 1;
@@ -3040,11 +2771,9 @@ fn main() {
 		}
 
 		grid[ptr] += 1;
-		ptr += 8;
-		grid[ptr - 8] -= grid[ptr];
-		grid[ptr] = 0;
-		grid[ptr] += 1;
-		ptr -= 8;
+		grid[ptr] -= grid[ptr + 8];
+		grid[ptr + 8] = 0;
+		grid[ptr + 8] += 1;
 
 		while grid[ptr] != 0 {
 			grid[ptr] -= 1;
@@ -3052,10 +2781,9 @@ fn main() {
 			ptr += 9;
 
 			while grid[ptr] != 0 {
-				ptr += 6;
-				grid[ptr + 2] += grid[ptr];
-				grid[ptr] = 0;
-				ptr += 3;
+				grid[ptr + 8] += grid[ptr + 6];
+				grid[ptr + 6] = 0;
+				ptr += 9;
 			}
 
 			ptr -= 9;
@@ -3068,21 +2796,17 @@ fn main() {
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr - 8] += 1;
-					ptr -= 7;
-					grid[ptr - 1] -= grid[ptr];
-					grid[ptr - 2] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 1;
-					grid[ptr + 1] += grid[ptr];
-					grid[ptr] = 0;
-					ptr += 8;
+					grid[ptr - 8] -= grid[ptr - 7];
+					grid[ptr - 9] += grid[ptr - 7];
+					grid[ptr - 7] = 0;
+					grid[ptr - 7] += grid[ptr - 8];
+					grid[ptr - 8] = 0;
 				}
 
-				ptr -= 7;
-				grid[ptr + 7] += grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr - 1] += 1;
-				ptr -= 10;
+				grid[ptr] += grid[ptr - 7];
+				grid[ptr - 7] = 0;
+				grid[ptr - 8] += 1;
+				ptr -= 17;
 			}
 
 			ptr += 1;
@@ -3106,19 +2830,15 @@ fn main() {
 			ptr += 9;
 
 			while grid[ptr] != 0 {
-				ptr += 6;
-				grid[ptr - 6] -= grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr -= 6;
+				grid[ptr] -= grid[ptr + 6];
+				grid[ptr + 6] = 0;
+				grid[ptr + 6] += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr + 6] -= 1;
-					ptr += 8;
-					grid[ptr - 8] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 8;
+					grid[ptr] += grid[ptr + 8];
+					grid[ptr + 8] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;
@@ -3142,19 +2862,15 @@ fn main() {
 				}
 
 				grid[ptr] += 1;
-				ptr += 8;
-				grid[ptr - 8] -= grid[ptr];
-				grid[ptr] = 0;
-				grid[ptr] += 1;
-				ptr -= 8;
+				grid[ptr] -= grid[ptr + 8];
+				grid[ptr + 8] = 0;
+				grid[ptr + 8] += 1;
 
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr + 8] -= 1;
-					ptr += 6;
-					grid[ptr - 6] += grid[ptr];
-					grid[ptr] = 0;
-					ptr -= 6;
+					grid[ptr] += grid[ptr + 6];
+					grid[ptr + 6] = 0;
 
 					while grid[ptr] != 0 {
 						grid[ptr] -= 1;

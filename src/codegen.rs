@@ -35,8 +35,11 @@ fn codegen_inner(
                     .ins()
                     .store(MemFlags::new(), new_val, ptr_val, offset);
             }
-            IrNode::DynamicChangeValue(-1, offset) => {
-                let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+            IrNode::DynamicChangeValue(-1, offset, mult_offset) => {
+                let multiplier =
+                    builder
+                        .ins()
+                        .load(types::I8, MemFlags::new(), ptr_val, mult_offset);
                 let base = builder
                     .ins()
                     .load(types::I8, MemFlags::new(), ptr_val, offset);
@@ -47,8 +50,11 @@ fn codegen_inner(
                     .ins()
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
-            IrNode::DynamicChangeValue(1, offset) => {
-                let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+            IrNode::DynamicChangeValue(1, offset, mult_offset) => {
+                let multiplier =
+                    builder
+                        .ins()
+                        .load(types::I8, MemFlags::new(), ptr_val, mult_offset);
                 let base = builder
                     .ins()
                     .load(types::I8, MemFlags::new(), ptr_val, offset);
@@ -59,8 +65,11 @@ fn codegen_inner(
                     .ins()
                     .store(MemFlags::new(), new_value, ptr_val, offset);
             }
-            IrNode::DynamicChangeValue(x, offset) => {
-                let multiplier = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+            IrNode::DynamicChangeValue(x, offset, mult_offset) => {
+                let multiplier =
+                    builder
+                        .ins()
+                        .load(types::I8, MemFlags::new(), ptr_val, mult_offset);
                 let base = builder
                     .ins()
                     .load(types::I8, MemFlags::new(), ptr_val, offset);

@@ -4,6 +4,7 @@ use super::IrNode;
 enum Instruction {
     Set,
     Change,
+    DynAdd(i32),
 }
 
 struct Match {
@@ -36,6 +37,9 @@ impl Match {
                     IrNode::ChangePtr(ptr) => {
                         change_ptrs += 1;
                         ptr_offset += *ptr;
+                    }
+                    IrNode::DynamicChangeValue(v, o, 0) => {
+                        current_changes.push((*v, o + ptr_offset, Instruction::DynAdd(ptr_offset)))
                     }
                     _ => break,
                 }
@@ -76,6 +80,9 @@ impl Match {
                     nodes[i] = IrNode::SetValue(v as u8, o);
                 }
                 Instruction::Change => nodes[i] = IrNode::ChangeValue(v, o),
+                Instruction::DynAdd(mult_offset) => {
+                    nodes[i] = IrNode::DynamicChangeValue(v, o, mult_offset)
+                }
             }
 
             i += 1;
