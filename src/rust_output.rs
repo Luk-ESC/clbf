@@ -81,7 +81,7 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
             IrNode::DynamicChangeValue(x, offset, mult_offset) => {
                 let offset = add(*offset);
                 let mult_offset = add(*mult_offset);
-
+                println!("{mult_offset}");
                 if *x < 0 {
                     writeln!(
                         &mut debug,
@@ -93,7 +93,7 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
                 } else {
                     writeln!(
                         &mut debug,
-                        "{}grid[ptr{offset}] += {} * grid[ptr];",
+                        "{}grid[ptr{offset}] += {} * grid[ptr{mult_offset}];",
                         indent, x
                     )
                     .unwrap();

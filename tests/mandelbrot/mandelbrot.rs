@@ -883,7 +883,7 @@ fn main() {
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr - 1] += grid[ptr - 6];
-					grid[ptr - 2] += 2 * grid[ptr];
+					grid[ptr - 2] += 2 * grid[ptr - 6];
 					grid[ptr - 6] = 0;
 					grid[ptr - 6] += grid[ptr - 1];
 					grid[ptr - 1] = 0;
@@ -1605,7 +1605,7 @@ fn main() {
 				while grid[ptr] != 0 {
 					grid[ptr] -= 1;
 					grid[ptr - 2] += grid[ptr - 7];
-					grid[ptr - 3] += 2 * grid[ptr];
+					grid[ptr - 3] += 2 * grid[ptr - 7];
 					grid[ptr - 7] = 0;
 					grid[ptr - 7] += grid[ptr - 2];
 					grid[ptr - 2] = 0;
