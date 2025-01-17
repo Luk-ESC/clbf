@@ -93,9 +93,8 @@ fn codegen_inner(
             IrNode::ReadChar => {
                 let getchar_call = builder.ins().call(getchar_func, &[]);
                 let char = builder.inst_results(getchar_call)[0];
-                let char = builder.ins().ireduce(types::I8, char);
 
-                builder.ins().store(MemFlags::new(), char, ptr_val, 0);
+                builder.ins().istore8(MemFlags::new(), char, ptr_val, 0);
             }
             IrNode::LoopStart => {
                 // Check block: The block that checks if the value at the current pointer is zero.
