@@ -2308,18 +2308,14 @@ fn main() {
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
 				grid[ptr + 4] -= 1;
-				ptr -= 2;
-				putchar(grid[ptr] as i32);
-				ptr += 2;
+				putchar(grid[ptr - 2] as i32);
 			}
 
 			ptr += 4;
 
 			while grid[ptr] != 0 {
 				grid[ptr] -= 1;
-				ptr -= 7;
-				putchar(grid[ptr] as i32);
-				ptr += 7;
+				putchar(grid[ptr - 7] as i32);
 			}
 
 			grid[ptr - 3] = 0;
@@ -2641,9 +2637,8 @@ fn main() {
 			ptr += 3;
 		}
 
-		ptr -= 4;
-		putchar(grid[ptr] as i32);
-		ptr += 10;
+		putchar(grid[ptr - 4] as i32);
+		ptr += 6;
 
 		while grid[ptr] != 0 {
 			grid[ptr + 6] = 0;

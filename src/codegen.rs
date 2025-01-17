@@ -85,10 +85,10 @@ fn codegen_inner(
             IrNode::ChangePtr(x) => {
                 ptr_val = builder.ins().iadd_imm(ptr_val, x as i64);
             }
-            IrNode::PrintChar => {
+            IrNode::PrintChar(offset) => {
                 let char = builder
                     .ins()
-                    .uload8(types::I32, MemFlags::new(), ptr_val, 0);
+                    .uload8(types::I32, MemFlags::new(), ptr_val, offset);
                 builder.ins().call(putchar_func, &[char]);
             }
             IrNode::ReadChar => {

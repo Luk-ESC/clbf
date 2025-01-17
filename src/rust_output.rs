@@ -106,8 +106,10 @@ pub fn write_rust_code(nodes: &[IrNode], out_path: PathBuf) {
                     writeln!(&mut debug, "{}ptr += {};", indent, p).unwrap();
                 }
             }
-            IrNode::PrintChar => {
-                writeln!(&mut debug, "{}putchar(grid[ptr] as i32);", indent).unwrap();
+            IrNode::PrintChar(offset) => {
+                let offset = add(*offset);
+
+                writeln!(&mut debug, "{}putchar(grid[ptr{offset}] as i32);", indent).unwrap();
             }
             IrNode::ReadChar => {
                 writeln!(&mut debug, "{}grid[ptr] = getchar() as u8;", indent).unwrap();

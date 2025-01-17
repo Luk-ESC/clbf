@@ -84,7 +84,7 @@ pub fn process(
         }
 
         match token {
-            Token::Dot => nodes.push(IrNode::PrintChar),
+            Token::Dot => nodes.push(IrNode::PrintChar(0)),
             Token::Comma => nodes.push(IrNode::ReadChar),
             Token::OpenBracket => {
                 nodes.push(IrNode::LoopStart);

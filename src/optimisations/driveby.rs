@@ -5,6 +5,7 @@ enum Instruction {
     Set,
     Change,
     DynAdd(i32),
+    PrintChar,
 }
 
 struct Match {
@@ -40,6 +41,9 @@ impl Match {
                     }
                     IrNode::DynamicChangeValue(v, o, 0) => {
                         current_changes.push((*v, o + ptr_offset, Instruction::DynAdd(ptr_offset)))
+                    }
+                    IrNode::PrintChar(o) => {
+                        current_changes.push((0, o + ptr_offset, Instruction::PrintChar));
                     }
                     _ => break,
                 }
@@ -81,7 +85,10 @@ impl Match {
                 }
                 Instruction::Change => nodes[i] = IrNode::ChangeValue(v, o),
                 Instruction::DynAdd(mult_offset) => {
-                    nodes[i] = IrNode::DynamicChangeValue(v, o, mult_offset)
+                    nodes[i] = IrNode::DynamicChangeValue(v, o, mult_offset);
+                }
+                Instruction::PrintChar => {
+                    nodes[i] = IrNode::PrintChar(o);
                 }
             }
 

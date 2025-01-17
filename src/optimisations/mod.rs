@@ -16,8 +16,8 @@ pub enum IrNode {
     // Move the pointer to by the given amount
     ChangePtr(i32),
 
-    // Print the value at the current pointer
-    PrintChar,
+    // Print the value at the current pointer + offset
+    PrintChar(i32),
 
     // Read a character from stdin and store it at the current pointer
     ReadChar,

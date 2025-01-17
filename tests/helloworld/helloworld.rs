@@ -25,16 +25,14 @@ fn main() {
 	grid[ptr + 1] += 7 * grid[ptr + 2];
 	grid[ptr + 2] = 0;
 	grid[ptr + 1] += 2;
-	ptr += 1;
-	putchar(grid[ptr] as i32);
-	grid[ptr] -= 12;
-	putchar(grid[ptr] as i32);
-	grid[ptr + 1] += 6;
-	grid[ptr] += 9 * grid[ptr + 1];
-	grid[ptr + 1] = 0;
-	grid[ptr] += 1;
-	putchar(grid[ptr] as i32);
-	ptr -= 1;
+	putchar(grid[ptr + 1] as i32);
+	grid[ptr + 1] -= 12;
+	putchar(grid[ptr + 1] as i32);
+	grid[ptr + 2] += 6;
+	grid[ptr + 1] += 9 * grid[ptr + 2];
+	grid[ptr + 2] = 0;
+	grid[ptr + 1] += 1;
+	putchar(grid[ptr + 1] as i32);
 	putchar(grid[ptr] as i32);
 	grid[ptr] += 3;
 	putchar(grid[ptr] as i32);
@@ -46,6 +44,6 @@ fn main() {
 	grid[ptr + 2] += 8 * grid[ptr + 3];
 	grid[ptr + 3] = 0;
 	grid[ptr + 2] += 1;
+	putchar(grid[ptr + 2] as i32);
 	ptr += 2;
-	putchar(grid[ptr] as i32);
 }

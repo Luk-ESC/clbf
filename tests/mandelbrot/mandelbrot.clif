@@ -5772,1561 +5772,1556 @@ block803(v3353: i64):
     v3359 = load.i8 v3353+4
     v3360 = iadd_imm v3359, -1
     store v3360, v3353+4
-    v3361 = iadd_imm v3353, -2
-    v3362 = uload8.i32 v3361
-    v3363 = call fn0(v3362)
-    v3364 = iadd_imm v3361, 2
-    jump block802(v3364)
+    v3361 = uload8.i32 v3353-2
+    v3362 = call fn0(v3361)
+    jump block802(v3353)
 
 block802(v3352: i64):
     v3356 = load.i8 v3352
     brif v3356, block803(v3352), block804(v3352)
 
 block804(v3354: i64):
-    v3365 = iadd_imm v3354, 4
+    v3363 = iadd_imm v3354, 4
+    v3367 = load.i8 v3363
+    brif v3367, block806(v3363), block807(v3363)
+
+block806(v3365: i64):
     v3369 = load.i8 v3365
-    brif v3369, block806(v3365), block807(v3365)
+    v3370 = iadd_imm v3369, -1
+    store v3370, v3365
+    v3371 = uload8.i32 v3365-7
+    v3372 = call fn0(v3371)
+    jump block805(v3365)
 
-block806(v3367: i64):
-    v3371 = load.i8 v3367
-    v3372 = iadd_imm v3371, -1
-    store v3372, v3367
-    v3373 = iadd_imm v3367, -7
-    v3374 = uload8.i32 v3373
-    v3375 = call fn0(v3374)
-    v3376 = iadd_imm v3373, 7
-    jump block805(v3376)
+block805(v3364: i64):
+    v3368 = load.i8 v3364
+    brif v3368, block806(v3364), block807(v3364)
 
-block805(v3366: i64):
-    v3370 = load.i8 v3366
-    brif v3370, block806(v3366), block807(v3366)
-
-block807(v3368: i64):
+block807(v3366: i64):
+    v3373 = iconst.i8 0
+    store v3373, v3366-3  ; v3373 = 0
+    v3374 = iconst.i8 0
+    store v3374, v3366-2  ; v3374 = 0
+    v3375 = iconst.i8 0
+    store v3375, v3366-1  ; v3375 = 0
+    v3376 = iconst.i8 0
+    store v3376, v3366  ; v3376 = 0
     v3377 = iconst.i8 0
-    store v3377, v3368-3  ; v3377 = 0
+    store v3377, v3366+1  ; v3377 = 0
     v3378 = iconst.i8 0
-    store v3378, v3368-2  ; v3378 = 0
-    v3379 = iconst.i8 0
-    store v3379, v3368-1  ; v3379 = 0
-    v3380 = iconst.i8 0
-    store v3380, v3368  ; v3380 = 0
-    v3381 = iconst.i8 0
-    store v3381, v3368+1  ; v3381 = 0
-    v3382 = iconst.i8 0
-    store v3382, v3368+2  ; v3382 = 0
-    v3383 = iadd_imm v3368, 5
-    v3387 = load.i8 v3383
-    brif v3387, block809(v3383), block810(v3383)
+    store v3378, v3366+2  ; v3378 = 0
+    v3379 = iadd_imm v3366, 5
+    v3383 = load.i8 v3379
+    brif v3383, block809(v3379), block810(v3379)
 
-block809(v3385: i64):
+block809(v3381: i64):
+    v3385 = iconst.i8 0
+    store v3385, v3381+1  ; v3385 = 0
+    v3386 = iconst.i8 0
+    store v3386, v3381+2  ; v3386 = 0
+    v3387 = iconst.i8 0
+    store v3387, v3381+3  ; v3387 = 0
+    v3388 = iconst.i8 0
+    store v3388, v3381+4  ; v3388 = 0
     v3389 = iconst.i8 0
-    store v3389, v3385+1  ; v3389 = 0
+    store v3389, v3381+5  ; v3389 = 0
     v3390 = iconst.i8 0
-    store v3390, v3385+2  ; v3390 = 0
-    v3391 = iconst.i8 0
-    store v3391, v3385+3  ; v3391 = 0
-    v3392 = iconst.i8 0
-    store v3392, v3385+4  ; v3392 = 0
-    v3393 = iconst.i8 0
-    store v3393, v3385+5  ; v3393 = 0
-    v3394 = iconst.i8 0
-    store v3394, v3385+6  ; v3394 = 0
-    v3395 = iadd_imm v3385, 9
-    jump block808(v3395)
+    store v3390, v3381+6  ; v3390 = 0
+    v3391 = iadd_imm v3381, 9
+    jump block808(v3391)
 
-block808(v3384: i64):
-    v3388 = load.i8 v3384
-    brif v3388, block809(v3384), block810(v3384)
+block808(v3380: i64):
+    v3384 = load.i8 v3380
+    brif v3384, block809(v3380), block810(v3380)
 
-block810(v3386: i64):
-    v3396 = iadd_imm v3386, -9
-    v3400 = load.i8 v3396
-    brif v3400, block812(v3396), block813(v3396)
+block810(v3382: i64):
+    v3392 = iadd_imm v3382, -9
+    v3396 = load.i8 v3392
+    brif v3396, block812(v3392), block813(v3392)
 
-block812(v3398: i64):
-    v3402 = iadd_imm v3398, -9
-    jump block811(v3402)
+block812(v3394: i64):
+    v3398 = iadd_imm v3394, -9
+    jump block811(v3398)
 
-block811(v3397: i64):
-    v3401 = load.i8 v3397
-    brif v3401, block812(v3397), block813(v3397)
+block811(v3393: i64):
+    v3397 = load.i8 v3393
+    brif v3397, block812(v3393), block813(v3393)
 
-block813(v3399: i64):
-    v3403 = iadd_imm v3399, 9
-    v3407 = load.i8 v3403
-    brif v3407, block815(v3403), block816(v3403)
+block813(v3395: i64):
+    v3399 = iadd_imm v3395, 9
+    v3403 = load.i8 v3399
+    brif v3403, block815(v3399), block816(v3399)
 
-block815(v3405: i64):
-    v3409 = iconst.i8 0
-    store v3409, v3405+5  ; v3409 = 0
-    v3410 = iadd_imm v3405, 9
-    jump block814(v3410)
+block815(v3401: i64):
+    v3405 = iconst.i8 0
+    store v3405, v3401+5  ; v3405 = 0
+    v3406 = iadd_imm v3401, 9
+    jump block814(v3406)
 
-block814(v3404: i64):
-    v3408 = load.i8 v3404
-    brif v3408, block815(v3404), block816(v3404)
+block814(v3400: i64):
+    v3404 = load.i8 v3400
+    brif v3404, block815(v3400), block816(v3400)
 
-block816(v3406: i64):
-    v3411 = iadd_imm v3406, -9
-    v3415 = load.i8 v3411
-    brif v3415, block818(v3411), block819(v3411)
+block816(v3402: i64):
+    v3407 = iadd_imm v3402, -9
+    v3411 = load.i8 v3407
+    brif v3411, block818(v3407), block819(v3407)
 
-block818(v3413: i64):
-    v3417 = iadd_imm v3413, -9
-    jump block817(v3417)
+block818(v3409: i64):
+    v3413 = iadd_imm v3409, -9
+    jump block817(v3413)
 
-block817(v3412: i64):
-    v3416 = load.i8 v3412
-    brif v3416, block818(v3412), block819(v3412)
+block817(v3408: i64):
+    v3412 = load.i8 v3408
+    brif v3412, block818(v3408), block819(v3408)
 
-block819(v3414: i64):
-    v3418 = iadd_imm v3414, 1
-    v3419 = load.i8 v3418
-    v3420 = iadd_imm v3419, 11
-    store v3420, v3418
+block819(v3410: i64):
+    v3414 = iadd_imm v3410, 1
+    v3415 = load.i8 v3414
+    v3416 = iadd_imm v3415, 11
+    store v3416, v3414
+    v3420 = load.i8 v3414
+    brif v3420, block821(v3414), block822(v3414)
+
+block821(v3418: i64):
+    v3422 = load.i8 v3418
+    v3423 = iadd_imm v3422, -1
+    store v3423, v3418
     v3424 = load.i8 v3418
-    brif v3424, block821(v3418), block822(v3418)
+    v3425 = load.i8 v3418+9
+    v3426 = iadd v3425, v3424
+    store v3426, v3418+9
+    v3427 = iconst.i8 0
+    store v3427, v3418  ; v3427 = 0
+    v3428 = iadd_imm v3418, 9
+    jump block820(v3428)
 
-block821(v3422: i64):
-    v3426 = load.i8 v3422
-    v3427 = iadd_imm v3426, -1
-    store v3427, v3422
-    v3428 = load.i8 v3422
-    v3429 = load.i8 v3422+9
-    v3430 = iadd v3429, v3428
-    store v3430, v3422+9
-    v3431 = iconst.i8 0
-    store v3431, v3422  ; v3431 = 0
-    v3432 = iadd_imm v3422, 9
-    jump block820(v3432)
+block820(v3417: i64):
+    v3421 = load.i8 v3417
+    brif v3421, block821(v3417), block822(v3417)
 
-block820(v3421: i64):
-    v3425 = load.i8 v3421
-    brif v3425, block821(v3421), block822(v3421)
+block822(v3419: i64):
+    v3429 = load.i8 v3419+4
+    v3430 = iadd_imm v3429, 1
+    store v3430, v3419+4
+    v3431 = load.i8 v3419+13
+    v3432 = iadd_imm v3431, 1
+    store v3432, v3419+13
+    v3433 = iadd_imm v3419, -1
+    v3437 = load.i8 v3433
+    brif v3437, block824(v3433), block825(v3433)
 
-block822(v3423: i64):
-    v3433 = load.i8 v3423+4
-    v3434 = iadd_imm v3433, 1
-    store v3434, v3423+4
-    v3435 = load.i8 v3423+13
-    v3436 = iadd_imm v3435, 1
-    store v3436, v3423+13
-    v3437 = iadd_imm v3423, -1
-    v3441 = load.i8 v3437
-    brif v3441, block824(v3437), block825(v3437)
+block824(v3435: i64):
+    v3439 = iadd_imm v3435, -9
+    jump block823(v3439)
 
-block824(v3439: i64):
-    v3443 = iadd_imm v3439, -9
-    jump block823(v3443)
+block823(v3434: i64):
+    v3438 = load.i8 v3434
+    brif v3438, block824(v3434), block825(v3434)
 
-block823(v3438: i64):
-    v3442 = load.i8 v3438
-    brif v3442, block824(v3438), block825(v3438)
+block825(v3436: i64):
+    v3440 = load.i8 v3436+7
+    v3441 = load.i8 v3436
+    v3442 = iadd v3441, v3440
+    store v3442, v3436
+    v3443 = iconst.i8 0
+    store v3443, v3436+7  ; v3443 = 0
+    v3447 = load.i8 v3436
+    brif v3447, block827(v3436), block828(v3436)
 
-block825(v3440: i64):
-    v3444 = load.i8 v3440+7
-    v3445 = load.i8 v3440
-    v3446 = iadd v3445, v3444
-    store v3446, v3440
-    v3447 = iconst.i8 0
-    store v3447, v3440+7  ; v3447 = 0
-    v3451 = load.i8 v3440
-    brif v3451, block827(v3440), block828(v3440)
+block827(v3445: i64):
+    v3449 = load.i8 v3445
+    v3450 = iadd_imm v3449, -1
+    store v3450, v3445
+    v3451 = iconst.i8 0
+    store v3451, v3445+7  ; v3451 = 0
+    v3452 = iadd_imm v3445, 9
+    v3456 = load.i8 v3452
+    brif v3456, block830(v3452), block831(v3452)
 
-block827(v3449: i64):
-    v3453 = load.i8 v3449
-    v3454 = iadd_imm v3453, -1
-    store v3454, v3449
-    v3455 = iconst.i8 0
-    store v3455, v3449+7  ; v3455 = 0
-    v3456 = iadd_imm v3449, 9
-    v3460 = load.i8 v3456
-    brif v3460, block830(v3456), block831(v3456)
+block830(v3454: i64):
+    v3458 = iadd_imm v3454, 9
+    jump block829(v3458)
 
-block830(v3458: i64):
-    v3462 = iadd_imm v3458, 9
-    jump block829(v3462)
+block829(v3453: i64):
+    v3457 = load.i8 v3453
+    brif v3457, block830(v3453), block831(v3453)
 
-block829(v3457: i64):
-    v3461 = load.i8 v3457
-    brif v3461, block830(v3457), block831(v3457)
+block831(v3455: i64):
+    v3459 = iadd_imm v3455, -9
+    v3463 = load.i8 v3459
+    brif v3463, block833(v3459), block834(v3459)
 
-block831(v3459: i64):
-    v3463 = iadd_imm v3459, -9
-    v3467 = load.i8 v3463
-    brif v3467, block833(v3463), block834(v3463)
+block833(v3461: i64):
+    v3465 = load.i8 v3461+7
+    v3466 = load.i8 v3461+1
+    v3467 = iadd v3466, v3465
+    store v3467, v3461+1
+    v3468 = iconst.i8 0
+    store v3468, v3461+7  ; v3468 = 0
+    v3469 = iadd_imm v3461, 1
+    v3473 = load.i8 v3469
+    brif v3473, block836(v3469), block837(v3469)
 
-block833(v3465: i64):
-    v3469 = load.i8 v3465+7
-    v3470 = load.i8 v3465+1
-    v3471 = iadd v3470, v3469
-    store v3471, v3465+1
-    v3472 = iconst.i8 0
-    store v3472, v3465+7  ; v3472 = 0
-    v3473 = iadd_imm v3465, 1
-    v3477 = load.i8 v3473
-    brif v3477, block836(v3473), block837(v3473)
+block836(v3471: i64):
+    v3475 = load.i8 v3471
+    v3476 = iadd_imm v3475, -1
+    store v3476, v3471
+    v3477 = load.i8 v3471+6
+    v3478 = iadd_imm v3477, 1
+    store v3478, v3471+6
+    v3479 = iadd_imm v3471, -1
+    v3483 = load.i8 v3479
+    brif v3483, block839(v3479), block840(v3479)
 
-block836(v3475: i64):
-    v3479 = load.i8 v3475
-    v3480 = iadd_imm v3479, -1
-    store v3480, v3475
-    v3481 = load.i8 v3475+6
-    v3482 = iadd_imm v3481, 1
-    store v3482, v3475+6
-    v3483 = iadd_imm v3475, -1
-    v3487 = load.i8 v3483
-    brif v3487, block839(v3483), block840(v3483)
+block839(v3481: i64):
+    v3485 = iadd_imm v3481, -9
+    jump block838(v3485)
 
-block839(v3485: i64):
-    v3489 = iadd_imm v3485, -9
-    jump block838(v3489)
+block838(v3480: i64):
+    v3484 = load.i8 v3480
+    brif v3484, block839(v3480), block840(v3480)
 
-block838(v3484: i64):
-    v3488 = load.i8 v3484
-    brif v3488, block839(v3484), block840(v3484)
+block840(v3482: i64):
+    v3486 = iconst.i8 1
+    store v3486, v3482+7  ; v3486 = 1
+    v3487 = iadd_imm v3482, 10
+    jump block835(v3487)
 
-block840(v3486: i64):
-    v3490 = iconst.i8 1
-    store v3490, v3486+7  ; v3490 = 1
-    v3491 = iadd_imm v3486, 10
-    jump block835(v3491)
+block835(v3470: i64):
+    v3474 = load.i8 v3470
+    brif v3474, block836(v3470), block837(v3470)
 
-block835(v3474: i64):
-    v3478 = load.i8 v3474
-    brif v3478, block836(v3474), block837(v3474)
+block837(v3472: i64):
+    v3488 = iadd_imm v3472, -10
+    jump block832(v3488)
 
-block837(v3476: i64):
-    v3492 = iadd_imm v3476, -10
-    jump block832(v3492)
+block832(v3460: i64):
+    v3464 = load.i8 v3460
+    brif v3464, block833(v3460), block834(v3460)
 
-block832(v3464: i64):
-    v3468 = load.i8 v3464
-    brif v3468, block833(v3464), block834(v3464)
+block834(v3462: i64):
+    jump block826(v3462)
 
-block834(v3466: i64):
-    jump block826(v3466)
+block826(v3444: i64):
+    v3448 = load.i8 v3444
+    brif v3448, block827(v3444), block828(v3444)
 
-block826(v3448: i64):
-    v3452 = load.i8 v3448
-    brif v3452, block827(v3448), block828(v3448)
+block828(v3446: i64):
+    v3489 = load.i8 v3446+7
+    v3490 = load.i8 v3446
+    v3491 = iadd v3490, v3489
+    store v3491, v3446
+    v3492 = iconst.i8 0
+    store v3492, v3446+7  ; v3492 = 0
+    v3496 = load.i8 v3446
+    brif v3496, block842(v3446), block843(v3446)
 
-block828(v3450: i64):
-    v3493 = load.i8 v3450+7
-    v3494 = load.i8 v3450
-    v3495 = iadd v3494, v3493
-    store v3495, v3450
-    v3496 = iconst.i8 0
-    store v3496, v3450+7  ; v3496 = 0
-    v3500 = load.i8 v3450
-    brif v3500, block842(v3450), block843(v3450)
+block842(v3494: i64):
+    v3498 = load.i8 v3494
+    v3499 = iadd_imm v3498, -1
+    store v3499, v3494
+    v3500 = load.i8 v3494+7
+    v3501 = iadd_imm v3500, 1
+    store v3501, v3494+7
+    v3502 = iadd_imm v3494, 9
+    v3506 = load.i8 v3502
+    brif v3506, block845(v3502), block846(v3502)
 
-block842(v3498: i64):
-    v3502 = load.i8 v3498
-    v3503 = iadd_imm v3502, -1
-    store v3503, v3498
-    v3504 = load.i8 v3498+7
-    v3505 = iadd_imm v3504, 1
-    store v3505, v3498+7
-    v3506 = iadd_imm v3498, 9
-    v3510 = load.i8 v3506
-    brif v3510, block845(v3506), block846(v3506)
-
-block845(v3508: i64):
-    v3512 = load.i8 v3508+1
-    v3513 = iadd_imm v3512, 1
-    store v3513, v3508+1
-    v3514 = load.i8 v3508+5
-    v3515 = load.i8 v3508+1
-    v3516 = isub v3515, v3514
-    store v3516, v3508+1
+block845(v3504: i64):
+    v3508 = load.i8 v3504+1
+    v3509 = iadd_imm v3508, 1
+    store v3509, v3504+1
+    v3510 = load.i8 v3504+5
+    v3511 = load.i8 v3504+1
+    v3512 = isub v3511, v3510
+    store v3512, v3504+1
+    v3513 = iconst.i8 0
+    store v3513, v3504+5  ; v3513 = 0
+    v3514 = load.i8 v3504+1
+    v3515 = load.i8 v3504+5
+    v3516 = iadd v3515, v3514
+    store v3516, v3504+5
     v3517 = iconst.i8 0
-    store v3517, v3508+5  ; v3517 = 0
-    v3518 = load.i8 v3508+1
-    v3519 = load.i8 v3508+5
-    v3520 = iadd v3519, v3518
-    store v3520, v3508+5
-    v3521 = iconst.i8 0
-    store v3521, v3508+1  ; v3521 = 0
-    v3522 = iadd_imm v3508, 9
-    jump block844(v3522)
+    store v3517, v3504+1  ; v3517 = 0
+    v3518 = iadd_imm v3504, 9
+    jump block844(v3518)
 
-block844(v3507: i64):
-    v3511 = load.i8 v3507
-    brif v3511, block845(v3507), block846(v3507)
+block844(v3503: i64):
+    v3507 = load.i8 v3503
+    brif v3507, block845(v3503), block846(v3503)
 
-block846(v3509: i64):
-    v3523 = load.i8 v3509-2
-    v3524 = iadd_imm v3523, 1
-    store v3524, v3509-2
-    v3525 = iadd_imm v3509, -9
-    v3529 = load.i8 v3525
-    brif v3529, block848(v3525), block849(v3525)
+block846(v3505: i64):
+    v3519 = load.i8 v3505-2
+    v3520 = iadd_imm v3519, 1
+    store v3520, v3505-2
+    v3521 = iadd_imm v3505, -9
+    v3525 = load.i8 v3521
+    brif v3525, block848(v3521), block849(v3521)
 
-block848(v3527: i64):
-    v3531 = load.i8 v3527+5
-    v3532 = load.i8 v3527+7
-    v3533 = iadd v3532, v3531
-    store v3533, v3527+7
-    v3534 = iconst.i8 0
-    store v3534, v3527+5  ; v3534 = 0
-    v3535 = iadd_imm v3527, -9
-    jump block847(v3535)
+block848(v3523: i64):
+    v3527 = load.i8 v3523+5
+    v3528 = load.i8 v3523+7
+    v3529 = iadd v3528, v3527
+    store v3529, v3523+7
+    v3530 = iconst.i8 0
+    store v3530, v3523+5  ; v3530 = 0
+    v3531 = iadd_imm v3523, -9
+    jump block847(v3531)
 
-block847(v3526: i64):
-    v3530 = load.i8 v3526
-    brif v3530, block848(v3526), block849(v3526)
+block847(v3522: i64):
+    v3526 = load.i8 v3522
+    brif v3526, block848(v3522), block849(v3522)
 
-block849(v3528: i64):
-    v3536 = iadd_imm v3528, 9
-    v3540 = load.i8 v3536
-    brif v3540, block851(v3536), block852(v3536)
+block849(v3524: i64):
+    v3532 = iadd_imm v3524, 9
+    v3536 = load.i8 v3532
+    brif v3536, block851(v3532), block852(v3532)
 
-block851(v3538: i64):
-    v3542 = iadd_imm v3538, 9
-    jump block850(v3542)
+block851(v3534: i64):
+    v3538 = iadd_imm v3534, 9
+    jump block850(v3538)
 
-block850(v3537: i64):
-    v3541 = load.i8 v3537
-    brif v3541, block851(v3537), block852(v3537)
+block850(v3533: i64):
+    v3537 = load.i8 v3533
+    brif v3537, block851(v3533), block852(v3533)
 
-block852(v3539: i64):
-    v3543 = iadd_imm v3539, -9
-    v3547 = load.i8 v3543
-    brif v3547, block854(v3543), block855(v3543)
+block852(v3535: i64):
+    v3539 = iadd_imm v3535, -9
+    v3543 = load.i8 v3539
+    brif v3543, block854(v3539), block855(v3539)
 
-block854(v3545: i64):
-    v3549 = iconst.i8 0
-    store v3549, v3545+1  ; v3549 = 0
-    v3550 = load.i8 v3545
-    v3551 = iadd_imm v3550, -1
-    store v3551, v3545
-    v3552 = iadd_imm v3545, 7
-    v3556 = load.i8 v3552
-    brif v3556, block857(v3552), block858(v3552)
+block854(v3541: i64):
+    v3545 = iconst.i8 0
+    store v3545, v3541+1  ; v3545 = 0
+    v3546 = load.i8 v3541
+    v3547 = iadd_imm v3546, -1
+    store v3547, v3541
+    v3548 = iadd_imm v3541, 7
+    v3552 = load.i8 v3548
+    brif v3552, block857(v3548), block858(v3548)
 
-block857(v3554: i64):
-    v3558 = load.i8 v3554
-    v3559 = iadd_imm v3558, -1
-    store v3559, v3554
-    v3560 = load.i8 v3554-7
-    v3561 = iadd_imm v3560, 1
-    store v3561, v3554-7
-    v3562 = load.i8 v3554-6
-    v3563 = load.i8 v3554-7
-    v3564 = isub v3563, v3562
-    store v3564, v3554-7
-    v3565 = load.i8 v3554-6
-    v3566 = load.i8 v3554-9
+block857(v3550: i64):
+    v3554 = load.i8 v3550
+    v3555 = iadd_imm v3554, -1
+    store v3555, v3550
+    v3556 = load.i8 v3550-7
+    v3557 = iadd_imm v3556, 1
+    store v3557, v3550-7
+    v3558 = load.i8 v3550-6
+    v3559 = load.i8 v3550-7
+    v3560 = isub v3559, v3558
+    store v3560, v3550-7
+    v3561 = load.i8 v3550-6
+    v3562 = load.i8 v3550-9
+    v3563 = iadd v3562, v3561
+    store v3563, v3550-9
+    v3564 = iconst.i8 0
+    store v3564, v3550-6  ; v3564 = 0
+    v3565 = load.i8 v3550-7
+    v3566 = load.i8 v3550-6
     v3567 = iadd v3566, v3565
-    store v3567, v3554-9
+    store v3567, v3550-6
     v3568 = iconst.i8 0
-    store v3568, v3554-6  ; v3568 = 0
-    v3569 = load.i8 v3554-7
-    v3570 = load.i8 v3554-6
+    store v3568, v3550-7  ; v3568 = 0
+    jump block856(v3550)
+
+block856(v3549: i64):
+    v3553 = load.i8 v3549
+    brif v3553, block857(v3549), block858(v3549)
+
+block858(v3551: i64):
+    v3569 = load.i8 v3551-6
+    v3570 = load.i8 v3551
     v3571 = iadd v3570, v3569
-    store v3571, v3554-6
+    store v3571, v3551
     v3572 = iconst.i8 0
-    store v3572, v3554-7  ; v3572 = 0
-    jump block856(v3554)
+    store v3572, v3551-6  ; v3572 = 0
+    v3573 = load.i8 v3551-7
+    v3574 = iadd_imm v3573, 1
+    store v3574, v3551-7
+    v3575 = iadd_imm v3551, -16
+    jump block853(v3575)
 
-block856(v3553: i64):
-    v3557 = load.i8 v3553
-    brif v3557, block857(v3553), block858(v3553)
+block853(v3540: i64):
+    v3544 = load.i8 v3540
+    brif v3544, block854(v3540), block855(v3540)
 
-block858(v3555: i64):
-    v3573 = load.i8 v3555-6
-    v3574 = load.i8 v3555
-    v3575 = iadd v3574, v3573
-    store v3575, v3555
-    v3576 = iconst.i8 0
-    store v3576, v3555-6  ; v3576 = 0
-    v3577 = load.i8 v3555-7
-    v3578 = iadd_imm v3577, 1
-    store v3578, v3555-7
-    v3579 = iadd_imm v3555, -16
-    jump block853(v3579)
+block855(v3542: i64):
+    v3576 = load.i8 v3542+7
+    v3577 = iadd_imm v3576, -1
+    store v3577, v3542+7
+    v3578 = iconst.i8 1
+    store v3578, v3542+3  ; v3578 = 1
+    jump block841(v3542)
 
-block853(v3544: i64):
-    v3548 = load.i8 v3544
-    brif v3548, block854(v3544), block855(v3544)
+block841(v3493: i64):
+    v3497 = load.i8 v3493
+    brif v3497, block842(v3493), block843(v3493)
 
-block855(v3546: i64):
-    v3580 = load.i8 v3546+7
-    v3581 = iadd_imm v3580, -1
-    store v3581, v3546+7
-    v3582 = iconst.i8 1
-    store v3582, v3546+3  ; v3582 = 1
-    jump block841(v3546)
+block843(v3495: i64):
+    v3579 = load.i8 v3495
+    v3580 = iadd_imm v3579, 1
+    store v3580, v3495
+    v3581 = load.i8 v3495+7
+    v3582 = load.i8 v3495
+    v3583 = isub v3582, v3581
+    store v3583, v3495
+    v3584 = iconst.i8 0
+    store v3584, v3495+7  ; v3584 = 0
+    v3585 = load.i8 v3495+7
+    v3586 = iadd_imm v3585, 1
+    store v3586, v3495+7
+    v3590 = load.i8 v3495
+    brif v3590, block860(v3495), block861(v3495)
 
-block841(v3497: i64):
-    v3501 = load.i8 v3497
-    brif v3501, block842(v3497), block843(v3497)
+block860(v3588: i64):
+    v3592 = load.i8 v3588
+    v3593 = iadd_imm v3592, -1
+    store v3593, v3588
+    v3594 = load.i8 v3588+7
+    v3595 = iadd_imm v3594, -1
+    store v3595, v3588+7
+    v3596 = iadd_imm v3588, 9
+    v3600 = load.i8 v3596
+    brif v3600, block863(v3596), block864(v3596)
 
-block843(v3499: i64):
-    v3583 = load.i8 v3499
-    v3584 = iadd_imm v3583, 1
-    store v3584, v3499
-    v3585 = load.i8 v3499+7
-    v3586 = load.i8 v3499
-    v3587 = isub v3586, v3585
-    store v3587, v3499
-    v3588 = iconst.i8 0
-    store v3588, v3499+7  ; v3588 = 0
-    v3589 = load.i8 v3499+7
-    v3590 = iadd_imm v3589, 1
-    store v3590, v3499+7
-    v3594 = load.i8 v3499
-    brif v3594, block860(v3499), block861(v3499)
+block863(v3598: i64):
+    v3602 = load.i8 v3598+5
+    v3603 = load.i8 v3598+7
+    v3604 = iadd v3603, v3602
+    store v3604, v3598+7
+    v3605 = iconst.i8 0
+    store v3605, v3598+5  ; v3605 = 0
+    v3606 = iadd_imm v3598, 9
+    jump block862(v3606)
 
-block860(v3592: i64):
-    v3596 = load.i8 v3592
-    v3597 = iadd_imm v3596, -1
-    store v3597, v3592
-    v3598 = load.i8 v3592+7
-    v3599 = iadd_imm v3598, -1
-    store v3599, v3592+7
-    v3600 = iadd_imm v3592, 9
-    v3604 = load.i8 v3600
-    brif v3604, block863(v3600), block864(v3600)
+block862(v3597: i64):
+    v3601 = load.i8 v3597
+    brif v3601, block863(v3597), block864(v3597)
 
-block863(v3602: i64):
-    v3606 = load.i8 v3602+5
-    v3607 = load.i8 v3602+7
-    v3608 = iadd v3607, v3606
-    store v3608, v3602+7
-    v3609 = iconst.i8 0
-    store v3609, v3602+5  ; v3609 = 0
-    v3610 = iadd_imm v3602, 9
-    jump block862(v3610)
+block864(v3599: i64):
+    v3607 = iadd_imm v3599, -9
+    v3611 = load.i8 v3607
+    brif v3611, block866(v3607), block867(v3607)
 
-block862(v3601: i64):
-    v3605 = load.i8 v3601
-    brif v3605, block863(v3601), block864(v3601)
+block866(v3609: i64):
+    v3613 = iconst.i8 0
+    store v3613, v3609+1  ; v3613 = 0
+    v3614 = load.i8 v3609
+    v3615 = iadd_imm v3614, -1
+    store v3615, v3609
+    v3616 = iadd_imm v3609, 7
+    v3620 = load.i8 v3616
+    brif v3620, block869(v3616), block870(v3616)
 
-block864(v3603: i64):
-    v3611 = iadd_imm v3603, -9
-    v3615 = load.i8 v3611
-    brif v3615, block866(v3611), block867(v3611)
-
-block866(v3613: i64):
-    v3617 = iconst.i8 0
-    store v3617, v3613+1  ; v3617 = 0
-    v3618 = load.i8 v3613
-    v3619 = iadd_imm v3618, -1
-    store v3619, v3613
-    v3620 = iadd_imm v3613, 7
-    v3624 = load.i8 v3620
-    brif v3624, block869(v3620), block870(v3620)
-
-block869(v3622: i64):
-    v3626 = load.i8 v3622
-    v3627 = iadd_imm v3626, -1
-    store v3627, v3622
-    v3628 = load.i8 v3622-7
-    v3629 = iadd_imm v3628, 1
-    store v3629, v3622-7
-    v3630 = load.i8 v3622-6
-    v3631 = load.i8 v3622-7
-    v3632 = isub v3631, v3630
-    store v3632, v3622-7
-    v3633 = load.i8 v3622-6
-    v3634 = load.i8 v3622-9
+block869(v3618: i64):
+    v3622 = load.i8 v3618
+    v3623 = iadd_imm v3622, -1
+    store v3623, v3618
+    v3624 = load.i8 v3618-7
+    v3625 = iadd_imm v3624, 1
+    store v3625, v3618-7
+    v3626 = load.i8 v3618-6
+    v3627 = load.i8 v3618-7
+    v3628 = isub v3627, v3626
+    store v3628, v3618-7
+    v3629 = load.i8 v3618-6
+    v3630 = load.i8 v3618-9
+    v3631 = iadd v3630, v3629
+    store v3631, v3618-9
+    v3632 = iconst.i8 0
+    store v3632, v3618-6  ; v3632 = 0
+    v3633 = load.i8 v3618-7
+    v3634 = load.i8 v3618-6
     v3635 = iadd v3634, v3633
-    store v3635, v3622-9
+    store v3635, v3618-6
     v3636 = iconst.i8 0
-    store v3636, v3622-6  ; v3636 = 0
-    v3637 = load.i8 v3622-7
-    v3638 = load.i8 v3622-6
+    store v3636, v3618-7  ; v3636 = 0
+    jump block868(v3618)
+
+block868(v3617: i64):
+    v3621 = load.i8 v3617
+    brif v3621, block869(v3617), block870(v3617)
+
+block870(v3619: i64):
+    v3637 = load.i8 v3619-6
+    v3638 = load.i8 v3619
     v3639 = iadd v3638, v3637
-    store v3639, v3622-6
+    store v3639, v3619
     v3640 = iconst.i8 0
-    store v3640, v3622-7  ; v3640 = 0
-    jump block868(v3622)
+    store v3640, v3619-6  ; v3640 = 0
+    v3641 = load.i8 v3619-7
+    v3642 = iadd_imm v3641, 1
+    store v3642, v3619-7
+    v3643 = iadd_imm v3619, -16
+    jump block865(v3643)
 
-block868(v3621: i64):
-    v3625 = load.i8 v3621
-    brif v3625, block869(v3621), block870(v3621)
+block865(v3608: i64):
+    v3612 = load.i8 v3608
+    brif v3612, block866(v3608), block867(v3608)
 
-block870(v3623: i64):
-    v3641 = load.i8 v3623-6
-    v3642 = load.i8 v3623
-    v3643 = iadd v3642, v3641
-    store v3643, v3623
-    v3644 = iconst.i8 0
-    store v3644, v3623-6  ; v3644 = 0
-    v3645 = load.i8 v3623-7
-    v3646 = iadd_imm v3645, 1
-    store v3646, v3623-7
-    v3647 = iadd_imm v3623, -16
-    jump block865(v3647)
+block867(v3610: i64):
+    v3644 = iadd_imm v3610, 1
+    v3645 = load.i8 v3644
+    v3646 = iadd_imm v3645, 5
+    store v3646, v3644
+    v3650 = load.i8 v3644
+    brif v3650, block872(v3644), block873(v3644)
 
-block865(v3612: i64):
-    v3616 = load.i8 v3612
-    brif v3616, block866(v3612), block867(v3612)
-
-block867(v3614: i64):
-    v3648 = iadd_imm v3614, 1
-    v3649 = load.i8 v3648
-    v3650 = iadd_imm v3649, 5
-    store v3650, v3648
+block872(v3648: i64):
+    v3652 = load.i8 v3648
+    v3653 = iadd_imm v3652, -1
+    store v3653, v3648
     v3654 = load.i8 v3648
-    brif v3654, block872(v3648), block873(v3648)
+    v3655 = load.i8 v3648+9
+    v3656 = iadd v3655, v3654
+    store v3656, v3648+9
+    v3657 = iconst.i8 0
+    store v3657, v3648  ; v3657 = 0
+    v3658 = iadd_imm v3648, 9
+    jump block871(v3658)
 
-block872(v3652: i64):
-    v3656 = load.i8 v3652
-    v3657 = iadd_imm v3656, -1
-    store v3657, v3652
-    v3658 = load.i8 v3652
-    v3659 = load.i8 v3652+9
-    v3660 = iadd v3659, v3658
-    store v3660, v3652+9
-    v3661 = iconst.i8 0
-    store v3661, v3652  ; v3661 = 0
-    v3662 = iadd_imm v3652, 9
-    jump block871(v3662)
+block871(v3647: i64):
+    v3651 = load.i8 v3647
+    brif v3651, block872(v3647), block873(v3647)
 
-block871(v3651: i64):
-    v3655 = load.i8 v3651
-    brif v3655, block872(v3651), block873(v3651)
+block873(v3649: i64):
+    v3659 = load.i8 v3649+4
+    v3660 = iadd_imm v3659, 1
+    store v3660, v3649+4
+    v3661 = iadd_imm v3649, -1
+    v3665 = load.i8 v3661
+    brif v3665, block875(v3661), block876(v3661)
 
-block873(v3653: i64):
-    v3663 = load.i8 v3653+4
-    v3664 = iadd_imm v3663, 1
-    store v3664, v3653+4
-    v3665 = iadd_imm v3653, -1
-    v3669 = load.i8 v3665
-    brif v3669, block875(v3665), block876(v3665)
+block875(v3663: i64):
+    v3667 = iadd_imm v3663, -9
+    jump block874(v3667)
 
-block875(v3667: i64):
-    v3671 = iadd_imm v3667, -9
-    jump block874(v3671)
+block874(v3662: i64):
+    v3666 = load.i8 v3662
+    brif v3666, block875(v3662), block876(v3662)
 
-block874(v3666: i64):
-    v3670 = load.i8 v3666
-    brif v3670, block875(v3666), block876(v3666)
+block876(v3664: i64):
+    v3668 = iadd_imm v3664, 9
+    v3672 = load.i8 v3668
+    brif v3672, block878(v3668), block879(v3668)
 
-block876(v3668: i64):
-    v3672 = iadd_imm v3668, 9
-    v3676 = load.i8 v3672
-    brif v3676, block878(v3672), block879(v3672)
+block878(v3670: i64):
+    v3674 = load.i8 v3670+5
+    v3675 = load.i8 v3670
+    v3676 = isub v3675, v3674
+    store v3676, v3670
+    v3677 = iconst.i8 0
+    store v3677, v3670+5  ; v3677 = 0
+    v3678 = load.i8 v3670+5
+    v3679 = iadd_imm v3678, 1
+    store v3679, v3670+5
+    v3683 = load.i8 v3670
+    brif v3683, block881(v3670), block882(v3670)
 
-block878(v3674: i64):
-    v3678 = load.i8 v3674+5
-    v3679 = load.i8 v3674
-    v3680 = isub v3679, v3678
-    store v3680, v3674
-    v3681 = iconst.i8 0
-    store v3681, v3674+5  ; v3681 = 0
-    v3682 = load.i8 v3674+5
-    v3683 = iadd_imm v3682, 1
-    store v3683, v3674+5
-    v3687 = load.i8 v3674
-    brif v3687, block881(v3674), block882(v3674)
+block881(v3681: i64):
+    v3685 = load.i8 v3681
+    v3686 = iadd_imm v3685, -1
+    store v3686, v3681
+    v3687 = load.i8 v3681+5
+    v3688 = iadd_imm v3687, -1
+    store v3688, v3681+5
+    v3689 = load.i8 v3681+7
+    v3690 = load.i8 v3681
+    v3691 = iadd v3690, v3689
+    store v3691, v3681
+    v3692 = iconst.i8 0
+    store v3692, v3681+7  ; v3692 = 0
+    v3696 = load.i8 v3681
+    brif v3696, block884(v3681), block885(v3681)
 
-block881(v3685: i64):
-    v3689 = load.i8 v3685
-    v3690 = iadd_imm v3689, -1
-    store v3690, v3685
-    v3691 = load.i8 v3685+5
-    v3692 = iadd_imm v3691, -1
-    store v3692, v3685+5
-    v3693 = load.i8 v3685+7
-    v3694 = load.i8 v3685
-    v3695 = iadd v3694, v3693
-    store v3695, v3685
-    v3696 = iconst.i8 0
-    store v3696, v3685+7  ; v3696 = 0
-    v3700 = load.i8 v3685
-    brif v3700, block884(v3685), block885(v3685)
+block884(v3694: i64):
+    v3698 = load.i8 v3694
+    v3699 = iadd_imm v3698, -1
+    store v3699, v3694
+    v3700 = load.i8 v3694+7
+    v3701 = iadd_imm v3700, 1
+    store v3701, v3694+7
+    v3702 = iadd_imm v3694, -9
+    v3706 = load.i8 v3702
+    brif v3706, block887(v3702), block888(v3702)
 
-block884(v3698: i64):
-    v3702 = load.i8 v3698
-    v3703 = iadd_imm v3702, -1
-    store v3703, v3698
-    v3704 = load.i8 v3698+7
-    v3705 = iadd_imm v3704, 1
-    store v3705, v3698+7
-    v3706 = iadd_imm v3698, -9
-    v3710 = load.i8 v3706
-    brif v3710, block887(v3706), block888(v3706)
+block887(v3704: i64):
+    v3708 = iadd_imm v3704, -9
+    jump block886(v3708)
 
-block887(v3708: i64):
-    v3712 = iadd_imm v3708, -9
-    jump block886(v3712)
+block886(v3703: i64):
+    v3707 = load.i8 v3703
+    brif v3707, block887(v3703), block888(v3703)
 
-block886(v3707: i64):
-    v3711 = load.i8 v3707
-    brif v3711, block887(v3707), block888(v3707)
+block888(v3705: i64):
+    v3709 = iconst.i8 1
+    store v3709, v3705+4  ; v3709 = 1
+    v3710 = iadd_imm v3705, 9
+    v3714 = load.i8 v3710
+    brif v3714, block890(v3710), block891(v3710)
 
-block888(v3709: i64):
-    v3713 = iconst.i8 1
-    store v3713, v3709+4  ; v3713 = 1
-    v3714 = iadd_imm v3709, 9
-    v3718 = load.i8 v3714
-    brif v3718, block890(v3714), block891(v3714)
+block890(v3712: i64):
+    v3716 = iadd_imm v3712, 9
+    jump block889(v3716)
 
-block890(v3716: i64):
-    v3720 = iadd_imm v3716, 9
-    jump block889(v3720)
+block889(v3711: i64):
+    v3715 = load.i8 v3711
+    brif v3715, block890(v3711), block891(v3711)
 
-block889(v3715: i64):
-    v3719 = load.i8 v3715
-    brif v3719, block890(v3715), block891(v3715)
+block891(v3713: i64):
+    v3717 = load.i8 v3713+1
+    v3718 = iadd_imm v3717, 1
+    store v3718, v3713+1
+    jump block883(v3713)
 
-block891(v3717: i64):
-    v3721 = load.i8 v3717+1
-    v3722 = iadd_imm v3721, 1
-    store v3722, v3717+1
-    jump block883(v3717)
+block883(v3693: i64):
+    v3697 = load.i8 v3693
+    brif v3697, block884(v3693), block885(v3693)
 
-block883(v3697: i64):
-    v3701 = load.i8 v3697
-    brif v3701, block884(v3697), block885(v3697)
+block885(v3695: i64):
+    jump block880(v3695)
 
-block885(v3699: i64):
-    jump block880(v3699)
+block880(v3680: i64):
+    v3684 = load.i8 v3680
+    brif v3684, block881(v3680), block882(v3680)
 
-block880(v3684: i64):
-    v3688 = load.i8 v3684
-    brif v3688, block881(v3684), block882(v3684)
+block882(v3682: i64):
+    v3719 = load.i8 v3682
+    v3720 = iadd_imm v3719, 1
+    store v3720, v3682
+    v3721 = load.i8 v3682+7
+    v3722 = load.i8 v3682
+    v3723 = isub v3722, v3721
+    store v3723, v3682
+    v3724 = iconst.i8 0
+    store v3724, v3682+7  ; v3724 = 0
+    v3725 = load.i8 v3682+7
+    v3726 = iadd_imm v3725, 1
+    store v3726, v3682+7
+    v3730 = load.i8 v3682
+    brif v3730, block893(v3682), block894(v3682)
 
-block882(v3686: i64):
-    v3723 = load.i8 v3686
-    v3724 = iadd_imm v3723, 1
-    store v3724, v3686
-    v3725 = load.i8 v3686+7
-    v3726 = load.i8 v3686
-    v3727 = isub v3726, v3725
-    store v3727, v3686
-    v3728 = iconst.i8 0
-    store v3728, v3686+7  ; v3728 = 0
-    v3729 = load.i8 v3686+7
-    v3730 = iadd_imm v3729, 1
-    store v3730, v3686+7
-    v3734 = load.i8 v3686
-    brif v3734, block893(v3686), block894(v3686)
+block893(v3728: i64):
+    v3732 = load.i8 v3728
+    v3733 = iadd_imm v3732, -1
+    store v3733, v3728
+    v3734 = load.i8 v3728+7
+    v3735 = iadd_imm v3734, -1
+    store v3735, v3728+7
+    v3736 = load.i8 v3728+5
+    v3737 = load.i8 v3728
+    v3738 = iadd v3737, v3736
+    store v3738, v3728
+    v3739 = iconst.i8 0
+    store v3739, v3728+5  ; v3739 = 0
+    v3743 = load.i8 v3728
+    brif v3743, block896(v3728), block897(v3728)
 
-block893(v3732: i64):
-    v3736 = load.i8 v3732
-    v3737 = iadd_imm v3736, -1
-    store v3737, v3732
-    v3738 = load.i8 v3732+7
-    v3739 = iadd_imm v3738, -1
-    store v3739, v3732+7
-    v3740 = load.i8 v3732+5
-    v3741 = load.i8 v3732
-    v3742 = iadd v3741, v3740
-    store v3742, v3732
-    v3743 = iconst.i8 0
-    store v3743, v3732+5  ; v3743 = 0
-    v3747 = load.i8 v3732
-    brif v3747, block896(v3732), block897(v3732)
+block896(v3741: i64):
+    v3745 = load.i8 v3741
+    v3746 = iadd_imm v3745, -1
+    store v3746, v3741
+    v3747 = load.i8 v3741+5
+    v3748 = iadd_imm v3747, 1
+    store v3748, v3741+5
+    v3749 = iadd_imm v3741, -9
+    v3753 = load.i8 v3749
+    brif v3753, block899(v3749), block900(v3749)
 
-block896(v3745: i64):
-    v3749 = load.i8 v3745
-    v3750 = iadd_imm v3749, -1
-    store v3750, v3745
-    v3751 = load.i8 v3745+5
-    v3752 = iadd_imm v3751, 1
-    store v3752, v3745+5
-    v3753 = iadd_imm v3745, -9
-    v3757 = load.i8 v3753
-    brif v3757, block899(v3753), block900(v3753)
+block899(v3751: i64):
+    v3755 = iadd_imm v3751, -9
+    jump block898(v3755)
 
-block899(v3755: i64):
-    v3759 = iadd_imm v3755, -9
-    jump block898(v3759)
+block898(v3750: i64):
+    v3754 = load.i8 v3750
+    brif v3754, block899(v3750), block900(v3750)
 
-block898(v3754: i64):
-    v3758 = load.i8 v3754
-    brif v3758, block899(v3754), block900(v3754)
+block900(v3752: i64):
+    v3756 = iconst.i8 1
+    store v3756, v3752+3  ; v3756 = 1
+    v3757 = iadd_imm v3752, 9
+    v3761 = load.i8 v3757
+    brif v3761, block902(v3757), block903(v3757)
 
-block900(v3756: i64):
-    v3760 = iconst.i8 1
-    store v3760, v3756+3  ; v3760 = 1
-    v3761 = iadd_imm v3756, 9
-    v3765 = load.i8 v3761
-    brif v3765, block902(v3761), block903(v3761)
+block902(v3759: i64):
+    v3763 = iadd_imm v3759, 9
+    jump block901(v3763)
 
-block902(v3763: i64):
-    v3767 = iadd_imm v3763, 9
-    jump block901(v3767)
+block901(v3758: i64):
+    v3762 = load.i8 v3758
+    brif v3762, block902(v3758), block903(v3758)
 
-block901(v3762: i64):
-    v3766 = load.i8 v3762
-    brif v3766, block902(v3762), block903(v3762)
+block903(v3760: i64):
+    v3764 = iconst.i8 1
+    store v3764, v3760+1  ; v3764 = 1
+    jump block895(v3760)
 
-block903(v3764: i64):
-    v3768 = iconst.i8 1
-    store v3768, v3764+1  ; v3768 = 1
-    jump block895(v3764)
+block895(v3740: i64):
+    v3744 = load.i8 v3740
+    brif v3744, block896(v3740), block897(v3740)
 
-block895(v3744: i64):
-    v3748 = load.i8 v3744
-    brif v3748, block896(v3744), block897(v3744)
+block897(v3742: i64):
+    jump block892(v3742)
 
-block897(v3746: i64):
-    jump block892(v3746)
+block892(v3727: i64):
+    v3731 = load.i8 v3727
+    brif v3731, block893(v3727), block894(v3727)
 
-block892(v3731: i64):
-    v3735 = load.i8 v3731
-    brif v3735, block893(v3731), block894(v3731)
+block894(v3729: i64):
+    v3765 = load.i8 v3729
+    v3766 = iadd_imm v3765, 1
+    store v3766, v3729
+    v3767 = iadd_imm v3729, 1
+    v3771 = load.i8 v3767
+    brif v3771, block905(v3767), block906(v3767)
 
-block894(v3733: i64):
-    v3769 = load.i8 v3733
-    v3770 = iadd_imm v3769, 1
-    store v3770, v3733
-    v3771 = iadd_imm v3733, 1
-    v3775 = load.i8 v3771
-    brif v3775, block905(v3771), block906(v3771)
+block905(v3769: i64):
+    v3773 = load.i8 v3769
+    v3774 = iadd_imm v3773, -1
+    store v3774, v3769
+    v3775 = iadd_imm v3769, -1
+    v3779 = load.i8 v3775
+    brif v3779, block908(v3775), block909(v3775)
 
-block905(v3773: i64):
-    v3777 = load.i8 v3773
-    v3778 = iadd_imm v3777, -1
-    store v3778, v3773
-    v3779 = iadd_imm v3773, -1
-    v3783 = load.i8 v3779
-    brif v3783, block908(v3779), block909(v3779)
+block908(v3777: i64):
+    v3781 = iadd_imm v3777, 9
+    jump block907(v3781)
 
-block908(v3781: i64):
-    v3785 = iadd_imm v3781, 9
-    jump block907(v3785)
+block907(v3776: i64):
+    v3780 = load.i8 v3776
+    brif v3780, block908(v3776), block909(v3776)
 
-block907(v3780: i64):
-    v3784 = load.i8 v3780
-    brif v3784, block908(v3780), block909(v3780)
+block909(v3778: i64):
+    v3782 = iadd_imm v3778, -8
+    jump block904(v3782)
 
-block909(v3782: i64):
-    v3786 = iadd_imm v3782, -8
-    jump block904(v3786)
+block904(v3768: i64):
+    v3772 = load.i8 v3768
+    brif v3772, block905(v3768), block906(v3768)
 
-block904(v3772: i64):
-    v3776 = load.i8 v3772
-    brif v3776, block905(v3772), block906(v3772)
+block906(v3770: i64):
+    v3783 = iadd_imm v3770, 8
+    jump block877(v3783)
 
-block906(v3774: i64):
-    v3787 = iadd_imm v3774, 8
-    jump block877(v3787)
+block877(v3669: i64):
+    v3673 = load.i8 v3669
+    brif v3673, block878(v3669), block879(v3669)
 
-block877(v3673: i64):
-    v3677 = load.i8 v3673
-    brif v3677, block878(v3673), block879(v3673)
+block879(v3671: i64):
+    v3784 = iadd_imm v3671, -9
+    v3788 = load.i8 v3784
+    brif v3788, block911(v3784), block912(v3784)
 
-block879(v3675: i64):
-    v3788 = iadd_imm v3675, -9
-    v3792 = load.i8 v3788
-    brif v3792, block911(v3788), block912(v3788)
+block911(v3786: i64):
+    v3790 = iadd_imm v3786, -9
+    jump block910(v3790)
 
-block911(v3790: i64):
-    v3794 = iadd_imm v3790, -9
-    jump block910(v3794)
+block910(v3785: i64):
+    v3789 = load.i8 v3785
+    brif v3789, block911(v3785), block912(v3785)
 
-block910(v3789: i64):
-    v3793 = load.i8 v3789
-    brif v3793, block911(v3789), block912(v3789)
+block912(v3787: i64):
+    v3791 = iconst.i8 0
+    store v3791, v3787+4  ; v3791 = 0
+    v3792 = load.i8 v3787+1
+    v3793 = iadd_imm v3792, 5
+    store v3793, v3787+1
+    v3794 = iadd_imm v3787, 1
+    v3798 = load.i8 v3794
+    brif v3798, block914(v3794), block915(v3794)
 
-block912(v3791: i64):
-    v3795 = iconst.i8 0
-    store v3795, v3791+4  ; v3795 = 0
-    v3796 = load.i8 v3791+1
-    v3797 = iadd_imm v3796, 5
-    store v3797, v3791+1
-    v3798 = iadd_imm v3791, 1
-    v3802 = load.i8 v3798
-    brif v3802, block914(v3798), block915(v3798)
+block914(v3796: i64):
+    v3800 = load.i8 v3796
+    v3801 = iadd_imm v3800, -1
+    store v3801, v3796
+    v3802 = load.i8 v3796
+    v3803 = load.i8 v3796+9
+    v3804 = iadd v3803, v3802
+    store v3804, v3796+9
+    v3805 = iconst.i8 0
+    store v3805, v3796  ; v3805 = 0
+    v3806 = iadd_imm v3796, 9
+    jump block913(v3806)
 
-block914(v3800: i64):
-    v3804 = load.i8 v3800
-    v3805 = iadd_imm v3804, -1
-    store v3805, v3800
-    v3806 = load.i8 v3800
-    v3807 = load.i8 v3800+9
-    v3808 = iadd v3807, v3806
-    store v3808, v3800+9
-    v3809 = iconst.i8 0
-    store v3809, v3800  ; v3809 = 0
-    v3810 = iadd_imm v3800, 9
-    jump block913(v3810)
+block913(v3795: i64):
+    v3799 = load.i8 v3795
+    brif v3799, block914(v3795), block915(v3795)
 
-block913(v3799: i64):
-    v3803 = load.i8 v3799
-    brif v3803, block914(v3799), block915(v3799)
+block915(v3797: i64):
+    v3807 = load.i8 v3797+4
+    v3808 = iadd_imm v3807, -1
+    store v3808, v3797+4
+    v3809 = iadd_imm v3797, -1
+    v3813 = load.i8 v3809
+    brif v3813, block917(v3809), block918(v3809)
 
-block915(v3801: i64):
-    v3811 = load.i8 v3801+4
-    v3812 = iadd_imm v3811, -1
-    store v3812, v3801+4
-    v3813 = iadd_imm v3801, -1
-    v3817 = load.i8 v3813
-    brif v3817, block917(v3813), block918(v3813)
+block917(v3811: i64):
+    v3815 = iadd_imm v3811, -9
+    jump block916(v3815)
 
-block917(v3815: i64):
-    v3819 = iadd_imm v3815, -9
-    jump block916(v3819)
+block916(v3810: i64):
+    v3814 = load.i8 v3810
+    brif v3814, block917(v3810), block918(v3810)
 
-block916(v3814: i64):
-    v3818 = load.i8 v3814
-    brif v3818, block917(v3814), block918(v3814)
+block918(v3812: i64):
+    jump block859(v3812)
 
-block918(v3816: i64):
-    jump block859(v3816)
+block859(v3587: i64):
+    v3591 = load.i8 v3587
+    brif v3591, block860(v3587), block861(v3587)
 
-block859(v3591: i64):
-    v3595 = load.i8 v3591
-    brif v3595, block860(v3591), block861(v3591)
-
-block861(v3593: i64):
-    v3820 = iadd_imm v3593, 3
-    jump block40(v3820)
+block861(v3589: i64):
+    v3816 = iadd_imm v3589, 3
+    jump block40(v3816)
 
 block40(v156: i64):
     v160 = load.i8 v156
     brif v160, block41(v156), block42(v156)
 
 block42(v158: i64):
-    v3821 = iadd_imm v158, -4
-    v3822 = uload8.i32 v3821
-    v3823 = call fn0(v3822)
-    v3824 = iadd_imm v3821, 10
-    v3828 = load.i8 v3824
-    brif v3828, block920(v3824), block921(v3824)
-
-block920(v3826: i64):
-    v3830 = iconst.i8 0
-    store v3830, v3826+6  ; v3830 = 0
-    v3831 = iadd_imm v3826, 9
-    jump block919(v3831)
-
-block919(v3825: i64):
-    v3829 = load.i8 v3825
-    brif v3829, block920(v3825), block921(v3825)
-
-block921(v3827: i64):
-    v3832 = iadd_imm v3827, -9
-    v3836 = load.i8 v3832
-    brif v3836, block923(v3832), block924(v3832)
-
-block923(v3834: i64):
-    v3838 = iadd_imm v3834, -9
-    jump block922(v3838)
-
-block922(v3833: i64):
-    v3837 = load.i8 v3833
-    brif v3837, block923(v3833), block924(v3833)
-
-block924(v3835: i64):
-    v3839 = iadd_imm v3835, 1
-    v3840 = load.i8 v3839
-    v3841 = iadd_imm v3840, 10
-    store v3841, v3839
-    v3845 = load.i8 v3839
-    brif v3845, block926(v3839), block927(v3839)
-
-block926(v3843: i64):
-    v3847 = load.i8 v3843
-    v3848 = iadd_imm v3847, -1
-    store v3848, v3843
-    v3849 = load.i8 v3843
-    v3850 = load.i8 v3843+9
-    v3851 = iadd v3850, v3849
-    store v3851, v3843+9
-    v3852 = iconst.i8 0
-    store v3852, v3843  ; v3852 = 0
-    v3853 = iadd_imm v3843, 9
-    jump block925(v3853)
-
-block925(v3842: i64):
-    v3846 = load.i8 v3842
-    brif v3846, block926(v3842), block927(v3842)
-
-block927(v3844: i64):
-    v3854 = load.i8 v3844+5
-    v3855 = iadd_imm v3854, 1
-    store v3855, v3844+5
-    v3856 = load.i8 v3844+14
-    v3857 = iadd_imm v3856, 1
-    store v3857, v3844+14
-    v3858 = iadd_imm v3844, -1
-    v3862 = load.i8 v3858
-    brif v3862, block929(v3858), block930(v3858)
-
-block929(v3860: i64):
-    v3864 = iadd_imm v3860, -9
-    jump block928(v3864)
-
-block928(v3859: i64):
-    v3863 = load.i8 v3859
-    brif v3863, block929(v3859), block930(v3859)
-
-block930(v3861: i64):
-    v3865 = load.i8 v3861+8
-    v3866 = load.i8 v3861
-    v3867 = iadd v3866, v3865
-    store v3867, v3861
-    v3868 = iconst.i8 0
-    store v3868, v3861+8  ; v3868 = 0
-    v3872 = load.i8 v3861
-    brif v3872, block932(v3861), block933(v3861)
-
-block932(v3870: i64):
-    v3874 = load.i8 v3870
-    v3875 = iadd_imm v3874, -1
-    store v3875, v3870
-    v3876 = iconst.i8 0
-    store v3876, v3870+8  ; v3876 = 0
-    v3877 = iadd_imm v3870, 9
-    v3881 = load.i8 v3877
-    brif v3881, block935(v3877), block936(v3877)
-
-block935(v3879: i64):
-    v3883 = iadd_imm v3879, 9
-    jump block934(v3883)
-
-block934(v3878: i64):
-    v3882 = load.i8 v3878
-    brif v3882, block935(v3878), block936(v3878)
-
-block936(v3880: i64):
-    v3884 = iadd_imm v3880, -9
-    v3888 = load.i8 v3884
-    brif v3888, block938(v3884), block939(v3884)
-
-block938(v3886: i64):
-    v3890 = load.i8 v3886+8
-    v3891 = load.i8 v3886+1
-    v3892 = iadd v3891, v3890
-    store v3892, v3886+1
-    v3893 = iconst.i8 0
-    store v3893, v3886+8  ; v3893 = 0
-    v3894 = iadd_imm v3886, 1
-    v3898 = load.i8 v3894
-    brif v3898, block941(v3894), block942(v3894)
-
-block941(v3896: i64):
-    v3900 = load.i8 v3896
-    v3901 = iadd_imm v3900, -1
-    store v3901, v3896
-    v3902 = load.i8 v3896+7
-    v3903 = iadd_imm v3902, 1
-    store v3903, v3896+7
-    v3904 = iadd_imm v3896, -1
-    v3908 = load.i8 v3904
-    brif v3908, block944(v3904), block945(v3904)
-
-block944(v3906: i64):
-    v3910 = iadd_imm v3906, -9
-    jump block943(v3910)
-
-block943(v3905: i64):
-    v3909 = load.i8 v3905
-    brif v3909, block944(v3905), block945(v3905)
-
-block945(v3907: i64):
-    v3911 = iconst.i8 1
-    store v3911, v3907+8  ; v3911 = 1
-    v3912 = iadd_imm v3907, 10
-    jump block940(v3912)
-
-block940(v3895: i64):
-    v3899 = load.i8 v3895
-    brif v3899, block941(v3895), block942(v3895)
-
-block942(v3897: i64):
-    v3913 = iadd_imm v3897, -10
-    jump block937(v3913)
-
-block937(v3885: i64):
-    v3889 = load.i8 v3885
-    brif v3889, block938(v3885), block939(v3885)
-
-block939(v3887: i64):
-    jump block931(v3887)
-
-block931(v3869: i64):
-    v3873 = load.i8 v3869
-    brif v3873, block932(v3869), block933(v3869)
-
-block933(v3871: i64):
-    v3914 = load.i8 v3871+8
-    v3915 = load.i8 v3871
-    v3916 = iadd v3915, v3914
-    store v3916, v3871
-    v3917 = iconst.i8 0
-    store v3917, v3871+8  ; v3917 = 0
-    v3921 = load.i8 v3871
-    brif v3921, block947(v3871), block948(v3871)
-
-block947(v3919: i64):
-    v3923 = load.i8 v3919
-    v3924 = iadd_imm v3923, -1
-    store v3924, v3919
-    v3925 = load.i8 v3919+8
-    v3926 = iadd_imm v3925, 1
-    store v3926, v3919+8
-    v3927 = iadd_imm v3919, 9
-    v3931 = load.i8 v3927
-    brif v3931, block950(v3927), block951(v3927)
-
-block950(v3929: i64):
-    v3933 = load.i8 v3929+1
-    v3934 = iadd_imm v3933, 1
-    store v3934, v3929+1
-    v3935 = load.i8 v3929+6
-    v3936 = load.i8 v3929+1
-    v3937 = isub v3936, v3935
-    store v3937, v3929+1
-    v3938 = iconst.i8 0
-    store v3938, v3929+6  ; v3938 = 0
-    v3939 = load.i8 v3929+1
-    v3940 = load.i8 v3929+6
-    v3941 = iadd v3940, v3939
-    store v3941, v3929+6
-    v3942 = iconst.i8 0
-    store v3942, v3929+1  ; v3942 = 0
-    v3943 = iadd_imm v3929, 9
-    jump block949(v3943)
-
-block949(v3928: i64):
-    v3932 = load.i8 v3928
-    brif v3932, block950(v3928), block951(v3928)
-
-block951(v3930: i64):
-    v3944 = load.i8 v3930-1
-    v3945 = iadd_imm v3944, 1
-    store v3945, v3930-1
-    v3946 = iadd_imm v3930, -9
-    v3950 = load.i8 v3946
-    brif v3950, block953(v3946), block954(v3946)
-
-block953(v3948: i64):
-    v3952 = load.i8 v3948+6
-    v3953 = load.i8 v3948+8
-    v3954 = iadd v3953, v3952
-    store v3954, v3948+8
-    v3955 = iconst.i8 0
-    store v3955, v3948+6  ; v3955 = 0
-    v3956 = iadd_imm v3948, -9
-    jump block952(v3956)
-
-block952(v3947: i64):
-    v3951 = load.i8 v3947
-    brif v3951, block953(v3947), block954(v3947)
-
-block954(v3949: i64):
-    v3957 = iadd_imm v3949, 9
-    v3961 = load.i8 v3957
-    brif v3961, block956(v3957), block957(v3957)
-
-block956(v3959: i64):
-    v3963 = iadd_imm v3959, 9
-    jump block955(v3963)
-
-block955(v3958: i64):
-    v3962 = load.i8 v3958
-    brif v3962, block956(v3958), block957(v3958)
-
-block957(v3960: i64):
-    v3964 = iadd_imm v3960, -9
-    v3968 = load.i8 v3964
-    brif v3968, block959(v3964), block960(v3964)
-
-block959(v3966: i64):
-    v3970 = iconst.i8 0
-    store v3970, v3966+1  ; v3970 = 0
-    v3971 = load.i8 v3966
-    v3972 = iadd_imm v3971, -1
-    store v3972, v3966
-    v3973 = iadd_imm v3966, 8
-    v3977 = load.i8 v3973
-    brif v3977, block962(v3973), block963(v3973)
-
-block962(v3975: i64):
-    v3979 = load.i8 v3975
-    v3980 = iadd_imm v3979, -1
-    store v3980, v3975
-    v3981 = load.i8 v3975-8
-    v3982 = iadd_imm v3981, 1
-    store v3982, v3975-8
-    v3983 = load.i8 v3975-7
-    v3984 = load.i8 v3975-8
-    v3985 = isub v3984, v3983
-    store v3985, v3975-8
-    v3986 = load.i8 v3975-7
-    v3987 = load.i8 v3975-9
-    v3988 = iadd v3987, v3986
-    store v3988, v3975-9
-    v3989 = iconst.i8 0
-    store v3989, v3975-7  ; v3989 = 0
-    v3990 = load.i8 v3975-8
-    v3991 = load.i8 v3975-7
-    v3992 = iadd v3991, v3990
-    store v3992, v3975-7
-    v3993 = iconst.i8 0
-    store v3993, v3975-8  ; v3993 = 0
-    jump block961(v3975)
-
-block961(v3974: i64):
-    v3978 = load.i8 v3974
-    brif v3978, block962(v3974), block963(v3974)
-
-block963(v3976: i64):
-    v3994 = load.i8 v3976-7
-    v3995 = load.i8 v3976
-    v3996 = iadd v3995, v3994
-    store v3996, v3976
-    v3997 = iconst.i8 0
-    store v3997, v3976-7  ; v3997 = 0
-    v3998 = load.i8 v3976-8
-    v3999 = iadd_imm v3998, 1
-    store v3999, v3976-8
-    v4000 = iadd_imm v3976, -17
-    jump block958(v4000)
-
-block958(v3965: i64):
-    v3969 = load.i8 v3965
-    brif v3969, block959(v3965), block960(v3965)
-
-block960(v3967: i64):
-    v4001 = load.i8 v3967+8
-    v4002 = iadd_imm v4001, -1
-    store v4002, v3967+8
-    v4003 = iconst.i8 1
-    store v4003, v3967+3  ; v4003 = 1
-    jump block946(v3967)
-
-block946(v3918: i64):
-    v3922 = load.i8 v3918
-    brif v3922, block947(v3918), block948(v3918)
-
-block948(v3920: i64):
-    v4004 = load.i8 v3920
-    v4005 = iadd_imm v4004, 1
-    store v4005, v3920
-    v4006 = load.i8 v3920+8
-    v4007 = load.i8 v3920
-    v4008 = isub v4007, v4006
-    store v4008, v3920
-    v4009 = iconst.i8 0
-    store v4009, v3920+8  ; v4009 = 0
-    v4010 = load.i8 v3920+8
-    v4011 = iadd_imm v4010, 1
-    store v4011, v3920+8
-    v4015 = load.i8 v3920
-    brif v4015, block965(v3920), block966(v3920)
-
-block965(v4013: i64):
-    v4017 = load.i8 v4013
-    v4018 = iadd_imm v4017, -1
-    store v4018, v4013
-    v4019 = load.i8 v4013+8
-    v4020 = iadd_imm v4019, -1
-    store v4020, v4013+8
-    v4021 = iadd_imm v4013, 9
-    v4025 = load.i8 v4021
-    brif v4025, block968(v4021), block969(v4021)
-
-block968(v4023: i64):
-    v4027 = load.i8 v4023+6
-    v4028 = load.i8 v4023+8
-    v4029 = iadd v4028, v4027
-    store v4029, v4023+8
-    v4030 = iconst.i8 0
-    store v4030, v4023+6  ; v4030 = 0
-    v4031 = iadd_imm v4023, 9
-    jump block967(v4031)
-
-block967(v4022: i64):
-    v4026 = load.i8 v4022
-    brif v4026, block968(v4022), block969(v4022)
-
-block969(v4024: i64):
-    v4032 = iadd_imm v4024, -9
-    v4036 = load.i8 v4032
-    brif v4036, block971(v4032), block972(v4032)
-
-block971(v4034: i64):
-    v4038 = iconst.i8 0
-    store v4038, v4034+1  ; v4038 = 0
-    v4039 = load.i8 v4034
-    v4040 = iadd_imm v4039, -1
-    store v4040, v4034
-    v4041 = iadd_imm v4034, 8
-    v4045 = load.i8 v4041
-    brif v4045, block974(v4041), block975(v4041)
-
-block974(v4043: i64):
-    v4047 = load.i8 v4043
-    v4048 = iadd_imm v4047, -1
-    store v4048, v4043
-    v4049 = load.i8 v4043-8
-    v4050 = iadd_imm v4049, 1
-    store v4050, v4043-8
-    v4051 = load.i8 v4043-7
-    v4052 = load.i8 v4043-8
-    v4053 = isub v4052, v4051
-    store v4053, v4043-8
-    v4054 = load.i8 v4043-7
-    v4055 = load.i8 v4043-9
-    v4056 = iadd v4055, v4054
-    store v4056, v4043-9
-    v4057 = iconst.i8 0
-    store v4057, v4043-7  ; v4057 = 0
-    v4058 = load.i8 v4043-8
-    v4059 = load.i8 v4043-7
-    v4060 = iadd v4059, v4058
-    store v4060, v4043-7
-    v4061 = iconst.i8 0
-    store v4061, v4043-8  ; v4061 = 0
-    jump block973(v4043)
-
-block973(v4042: i64):
-    v4046 = load.i8 v4042
-    brif v4046, block974(v4042), block975(v4042)
-
-block975(v4044: i64):
-    v4062 = load.i8 v4044-7
-    v4063 = load.i8 v4044
-    v4064 = iadd v4063, v4062
-    store v4064, v4044
-    v4065 = iconst.i8 0
-    store v4065, v4044-7  ; v4065 = 0
-    v4066 = load.i8 v4044-8
-    v4067 = iadd_imm v4066, 1
-    store v4067, v4044-8
-    v4068 = iadd_imm v4044, -17
-    jump block970(v4068)
-
-block970(v4033: i64):
-    v4037 = load.i8 v4033
-    brif v4037, block971(v4033), block972(v4033)
-
-block972(v4035: i64):
-    v4069 = iadd_imm v4035, 1
-    v4070 = load.i8 v4069
-    v4071 = iadd_imm v4070, 5
-    store v4071, v4069
-    v4075 = load.i8 v4069
-    brif v4075, block977(v4069), block978(v4069)
-
-block977(v4073: i64):
-    v4077 = load.i8 v4073
-    v4078 = iadd_imm v4077, -1
-    store v4078, v4073
-    v4079 = load.i8 v4073
-    v4080 = load.i8 v4073+9
-    v4081 = iadd v4080, v4079
-    store v4081, v4073+9
-    v4082 = iconst.i8 0
-    store v4082, v4073  ; v4082 = 0
-    v4083 = iadd_imm v4073, 9
-    jump block976(v4083)
-
-block976(v4072: i64):
-    v4076 = load.i8 v4072
-    brif v4076, block977(v4072), block978(v4072)
-
-block978(v4074: i64):
-    v4084 = load.i8 v4074+5
-    v4085 = iadd_imm v4084, 1
-    store v4085, v4074+5
-    v4086 = load.i8 v4074+32
-    v4087 = iadd_imm v4086, 1
-    store v4087, v4074+32
-    v4088 = iadd_imm v4074, 26
-    v4092 = load.i8 v4088
-    brif v4092, block980(v4088), block981(v4088)
-
-block980(v4090: i64):
-    v4094 = iadd_imm v4090, -9
-    jump block979(v4094)
-
-block979(v4089: i64):
-    v4093 = load.i8 v4089
-    brif v4093, block980(v4089), block981(v4089)
-
-block981(v4091: i64):
-    v4095 = iadd_imm v4091, 9
-    v4099 = load.i8 v4095
-    brif v4099, block983(v4095), block984(v4095)
-
-block983(v4097: i64):
-    v4101 = load.i8 v4097+6
-    v4102 = load.i8 v4097
-    v4103 = isub v4102, v4101
-    store v4103, v4097
-    v4104 = iconst.i8 0
-    store v4104, v4097+6  ; v4104 = 0
-    v4105 = load.i8 v4097+6
-    v4106 = iadd_imm v4105, 1
-    store v4106, v4097+6
-    v4110 = load.i8 v4097
-    brif v4110, block986(v4097), block987(v4097)
-
-block986(v4108: i64):
-    v4112 = load.i8 v4108
-    v4113 = iadd_imm v4112, -1
-    store v4113, v4108
-    v4114 = load.i8 v4108+6
-    v4115 = iadd_imm v4114, -1
-    store v4115, v4108+6
-    v4116 = load.i8 v4108+8
-    v4117 = load.i8 v4108
-    v4118 = iadd v4117, v4116
-    store v4118, v4108
-    v4119 = iconst.i8 0
-    store v4119, v4108+8  ; v4119 = 0
-    v4123 = load.i8 v4108
-    brif v4123, block989(v4108), block990(v4108)
-
-block989(v4121: i64):
-    v4125 = load.i8 v4121
-    v4126 = iadd_imm v4125, -1
-    store v4126, v4121
-    v4127 = load.i8 v4121+8
-    v4128 = iadd_imm v4127, 1
-    store v4128, v4121+8
-    v4129 = iadd_imm v4121, -9
-    v4133 = load.i8 v4129
-    brif v4133, block992(v4129), block993(v4129)
-
-block992(v4131: i64):
-    v4135 = iadd_imm v4131, -9
-    jump block991(v4135)
-
-block991(v4130: i64):
-    v4134 = load.i8 v4130
-    brif v4134, block992(v4130), block993(v4130)
-
-block993(v4132: i64):
-    v4136 = iconst.i8 1
-    store v4136, v4132+4  ; v4136 = 1
-    v4137 = iadd_imm v4132, 9
-    v4141 = load.i8 v4137
-    brif v4141, block995(v4137), block996(v4137)
-
-block995(v4139: i64):
-    v4143 = iadd_imm v4139, 9
-    jump block994(v4143)
-
-block994(v4138: i64):
-    v4142 = load.i8 v4138
-    brif v4142, block995(v4138), block996(v4138)
-
-block996(v4140: i64):
-    v4144 = load.i8 v4140+1
-    v4145 = iadd_imm v4144, 1
-    store v4145, v4140+1
-    jump block988(v4140)
-
-block988(v4120: i64):
-    v4124 = load.i8 v4120
-    brif v4124, block989(v4120), block990(v4120)
-
-block990(v4122: i64):
-    jump block985(v4122)
-
-block985(v4107: i64):
-    v4111 = load.i8 v4107
-    brif v4111, block986(v4107), block987(v4107)
-
-block987(v4109: i64):
-    v4146 = load.i8 v4109
-    v4147 = iadd_imm v4146, 1
-    store v4147, v4109
-    v4148 = load.i8 v4109+8
-    v4149 = load.i8 v4109
-    v4150 = isub v4149, v4148
-    store v4150, v4109
-    v4151 = iconst.i8 0
-    store v4151, v4109+8  ; v4151 = 0
-    v4152 = load.i8 v4109+8
-    v4153 = iadd_imm v4152, 1
-    store v4153, v4109+8
-    v4157 = load.i8 v4109
-    brif v4157, block998(v4109), block999(v4109)
-
-block998(v4155: i64):
-    v4159 = load.i8 v4155
-    v4160 = iadd_imm v4159, -1
-    store v4160, v4155
-    v4161 = load.i8 v4155+8
-    v4162 = iadd_imm v4161, -1
-    store v4162, v4155+8
-    v4163 = load.i8 v4155+6
-    v4164 = load.i8 v4155
-    v4165 = iadd v4164, v4163
-    store v4165, v4155
-    v4166 = iconst.i8 0
-    store v4166, v4155+6  ; v4166 = 0
-    v4170 = load.i8 v4155
-    brif v4170, block1001(v4155), block1002(v4155)
-
-block1001(v4168: i64):
-    v4172 = load.i8 v4168
-    v4173 = iadd_imm v4172, -1
-    store v4173, v4168
-    v4174 = load.i8 v4168+6
-    v4175 = iadd_imm v4174, 1
-    store v4175, v4168+6
-    v4176 = iadd_imm v4168, -9
-    v4180 = load.i8 v4176
-    brif v4180, block1004(v4176), block1005(v4176)
-
-block1004(v4178: i64):
-    v4182 = iadd_imm v4178, -9
-    jump block1003(v4182)
-
-block1003(v4177: i64):
-    v4181 = load.i8 v4177
-    brif v4181, block1004(v4177), block1005(v4177)
-
-block1005(v4179: i64):
-    v4183 = iconst.i8 1
-    store v4183, v4179+3  ; v4183 = 1
-    v4184 = iadd_imm v4179, 9
-    v4188 = load.i8 v4184
-    brif v4188, block1007(v4184), block1008(v4184)
-
-block1007(v4186: i64):
-    v4190 = iadd_imm v4186, 9
-    jump block1006(v4190)
-
-block1006(v4185: i64):
-    v4189 = load.i8 v4185
-    brif v4189, block1007(v4185), block1008(v4185)
-
-block1008(v4187: i64):
-    v4191 = iconst.i8 1
-    store v4191, v4187+1  ; v4191 = 1
-    jump block1000(v4187)
-
-block1000(v4167: i64):
-    v4171 = load.i8 v4167
-    brif v4171, block1001(v4167), block1002(v4167)
-
-block1002(v4169: i64):
-    jump block997(v4169)
-
-block997(v4154: i64):
-    v4158 = load.i8 v4154
-    brif v4158, block998(v4154), block999(v4154)
-
-block999(v4156: i64):
-    v4192 = load.i8 v4156
-    v4193 = iadd_imm v4192, 1
-    store v4193, v4156
-    v4194 = iadd_imm v4156, 1
-    v4198 = load.i8 v4194
-    brif v4198, block1010(v4194), block1011(v4194)
-
-block1010(v4196: i64):
-    v4200 = load.i8 v4196
-    v4201 = iadd_imm v4200, -1
-    store v4201, v4196
-    v4202 = iadd_imm v4196, -1
-    v4206 = load.i8 v4202
-    brif v4206, block1013(v4202), block1014(v4202)
-
-block1013(v4204: i64):
-    v4208 = iadd_imm v4204, 9
-    jump block1012(v4208)
-
-block1012(v4203: i64):
-    v4207 = load.i8 v4203
-    brif v4207, block1013(v4203), block1014(v4203)
-
-block1014(v4205: i64):
-    v4209 = iadd_imm v4205, -8
-    jump block1009(v4209)
-
-block1009(v4195: i64):
-    v4199 = load.i8 v4195
-    brif v4199, block1010(v4195), block1011(v4195)
-
-block1011(v4197: i64):
-    v4210 = iadd_imm v4197, 8
-    jump block982(v4210)
-
-block982(v4096: i64):
-    v4100 = load.i8 v4096
-    brif v4100, block983(v4096), block984(v4096)
-
-block984(v4098: i64):
-    v4211 = iadd_imm v4098, -9
-    v4215 = load.i8 v4211
-    brif v4215, block1016(v4211), block1017(v4211)
-
-block1016(v4213: i64):
-    v4217 = iadd_imm v4213, -9
-    jump block1015(v4217)
-
-block1015(v4212: i64):
-    v4216 = load.i8 v4212
-    brif v4216, block1016(v4212), block1017(v4212)
-
-block1017(v4214: i64):
-    v4218 = iconst.i8 0
-    store v4218, v4214+4  ; v4218 = 0
-    v4219 = load.i8 v4214+1
-    v4220 = iadd_imm v4219, 5
-    store v4220, v4214+1
-    v4221 = iadd_imm v4214, 1
-    v4225 = load.i8 v4221
-    brif v4225, block1019(v4221), block1020(v4221)
-
-block1019(v4223: i64):
-    v4227 = load.i8 v4223
-    v4228 = iadd_imm v4227, -1
-    store v4228, v4223
-    v4229 = load.i8 v4223
-    v4230 = load.i8 v4223+9
-    v4231 = iadd v4230, v4229
-    store v4231, v4223+9
-    v4232 = iconst.i8 0
-    store v4232, v4223  ; v4232 = 0
-    v4233 = iadd_imm v4223, 9
-    jump block1018(v4233)
-
-block1018(v4222: i64):
-    v4226 = load.i8 v4222
-    brif v4226, block1019(v4222), block1020(v4222)
-
-block1020(v4224: i64):
-    v4234 = load.i8 v4224+5
-    v4235 = iadd_imm v4234, -1
-    store v4235, v4224+5
-    v4236 = load.i8 v4224+32
-    v4237 = iadd_imm v4236, -1
-    store v4237, v4224+32
-    v4238 = iadd_imm v4224, 26
-    v4242 = load.i8 v4238
-    brif v4242, block1022(v4238), block1023(v4238)
-
-block1022(v4240: i64):
-    v4244 = iadd_imm v4240, -9
-    jump block1021(v4244)
-
-block1021(v4239: i64):
-    v4243 = load.i8 v4239
-    brif v4243, block1022(v4239), block1023(v4239)
-
-block1023(v4241: i64):
-    jump block964(v4241)
-
-block964(v4012: i64):
-    v4016 = load.i8 v4012
-    brif v4016, block965(v4012), block966(v4012)
-
-block966(v4014: i64):
-    v4245 = iadd_imm v4014, 3
-    jump block22(v4245)
+    v3817 = uload8.i32 v158-4
+    v3818 = call fn0(v3817)
+    v3819 = iadd_imm v158, 6
+    v3823 = load.i8 v3819
+    brif v3823, block920(v3819), block921(v3819)
+
+block920(v3821: i64):
+    v3825 = iconst.i8 0
+    store v3825, v3821+6  ; v3825 = 0
+    v3826 = iadd_imm v3821, 9
+    jump block919(v3826)
+
+block919(v3820: i64):
+    v3824 = load.i8 v3820
+    brif v3824, block920(v3820), block921(v3820)
+
+block921(v3822: i64):
+    v3827 = iadd_imm v3822, -9
+    v3831 = load.i8 v3827
+    brif v3831, block923(v3827), block924(v3827)
+
+block923(v3829: i64):
+    v3833 = iadd_imm v3829, -9
+    jump block922(v3833)
+
+block922(v3828: i64):
+    v3832 = load.i8 v3828
+    brif v3832, block923(v3828), block924(v3828)
+
+block924(v3830: i64):
+    v3834 = iadd_imm v3830, 1
+    v3835 = load.i8 v3834
+    v3836 = iadd_imm v3835, 10
+    store v3836, v3834
+    v3840 = load.i8 v3834
+    brif v3840, block926(v3834), block927(v3834)
+
+block926(v3838: i64):
+    v3842 = load.i8 v3838
+    v3843 = iadd_imm v3842, -1
+    store v3843, v3838
+    v3844 = load.i8 v3838
+    v3845 = load.i8 v3838+9
+    v3846 = iadd v3845, v3844
+    store v3846, v3838+9
+    v3847 = iconst.i8 0
+    store v3847, v3838  ; v3847 = 0
+    v3848 = iadd_imm v3838, 9
+    jump block925(v3848)
+
+block925(v3837: i64):
+    v3841 = load.i8 v3837
+    brif v3841, block926(v3837), block927(v3837)
+
+block927(v3839: i64):
+    v3849 = load.i8 v3839+5
+    v3850 = iadd_imm v3849, 1
+    store v3850, v3839+5
+    v3851 = load.i8 v3839+14
+    v3852 = iadd_imm v3851, 1
+    store v3852, v3839+14
+    v3853 = iadd_imm v3839, -1
+    v3857 = load.i8 v3853
+    brif v3857, block929(v3853), block930(v3853)
+
+block929(v3855: i64):
+    v3859 = iadd_imm v3855, -9
+    jump block928(v3859)
+
+block928(v3854: i64):
+    v3858 = load.i8 v3854
+    brif v3858, block929(v3854), block930(v3854)
+
+block930(v3856: i64):
+    v3860 = load.i8 v3856+8
+    v3861 = load.i8 v3856
+    v3862 = iadd v3861, v3860
+    store v3862, v3856
+    v3863 = iconst.i8 0
+    store v3863, v3856+8  ; v3863 = 0
+    v3867 = load.i8 v3856
+    brif v3867, block932(v3856), block933(v3856)
+
+block932(v3865: i64):
+    v3869 = load.i8 v3865
+    v3870 = iadd_imm v3869, -1
+    store v3870, v3865
+    v3871 = iconst.i8 0
+    store v3871, v3865+8  ; v3871 = 0
+    v3872 = iadd_imm v3865, 9
+    v3876 = load.i8 v3872
+    brif v3876, block935(v3872), block936(v3872)
+
+block935(v3874: i64):
+    v3878 = iadd_imm v3874, 9
+    jump block934(v3878)
+
+block934(v3873: i64):
+    v3877 = load.i8 v3873
+    brif v3877, block935(v3873), block936(v3873)
+
+block936(v3875: i64):
+    v3879 = iadd_imm v3875, -9
+    v3883 = load.i8 v3879
+    brif v3883, block938(v3879), block939(v3879)
+
+block938(v3881: i64):
+    v3885 = load.i8 v3881+8
+    v3886 = load.i8 v3881+1
+    v3887 = iadd v3886, v3885
+    store v3887, v3881+1
+    v3888 = iconst.i8 0
+    store v3888, v3881+8  ; v3888 = 0
+    v3889 = iadd_imm v3881, 1
+    v3893 = load.i8 v3889
+    brif v3893, block941(v3889), block942(v3889)
+
+block941(v3891: i64):
+    v3895 = load.i8 v3891
+    v3896 = iadd_imm v3895, -1
+    store v3896, v3891
+    v3897 = load.i8 v3891+7
+    v3898 = iadd_imm v3897, 1
+    store v3898, v3891+7
+    v3899 = iadd_imm v3891, -1
+    v3903 = load.i8 v3899
+    brif v3903, block944(v3899), block945(v3899)
+
+block944(v3901: i64):
+    v3905 = iadd_imm v3901, -9
+    jump block943(v3905)
+
+block943(v3900: i64):
+    v3904 = load.i8 v3900
+    brif v3904, block944(v3900), block945(v3900)
+
+block945(v3902: i64):
+    v3906 = iconst.i8 1
+    store v3906, v3902+8  ; v3906 = 1
+    v3907 = iadd_imm v3902, 10
+    jump block940(v3907)
+
+block940(v3890: i64):
+    v3894 = load.i8 v3890
+    brif v3894, block941(v3890), block942(v3890)
+
+block942(v3892: i64):
+    v3908 = iadd_imm v3892, -10
+    jump block937(v3908)
+
+block937(v3880: i64):
+    v3884 = load.i8 v3880
+    brif v3884, block938(v3880), block939(v3880)
+
+block939(v3882: i64):
+    jump block931(v3882)
+
+block931(v3864: i64):
+    v3868 = load.i8 v3864
+    brif v3868, block932(v3864), block933(v3864)
+
+block933(v3866: i64):
+    v3909 = load.i8 v3866+8
+    v3910 = load.i8 v3866
+    v3911 = iadd v3910, v3909
+    store v3911, v3866
+    v3912 = iconst.i8 0
+    store v3912, v3866+8  ; v3912 = 0
+    v3916 = load.i8 v3866
+    brif v3916, block947(v3866), block948(v3866)
+
+block947(v3914: i64):
+    v3918 = load.i8 v3914
+    v3919 = iadd_imm v3918, -1
+    store v3919, v3914
+    v3920 = load.i8 v3914+8
+    v3921 = iadd_imm v3920, 1
+    store v3921, v3914+8
+    v3922 = iadd_imm v3914, 9
+    v3926 = load.i8 v3922
+    brif v3926, block950(v3922), block951(v3922)
+
+block950(v3924: i64):
+    v3928 = load.i8 v3924+1
+    v3929 = iadd_imm v3928, 1
+    store v3929, v3924+1
+    v3930 = load.i8 v3924+6
+    v3931 = load.i8 v3924+1
+    v3932 = isub v3931, v3930
+    store v3932, v3924+1
+    v3933 = iconst.i8 0
+    store v3933, v3924+6  ; v3933 = 0
+    v3934 = load.i8 v3924+1
+    v3935 = load.i8 v3924+6
+    v3936 = iadd v3935, v3934
+    store v3936, v3924+6
+    v3937 = iconst.i8 0
+    store v3937, v3924+1  ; v3937 = 0
+    v3938 = iadd_imm v3924, 9
+    jump block949(v3938)
+
+block949(v3923: i64):
+    v3927 = load.i8 v3923
+    brif v3927, block950(v3923), block951(v3923)
+
+block951(v3925: i64):
+    v3939 = load.i8 v3925-1
+    v3940 = iadd_imm v3939, 1
+    store v3940, v3925-1
+    v3941 = iadd_imm v3925, -9
+    v3945 = load.i8 v3941
+    brif v3945, block953(v3941), block954(v3941)
+
+block953(v3943: i64):
+    v3947 = load.i8 v3943+6
+    v3948 = load.i8 v3943+8
+    v3949 = iadd v3948, v3947
+    store v3949, v3943+8
+    v3950 = iconst.i8 0
+    store v3950, v3943+6  ; v3950 = 0
+    v3951 = iadd_imm v3943, -9
+    jump block952(v3951)
+
+block952(v3942: i64):
+    v3946 = load.i8 v3942
+    brif v3946, block953(v3942), block954(v3942)
+
+block954(v3944: i64):
+    v3952 = iadd_imm v3944, 9
+    v3956 = load.i8 v3952
+    brif v3956, block956(v3952), block957(v3952)
+
+block956(v3954: i64):
+    v3958 = iadd_imm v3954, 9
+    jump block955(v3958)
+
+block955(v3953: i64):
+    v3957 = load.i8 v3953
+    brif v3957, block956(v3953), block957(v3953)
+
+block957(v3955: i64):
+    v3959 = iadd_imm v3955, -9
+    v3963 = load.i8 v3959
+    brif v3963, block959(v3959), block960(v3959)
+
+block959(v3961: i64):
+    v3965 = iconst.i8 0
+    store v3965, v3961+1  ; v3965 = 0
+    v3966 = load.i8 v3961
+    v3967 = iadd_imm v3966, -1
+    store v3967, v3961
+    v3968 = iadd_imm v3961, 8
+    v3972 = load.i8 v3968
+    brif v3972, block962(v3968), block963(v3968)
+
+block962(v3970: i64):
+    v3974 = load.i8 v3970
+    v3975 = iadd_imm v3974, -1
+    store v3975, v3970
+    v3976 = load.i8 v3970-8
+    v3977 = iadd_imm v3976, 1
+    store v3977, v3970-8
+    v3978 = load.i8 v3970-7
+    v3979 = load.i8 v3970-8
+    v3980 = isub v3979, v3978
+    store v3980, v3970-8
+    v3981 = load.i8 v3970-7
+    v3982 = load.i8 v3970-9
+    v3983 = iadd v3982, v3981
+    store v3983, v3970-9
+    v3984 = iconst.i8 0
+    store v3984, v3970-7  ; v3984 = 0
+    v3985 = load.i8 v3970-8
+    v3986 = load.i8 v3970-7
+    v3987 = iadd v3986, v3985
+    store v3987, v3970-7
+    v3988 = iconst.i8 0
+    store v3988, v3970-8  ; v3988 = 0
+    jump block961(v3970)
+
+block961(v3969: i64):
+    v3973 = load.i8 v3969
+    brif v3973, block962(v3969), block963(v3969)
+
+block963(v3971: i64):
+    v3989 = load.i8 v3971-7
+    v3990 = load.i8 v3971
+    v3991 = iadd v3990, v3989
+    store v3991, v3971
+    v3992 = iconst.i8 0
+    store v3992, v3971-7  ; v3992 = 0
+    v3993 = load.i8 v3971-8
+    v3994 = iadd_imm v3993, 1
+    store v3994, v3971-8
+    v3995 = iadd_imm v3971, -17
+    jump block958(v3995)
+
+block958(v3960: i64):
+    v3964 = load.i8 v3960
+    brif v3964, block959(v3960), block960(v3960)
+
+block960(v3962: i64):
+    v3996 = load.i8 v3962+8
+    v3997 = iadd_imm v3996, -1
+    store v3997, v3962+8
+    v3998 = iconst.i8 1
+    store v3998, v3962+3  ; v3998 = 1
+    jump block946(v3962)
+
+block946(v3913: i64):
+    v3917 = load.i8 v3913
+    brif v3917, block947(v3913), block948(v3913)
+
+block948(v3915: i64):
+    v3999 = load.i8 v3915
+    v4000 = iadd_imm v3999, 1
+    store v4000, v3915
+    v4001 = load.i8 v3915+8
+    v4002 = load.i8 v3915
+    v4003 = isub v4002, v4001
+    store v4003, v3915
+    v4004 = iconst.i8 0
+    store v4004, v3915+8  ; v4004 = 0
+    v4005 = load.i8 v3915+8
+    v4006 = iadd_imm v4005, 1
+    store v4006, v3915+8
+    v4010 = load.i8 v3915
+    brif v4010, block965(v3915), block966(v3915)
+
+block965(v4008: i64):
+    v4012 = load.i8 v4008
+    v4013 = iadd_imm v4012, -1
+    store v4013, v4008
+    v4014 = load.i8 v4008+8
+    v4015 = iadd_imm v4014, -1
+    store v4015, v4008+8
+    v4016 = iadd_imm v4008, 9
+    v4020 = load.i8 v4016
+    brif v4020, block968(v4016), block969(v4016)
+
+block968(v4018: i64):
+    v4022 = load.i8 v4018+6
+    v4023 = load.i8 v4018+8
+    v4024 = iadd v4023, v4022
+    store v4024, v4018+8
+    v4025 = iconst.i8 0
+    store v4025, v4018+6  ; v4025 = 0
+    v4026 = iadd_imm v4018, 9
+    jump block967(v4026)
+
+block967(v4017: i64):
+    v4021 = load.i8 v4017
+    brif v4021, block968(v4017), block969(v4017)
+
+block969(v4019: i64):
+    v4027 = iadd_imm v4019, -9
+    v4031 = load.i8 v4027
+    brif v4031, block971(v4027), block972(v4027)
+
+block971(v4029: i64):
+    v4033 = iconst.i8 0
+    store v4033, v4029+1  ; v4033 = 0
+    v4034 = load.i8 v4029
+    v4035 = iadd_imm v4034, -1
+    store v4035, v4029
+    v4036 = iadd_imm v4029, 8
+    v4040 = load.i8 v4036
+    brif v4040, block974(v4036), block975(v4036)
+
+block974(v4038: i64):
+    v4042 = load.i8 v4038
+    v4043 = iadd_imm v4042, -1
+    store v4043, v4038
+    v4044 = load.i8 v4038-8
+    v4045 = iadd_imm v4044, 1
+    store v4045, v4038-8
+    v4046 = load.i8 v4038-7
+    v4047 = load.i8 v4038-8
+    v4048 = isub v4047, v4046
+    store v4048, v4038-8
+    v4049 = load.i8 v4038-7
+    v4050 = load.i8 v4038-9
+    v4051 = iadd v4050, v4049
+    store v4051, v4038-9
+    v4052 = iconst.i8 0
+    store v4052, v4038-7  ; v4052 = 0
+    v4053 = load.i8 v4038-8
+    v4054 = load.i8 v4038-7
+    v4055 = iadd v4054, v4053
+    store v4055, v4038-7
+    v4056 = iconst.i8 0
+    store v4056, v4038-8  ; v4056 = 0
+    jump block973(v4038)
+
+block973(v4037: i64):
+    v4041 = load.i8 v4037
+    brif v4041, block974(v4037), block975(v4037)
+
+block975(v4039: i64):
+    v4057 = load.i8 v4039-7
+    v4058 = load.i8 v4039
+    v4059 = iadd v4058, v4057
+    store v4059, v4039
+    v4060 = iconst.i8 0
+    store v4060, v4039-7  ; v4060 = 0
+    v4061 = load.i8 v4039-8
+    v4062 = iadd_imm v4061, 1
+    store v4062, v4039-8
+    v4063 = iadd_imm v4039, -17
+    jump block970(v4063)
+
+block970(v4028: i64):
+    v4032 = load.i8 v4028
+    brif v4032, block971(v4028), block972(v4028)
+
+block972(v4030: i64):
+    v4064 = iadd_imm v4030, 1
+    v4065 = load.i8 v4064
+    v4066 = iadd_imm v4065, 5
+    store v4066, v4064
+    v4070 = load.i8 v4064
+    brif v4070, block977(v4064), block978(v4064)
+
+block977(v4068: i64):
+    v4072 = load.i8 v4068
+    v4073 = iadd_imm v4072, -1
+    store v4073, v4068
+    v4074 = load.i8 v4068
+    v4075 = load.i8 v4068+9
+    v4076 = iadd v4075, v4074
+    store v4076, v4068+9
+    v4077 = iconst.i8 0
+    store v4077, v4068  ; v4077 = 0
+    v4078 = iadd_imm v4068, 9
+    jump block976(v4078)
+
+block976(v4067: i64):
+    v4071 = load.i8 v4067
+    brif v4071, block977(v4067), block978(v4067)
+
+block978(v4069: i64):
+    v4079 = load.i8 v4069+5
+    v4080 = iadd_imm v4079, 1
+    store v4080, v4069+5
+    v4081 = load.i8 v4069+32
+    v4082 = iadd_imm v4081, 1
+    store v4082, v4069+32
+    v4083 = iadd_imm v4069, 26
+    v4087 = load.i8 v4083
+    brif v4087, block980(v4083), block981(v4083)
+
+block980(v4085: i64):
+    v4089 = iadd_imm v4085, -9
+    jump block979(v4089)
+
+block979(v4084: i64):
+    v4088 = load.i8 v4084
+    brif v4088, block980(v4084), block981(v4084)
+
+block981(v4086: i64):
+    v4090 = iadd_imm v4086, 9
+    v4094 = load.i8 v4090
+    brif v4094, block983(v4090), block984(v4090)
+
+block983(v4092: i64):
+    v4096 = load.i8 v4092+6
+    v4097 = load.i8 v4092
+    v4098 = isub v4097, v4096
+    store v4098, v4092
+    v4099 = iconst.i8 0
+    store v4099, v4092+6  ; v4099 = 0
+    v4100 = load.i8 v4092+6
+    v4101 = iadd_imm v4100, 1
+    store v4101, v4092+6
+    v4105 = load.i8 v4092
+    brif v4105, block986(v4092), block987(v4092)
+
+block986(v4103: i64):
+    v4107 = load.i8 v4103
+    v4108 = iadd_imm v4107, -1
+    store v4108, v4103
+    v4109 = load.i8 v4103+6
+    v4110 = iadd_imm v4109, -1
+    store v4110, v4103+6
+    v4111 = load.i8 v4103+8
+    v4112 = load.i8 v4103
+    v4113 = iadd v4112, v4111
+    store v4113, v4103
+    v4114 = iconst.i8 0
+    store v4114, v4103+8  ; v4114 = 0
+    v4118 = load.i8 v4103
+    brif v4118, block989(v4103), block990(v4103)
+
+block989(v4116: i64):
+    v4120 = load.i8 v4116
+    v4121 = iadd_imm v4120, -1
+    store v4121, v4116
+    v4122 = load.i8 v4116+8
+    v4123 = iadd_imm v4122, 1
+    store v4123, v4116+8
+    v4124 = iadd_imm v4116, -9
+    v4128 = load.i8 v4124
+    brif v4128, block992(v4124), block993(v4124)
+
+block992(v4126: i64):
+    v4130 = iadd_imm v4126, -9
+    jump block991(v4130)
+
+block991(v4125: i64):
+    v4129 = load.i8 v4125
+    brif v4129, block992(v4125), block993(v4125)
+
+block993(v4127: i64):
+    v4131 = iconst.i8 1
+    store v4131, v4127+4  ; v4131 = 1
+    v4132 = iadd_imm v4127, 9
+    v4136 = load.i8 v4132
+    brif v4136, block995(v4132), block996(v4132)
+
+block995(v4134: i64):
+    v4138 = iadd_imm v4134, 9
+    jump block994(v4138)
+
+block994(v4133: i64):
+    v4137 = load.i8 v4133
+    brif v4137, block995(v4133), block996(v4133)
+
+block996(v4135: i64):
+    v4139 = load.i8 v4135+1
+    v4140 = iadd_imm v4139, 1
+    store v4140, v4135+1
+    jump block988(v4135)
+
+block988(v4115: i64):
+    v4119 = load.i8 v4115
+    brif v4119, block989(v4115), block990(v4115)
+
+block990(v4117: i64):
+    jump block985(v4117)
+
+block985(v4102: i64):
+    v4106 = load.i8 v4102
+    brif v4106, block986(v4102), block987(v4102)
+
+block987(v4104: i64):
+    v4141 = load.i8 v4104
+    v4142 = iadd_imm v4141, 1
+    store v4142, v4104
+    v4143 = load.i8 v4104+8
+    v4144 = load.i8 v4104
+    v4145 = isub v4144, v4143
+    store v4145, v4104
+    v4146 = iconst.i8 0
+    store v4146, v4104+8  ; v4146 = 0
+    v4147 = load.i8 v4104+8
+    v4148 = iadd_imm v4147, 1
+    store v4148, v4104+8
+    v4152 = load.i8 v4104
+    brif v4152, block998(v4104), block999(v4104)
+
+block998(v4150: i64):
+    v4154 = load.i8 v4150
+    v4155 = iadd_imm v4154, -1
+    store v4155, v4150
+    v4156 = load.i8 v4150+8
+    v4157 = iadd_imm v4156, -1
+    store v4157, v4150+8
+    v4158 = load.i8 v4150+6
+    v4159 = load.i8 v4150
+    v4160 = iadd v4159, v4158
+    store v4160, v4150
+    v4161 = iconst.i8 0
+    store v4161, v4150+6  ; v4161 = 0
+    v4165 = load.i8 v4150
+    brif v4165, block1001(v4150), block1002(v4150)
+
+block1001(v4163: i64):
+    v4167 = load.i8 v4163
+    v4168 = iadd_imm v4167, -1
+    store v4168, v4163
+    v4169 = load.i8 v4163+6
+    v4170 = iadd_imm v4169, 1
+    store v4170, v4163+6
+    v4171 = iadd_imm v4163, -9
+    v4175 = load.i8 v4171
+    brif v4175, block1004(v4171), block1005(v4171)
+
+block1004(v4173: i64):
+    v4177 = iadd_imm v4173, -9
+    jump block1003(v4177)
+
+block1003(v4172: i64):
+    v4176 = load.i8 v4172
+    brif v4176, block1004(v4172), block1005(v4172)
+
+block1005(v4174: i64):
+    v4178 = iconst.i8 1
+    store v4178, v4174+3  ; v4178 = 1
+    v4179 = iadd_imm v4174, 9
+    v4183 = load.i8 v4179
+    brif v4183, block1007(v4179), block1008(v4179)
+
+block1007(v4181: i64):
+    v4185 = iadd_imm v4181, 9
+    jump block1006(v4185)
+
+block1006(v4180: i64):
+    v4184 = load.i8 v4180
+    brif v4184, block1007(v4180), block1008(v4180)
+
+block1008(v4182: i64):
+    v4186 = iconst.i8 1
+    store v4186, v4182+1  ; v4186 = 1
+    jump block1000(v4182)
+
+block1000(v4162: i64):
+    v4166 = load.i8 v4162
+    brif v4166, block1001(v4162), block1002(v4162)
+
+block1002(v4164: i64):
+    jump block997(v4164)
+
+block997(v4149: i64):
+    v4153 = load.i8 v4149
+    brif v4153, block998(v4149), block999(v4149)
+
+block999(v4151: i64):
+    v4187 = load.i8 v4151
+    v4188 = iadd_imm v4187, 1
+    store v4188, v4151
+    v4189 = iadd_imm v4151, 1
+    v4193 = load.i8 v4189
+    brif v4193, block1010(v4189), block1011(v4189)
+
+block1010(v4191: i64):
+    v4195 = load.i8 v4191
+    v4196 = iadd_imm v4195, -1
+    store v4196, v4191
+    v4197 = iadd_imm v4191, -1
+    v4201 = load.i8 v4197
+    brif v4201, block1013(v4197), block1014(v4197)
+
+block1013(v4199: i64):
+    v4203 = iadd_imm v4199, 9
+    jump block1012(v4203)
+
+block1012(v4198: i64):
+    v4202 = load.i8 v4198
+    brif v4202, block1013(v4198), block1014(v4198)
+
+block1014(v4200: i64):
+    v4204 = iadd_imm v4200, -8
+    jump block1009(v4204)
+
+block1009(v4190: i64):
+    v4194 = load.i8 v4190
+    brif v4194, block1010(v4190), block1011(v4190)
+
+block1011(v4192: i64):
+    v4205 = iadd_imm v4192, 8
+    jump block982(v4205)
+
+block982(v4091: i64):
+    v4095 = load.i8 v4091
+    brif v4095, block983(v4091), block984(v4091)
+
+block984(v4093: i64):
+    v4206 = iadd_imm v4093, -9
+    v4210 = load.i8 v4206
+    brif v4210, block1016(v4206), block1017(v4206)
+
+block1016(v4208: i64):
+    v4212 = iadd_imm v4208, -9
+    jump block1015(v4212)
+
+block1015(v4207: i64):
+    v4211 = load.i8 v4207
+    brif v4211, block1016(v4207), block1017(v4207)
+
+block1017(v4209: i64):
+    v4213 = iconst.i8 0
+    store v4213, v4209+4  ; v4213 = 0
+    v4214 = load.i8 v4209+1
+    v4215 = iadd_imm v4214, 5
+    store v4215, v4209+1
+    v4216 = iadd_imm v4209, 1
+    v4220 = load.i8 v4216
+    brif v4220, block1019(v4216), block1020(v4216)
+
+block1019(v4218: i64):
+    v4222 = load.i8 v4218
+    v4223 = iadd_imm v4222, -1
+    store v4223, v4218
+    v4224 = load.i8 v4218
+    v4225 = load.i8 v4218+9
+    v4226 = iadd v4225, v4224
+    store v4226, v4218+9
+    v4227 = iconst.i8 0
+    store v4227, v4218  ; v4227 = 0
+    v4228 = iadd_imm v4218, 9
+    jump block1018(v4228)
+
+block1018(v4217: i64):
+    v4221 = load.i8 v4217
+    brif v4221, block1019(v4217), block1020(v4217)
+
+block1020(v4219: i64):
+    v4229 = load.i8 v4219+5
+    v4230 = iadd_imm v4229, -1
+    store v4230, v4219+5
+    v4231 = load.i8 v4219+32
+    v4232 = iadd_imm v4231, -1
+    store v4232, v4219+32
+    v4233 = iadd_imm v4219, 26
+    v4237 = load.i8 v4233
+    brif v4237, block1022(v4233), block1023(v4233)
+
+block1022(v4235: i64):
+    v4239 = iadd_imm v4235, -9
+    jump block1021(v4239)
+
+block1021(v4234: i64):
+    v4238 = load.i8 v4234
+    brif v4238, block1022(v4234), block1023(v4234)
+
+block1023(v4236: i64):
+    jump block964(v4236)
+
+block964(v4007: i64):
+    v4011 = load.i8 v4007
+    brif v4011, block965(v4007), block966(v4007)
+
+block966(v4009: i64):
+    v4240 = iadd_imm v4009, 3
+    jump block22(v4240)
 
 block22(v94: i64):
     v98 = load.i8 v94
     brif v98, block23(v94), block24(v94)
 
 block24(v96: i64):
-    v4246 = iconst.i32 0
-    return v4246  ; v4246 = 0
+    v4241 = iconst.i32 0
+    return v4241  ; v4241 = 0
 }

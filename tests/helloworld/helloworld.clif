@@ -60,63 +60,61 @@ block0:
     v39 = load.i8 v1+1
     v40 = iadd_imm v39, 2
     store v40, v1+1
-    v41 = iadd_imm v1, 1
-    v42 = uload8.i32 v41
-    v43 = call fn0(v42)
-    v44 = load.i8 v41
-    v45 = iadd_imm v44, -12
-    store v45, v41
-    v46 = uload8.i32 v41
-    v47 = call fn0(v46)
-    v48 = load.i8 v41+1
-    v49 = iadd_imm v48, 6
-    store v49, v41+1
-    v50 = load.i8 v41+1
-    v51 = load.i8 v41
-    v52 = imul_imm v50, 9
-    v53 = iadd v51, v52
-    store v53, v41
-    v54 = iconst.i8 0
-    store v54, v41+1  ; v54 = 0
-    v55 = load.i8 v41
-    v56 = iadd_imm v55, 1
-    store v56, v41
-    v57 = uload8.i32 v41
-    v58 = call fn0(v57)
-    v59 = iadd_imm v41, -1
-    v60 = uload8.i32 v59
-    v61 = call fn0(v60)
-    v62 = load.i8 v59
-    v63 = iadd_imm v62, 3
-    store v63, v59
-    v64 = uload8.i32 v59
-    v65 = call fn0(v64)
-    v66 = load.i8 v59
-    v67 = iadd_imm v66, -6
-    store v67, v59
-    v68 = uload8.i32 v59
-    v69 = call fn0(v68)
-    v70 = load.i8 v59
-    v71 = iadd_imm v70, -8
-    store v71, v59
-    v72 = uload8.i32 v59
-    v73 = call fn0(v72)
-    v74 = load.i8 v59+3
-    v75 = iadd_imm v74, 4
-    store v75, v59+3
-    v76 = load.i8 v59+3
-    v77 = load.i8 v59+2
-    v78 = imul_imm v76, 8
-    v79 = iadd v77, v78
-    store v79, v59+2
-    v80 = iconst.i8 0
-    store v80, v59+3  ; v80 = 0
-    v81 = load.i8 v59+2
-    v82 = iadd_imm v81, 1
-    store v82, v59+2
-    v83 = iadd_imm v59, 2
-    v84 = uload8.i32 v83
-    v85 = call fn0(v84)
-    v86 = iconst.i32 0
-    return v86  ; v86 = 0
+    v41 = uload8.i32 v1+1
+    v42 = call fn0(v41)
+    v43 = load.i8 v1+1
+    v44 = iadd_imm v43, -12
+    store v44, v1+1
+    v45 = uload8.i32 v1+1
+    v46 = call fn0(v45)
+    v47 = load.i8 v1+2
+    v48 = iadd_imm v47, 6
+    store v48, v1+2
+    v49 = load.i8 v1+2
+    v50 = load.i8 v1+1
+    v51 = imul_imm v49, 9
+    v52 = iadd v50, v51
+    store v52, v1+1
+    v53 = iconst.i8 0
+    store v53, v1+2  ; v53 = 0
+    v54 = load.i8 v1+1
+    v55 = iadd_imm v54, 1
+    store v55, v1+1
+    v56 = uload8.i32 v1+1
+    v57 = call fn0(v56)
+    v58 = uload8.i32 v1
+    v59 = call fn0(v58)
+    v60 = load.i8 v1
+    v61 = iadd_imm v60, 3
+    store v61, v1
+    v62 = uload8.i32 v1
+    v63 = call fn0(v62)
+    v64 = load.i8 v1
+    v65 = iadd_imm v64, -6
+    store v65, v1
+    v66 = uload8.i32 v1
+    v67 = call fn0(v66)
+    v68 = load.i8 v1
+    v69 = iadd_imm v68, -8
+    store v69, v1
+    v70 = uload8.i32 v1
+    v71 = call fn0(v70)
+    v72 = load.i8 v1+3
+    v73 = iadd_imm v72, 4
+    store v73, v1+3
+    v74 = load.i8 v1+3
+    v75 = load.i8 v1+2
+    v76 = imul_imm v74, 8
+    v77 = iadd v75, v76
+    store v77, v1+2
+    v78 = iconst.i8 0
+    store v78, v1+3  ; v78 = 0
+    v79 = load.i8 v1+2
+    v80 = iadd_imm v79, 1
+    store v80, v1+2
+    v81 = uload8.i32 v1+2
+    v82 = call fn0(v81)
+    v83 = iadd_imm v1, 2
+    v84 = iconst.i32 0
+    return v84  ; v84 = 0
 }
