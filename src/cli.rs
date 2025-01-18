@@ -14,6 +14,10 @@ pub struct Args {
     #[arg(short, long)]
     pub output: Option<PathBuf>,
 
+    /// Output object file
+    #[arg(long)]
+    pub object: bool,
+
     /// Rust output file
     #[arg(short, long)]
     pub rust: Option<PathBuf>,

@@ -36,10 +36,18 @@ fn main() {
         rust_output::write_rust_code(&midopts_result, rust_path);
     }
 
-    let temp_dir = tempdir().unwrap();
-    let obj_file = temp_dir.path().join("out.o");
-    let output_path = args.output.unwrap_or_else(|| args.input.with_extension(""));
+    if args.object {
+        let obj_file = args
+            .output
+            .unwrap_or_else(|| args.input.with_extension("o"));
 
-    codegen::generate(midopts_result.into_iter(), &obj_file, args.clif).unwrap();
-    link_file(&obj_file, &output_path);
+        codegen::generate(midopts_result.into_iter(), &obj_file, args.clif).unwrap();
+    } else {
+        let temp_dir = tempdir().unwrap();
+        let obj_file = temp_dir.path().join("out.o");
+        let output_path = args.output.unwrap_or_else(|| args.input.with_extension(""));
+
+        codegen::generate(midopts_result.into_iter(), &obj_file, args.clif).unwrap();
+        link_file(&obj_file, &output_path);
+    }
 }
