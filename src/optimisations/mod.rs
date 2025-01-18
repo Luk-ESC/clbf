@@ -1,3 +1,4 @@
+mod after_loop;
 mod clear;
 mod driveby;
 mod inline;
@@ -30,6 +31,7 @@ pub enum IrNode {
 }
 
 pub(crate) fn convert_nodes(mut nodes: Vec<IrNode>) -> Vec<IrNode> {
+    after_loop::after_loop(&mut nodes);
     clear::clear(&mut nodes);
     driveby::driveby(&mut nodes);
     inline::inline(&mut nodes);
