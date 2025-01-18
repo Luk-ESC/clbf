@@ -7,6 +7,16 @@ use cranelift_object::{ObjectBuilder, ObjectModule};
 
 use crate::optimisations::IrNode;
 
+fn load_value(builder: &mut FunctionBuilder, ptr_val: Value, offset: i32) -> Value {
+    builder
+        .ins()
+        .load(types::I8, MemFlags::new(), ptr_val, offset)
+}
+
+fn store_value(builder: &mut FunctionBuilder, value: Value, ptr_val: Value, offset: i32) {
+    builder.ins().store(MemFlags::new(), value, ptr_val, offset);
+}
+
 fn codegen_inner(
     recv: &mut impl Iterator<Item = IrNode>,
     builder: &mut FunctionBuilder,
@@ -22,65 +32,39 @@ fn codegen_inner(
         match val {
             IrNode::SetValue(x, offset) => {
                 let value = builder.ins().iconst(types::I8, x as i64);
-                builder.ins().store(MemFlags::new(), value, ptr_val, offset);
+                store_value(builder, value, ptr_val, offset);
             }
             IrNode::ChangeValue(x, offset) => {
-                let value = builder
-                    .ins()
-                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+                let value = load_value(builder, ptr_val, offset);
                 assert!(x != 0);
                 assert!(x.abs() <= 255);
 
                 let new_val = builder.ins().iadd_imm(value, x as i64);
-                builder
-                    .ins()
-                    .store(MemFlags::new(), new_val, ptr_val, offset);
+                store_value(builder, new_val, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(-1, offset, mult_offset) => {
-                let multiplier =
-                    builder
-                        .ins()
-                        .load(types::I8, MemFlags::new(), ptr_val, mult_offset);
-                let base = builder
-                    .ins()
-                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+                let multiplier = load_value(builder, ptr_val, mult_offset);
+                let base = load_value(builder, ptr_val, offset);
 
                 let new_value = builder.ins().isub(base, multiplier);
-
-                builder
-                    .ins()
-                    .store(MemFlags::new(), new_value, ptr_val, offset);
+                store_value(builder, new_value, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(1, offset, mult_offset) => {
-                let multiplier =
-                    builder
-                        .ins()
-                        .load(types::I8, MemFlags::new(), ptr_val, mult_offset);
-                let base = builder
-                    .ins()
-                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+                let multiplier = load_value(builder, ptr_val, mult_offset);
+                let base = load_value(builder, ptr_val, offset);
 
                 let new_value = builder.ins().iadd(base, multiplier);
 
-                builder
-                    .ins()
-                    .store(MemFlags::new(), new_value, ptr_val, offset);
+                store_value(builder, new_value, ptr_val, offset);
             }
             IrNode::DynamicChangeValue(x, offset, mult_offset) => {
-                let multiplier =
-                    builder
-                        .ins()
-                        .load(types::I8, MemFlags::new(), ptr_val, mult_offset);
-                let base = builder
-                    .ins()
-                    .load(types::I8, MemFlags::new(), ptr_val, offset);
+                let multiplier = load_value(builder, ptr_val, mult_offset);
+                let base = load_value(builder, ptr_val, offset);
 
                 let total_change = builder.ins().imul_imm(multiplier, x as i64);
                 let new_value = builder.ins().iadd(base, total_change);
 
-                builder
-                    .ins()
-                    .store(MemFlags::new(), new_value, ptr_val, offset);
+                store_value(builder, new_value, ptr_val, offset);
             }
             IrNode::ChangePtr(x) => {
                 ptr_val = builder.ins().iadd_imm(ptr_val, x as i64);
@@ -95,7 +79,7 @@ fn codegen_inner(
                 let getchar_call = builder.ins().call(getchar_func, &[]);
                 let char = builder.inst_results(getchar_call)[0];
 
-                builder.ins().istore8(MemFlags::new(), char, ptr_val, 0);
+                store_value(builder, char, ptr_val, 0);
             }
             IrNode::LoopStart => {
                 // Check block: The block that checks if the value at the current pointer is zero.
@@ -117,7 +101,7 @@ fn codegen_inner(
 
                 // Jump from current block to check block
                 {
-                    let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                    let value = load_value(builder, ptr_val, 0);
                     builder
                         .ins()
                         .brif(value, loop_block, &[ptr_val], next_block, &[ptr_val]);
@@ -127,7 +111,7 @@ fn codegen_inner(
                 // If the value at the current pointer is nonzero, jump to loop block, otherwise jump to next block
                 {
                     let ptr_val = builder.block_params(check_block)[0];
-                    let value = builder.ins().load(types::I8, MemFlags::new(), ptr_val, 0);
+                    let value = load_value(builder, ptr_val, 0);
 
                     builder
                         .ins()
