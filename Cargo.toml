@@ -5,8 +5,8 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.5.23", features = ["derive"] }
-cranelift = "0.115.0"
-cranelift-module = "0.115.0"
-cranelift-native = "0.115.0"
-cranelift-object = "0.115.0"
+cranelift = "0.116.1"
+cranelift-module = "0.116.1"
+cranelift-native = "0.116.1"
+cranelift-object = "0.116.1"
 tempfile = "3.15.0"
