@@ -11,9 +11,14 @@ if [[ $1 == "-b" ]]; then
     bless=true
 fi
 
+myglob="*"
+
+if [[ -n $2 ]]; then
+    myglob=$2
+fi
 
 cd tests
-for dir in *; do
+for dir in $myglob; do
     if [[ -f $dir ]]; then
         continue
     fi

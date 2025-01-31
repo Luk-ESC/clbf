@@ -1,0 +1,256 @@
+function u0:0() -> i32 system_v {
+    gv0 = symbol colocated userextname2
+    sig0 = (i32) -> i32 system_v
+    sig1 = () -> i32 system_v
+    fn0 = u0:0 sig0
+    fn1 = u0:1 sig1
+
+block0:
+    v0 = global_value.i64 gv0
+    v1 = iadd_imm v0, 0x3a98
+    v2 = load.i8 v1
+    v3 = iadd_imm v2, 8
+    store v3, v1
+    v4 = load.i8 v1
+    v5 = load.i8 v1+1
+    v6 = imul_imm v4, 8
+    v7 = iadd v5, v6
+    store v7, v1+1
+    v8 = iconst.i8 0
+    store v8, v1  ; v8 = 0
+    v9 = load.i8 v1+1
+    v10 = load.i8 v1
+    v11 = imul_imm v9, 4
+    v12 = iadd v10, v11
+    store v12, v1
+    v13 = iconst.i8 0
+    store v13, v1+1  ; v13 = 0
+    v14 = iconst.i8 1
+    store v14, v1+1  ; v14 = 1
+    v18 = load.i8 v1
+    brif v18, block2(v1), block3(v1)
+
+block2(v16: i64):
+    v20 = load.i8 v16+1
+    v21 = iadd_imm v20, -1
+    store v21, v16+1
+    v22 = load.i8 v16
+    v23 = load.i8 v16+1
+    v24 = imul_imm v22, 4
+    v25 = iadd v23, v24
+    store v25, v16+1
+    v26 = iconst.i8 0
+    store v26, v16  ; v26 = 0
+    v27 = load.i8 v16+1
+    v28 = load.i8 v16
+    v29 = imul_imm v27, 8
+    v30 = iadd v28, v29
+    store v30, v16
+    v31 = iconst.i8 0
+    store v31, v16+1  ; v31 = 0
+    v32 = load.i8 v16
+    v33 = load.i8 v16+1
+    v34 = imul_imm v32, 8
+    v35 = iadd v33, v34
+    store v35, v16+1
+    v36 = iconst.i8 0
+    store v36, v16  ; v36 = 0
+    v37 = iconst.i8 1
+    store v37, v16  ; v37 = 1
+    v38 = iadd_imm v16, 1
+    v42 = load.i8 v38
+    brif v42, block5(v38), block6(v38)
+
+block5(v40: i64):
+    v44 = load.i8 v40+1
+    v45 = iadd_imm v44, 10
+    store v45, v40+1
+    v46 = load.i8 v40+1
+    v47 = load.i8 v40+2
+    v48 = imul_imm v46, 5
+    v49 = iadd v47, v48
+    store v49, v40+2
+    v50 = iconst.i8 0
+    store v50, v40+1  ; v50 = 0
+    v51 = load.i8 v40+2
+    v52 = iadd_imm v51, 1
+    store v52, v40+2
+    v53 = uload8.i32 v40+2
+    v54 = call fn0(v53)
+    v55 = load.i8 v40+2
+    v56 = iadd_imm v55, -1
+    store v56, v40+2
+    v57 = uload8.i32 v40+2
+    v58 = call fn0(v57)
+    v59 = iconst.i8 0
+    store v59, v40+2  ; v59 = 0
+    v60 = iconst.i8 0
+    store v60, v40  ; v60 = 0
+    v61 = load.i8 v40-1
+    v62 = iadd_imm v61, -1
+    store v62, v40-1
+    jump block4(v40)
+
+block4(v39: i64):
+    v43 = load.i8 v39
+    brif v43, block5(v39), block6(v39)
+
+block6(v41: i64):
+    v63 = iadd_imm v41, -1
+    v67 = load.i8 v63
+    brif v67, block8(v63), block9(v63)
+
+block8(v65: i64):
+    v69 = load.i8 v65+2
+    v70 = iadd_imm v69, 7
+    store v70, v65+2
+    v71 = load.i8 v65+2
+    v72 = load.i8 v65+3
+    v73 = imul_imm v71, 7
+    v74 = iadd v72, v73
+    store v74, v65+3
+    v75 = iconst.i8 0
+    store v75, v65+2  ; v75 = 0
+    v76 = uload8.i32 v65+3
+    v77 = call fn0(v76)
+    v78 = load.i8 v65+3
+    v79 = iadd_imm v78, 5
+    store v79, v65+3
+    v80 = uload8.i32 v65+3
+    v81 = call fn0(v80)
+    v82 = iconst.i8 0
+    store v82, v65+3  ; v82 = 0
+    v83 = load.i8 v65
+    v84 = iadd_imm v83, -1
+    store v84, v65
+    jump block7(v65)
+
+block7(v64: i64):
+    v68 = load.i8 v64
+    brif v68, block8(v64), block9(v64)
+
+block9(v66: i64):
+    jump block1(v66)
+
+block1(v15: i64):
+    v19 = load.i8 v15
+    brif v19, block2(v15), block3(v15)
+
+block3(v17: i64):
+    v85 = iadd_imm v17, 1
+    v89 = load.i8 v85
+    brif v89, block11(v85), block12(v85)
+
+block11(v87: i64):
+    v91 = load.i8 v87+1
+    v92 = iadd_imm v91, 8
+    store v92, v87+1
+    v93 = load.i8 v87+1
+    v94 = load.i8 v87+2
+    v95 = imul_imm v93, 7
+    v96 = iadd v94, v95
+    store v96, v87+2
+    v97 = iconst.i8 0
+    store v97, v87+1  ; v97 = 0
+    v98 = uload8.i32 v87+2
+    v99 = call fn0(v98)
+    v100 = iconst.i8 0
+    store v100, v87+2  ; v100 = 0
+    v101 = load.i8 v87
+    v102 = iadd_imm v101, -1
+    store v102, v87
+    jump block10(v87)
+
+block10(v86: i64):
+    v90 = load.i8 v86
+    brif v90, block11(v86), block12(v86)
+
+block12(v88: i64):
+    v103 = load.i8 v88-1
+    v104 = iadd_imm v103, 11
+    store v104, v88-1
+    v105 = load.i8 v88-1
+    v106 = load.i8 v88
+    v107 = imul_imm v105, 3
+    v108 = iadd v106, v107
+    store v108, v88
+    v109 = load.i8 v88-1
+    v110 = load.i8 v88+1
+    v111 = imul_imm v109, 9
+    v112 = iadd v110, v111
+    store v112, v88+1
+    v113 = load.i8 v88-1
+    v114 = load.i8 v88+2
+    v115 = imul_imm v113, 9
+    v116 = iadd v114, v115
+    store v116, v88+2
+    v117 = load.i8 v88-1
+    v118 = load.i8 v88+3
+    v119 = iadd v118, v117
+    store v119, v88+3
+    v120 = iconst.i8 0
+    store v120, v88-1  ; v120 = 0
+    v121 = load.i8 v88
+    v122 = iadd_imm v121, -1
+    store v122, v88
+    v123 = uload8.i32 v88
+    v124 = call fn0(v123)
+    v125 = load.i8 v88+1
+    v126 = iadd_imm v125, -1
+    store v126, v88+1
+    v127 = uload8.i32 v88+1
+    v128 = call fn0(v127)
+    v129 = load.i8 v88+1
+    v130 = iadd_imm v129, 7
+    store v130, v88+1
+    v131 = uload8.i32 v88+1
+    v132 = call fn0(v131)
+    v133 = load.i8 v88+1
+    v134 = iadd_imm v133, 11
+    store v134, v88+1
+    v135 = uload8.i32 v88+1
+    v136 = call fn0(v135)
+    v137 = uload8.i32 v88
+    v138 = call fn0(v137)
+    v139 = uload8.i32 v88+2
+    v140 = call fn0(v139)
+    v141 = load.i8 v88+2
+    v142 = iadd_imm v141, 2
+    store v142, v88+2
+    v143 = uload8.i32 v88+2
+    v144 = call fn0(v143)
+    v145 = load.i8 v88+2
+    v146 = iadd_imm v145, 7
+    store v146, v88+2
+    v147 = uload8.i32 v88+2
+    v148 = call fn0(v147)
+    v149 = uload8.i32 v88+2
+    v150 = call fn0(v149)
+    v151 = load.i8 v88+1
+    v152 = iadd_imm v151, -1
+    store v152, v88+1
+    v153 = uload8.i32 v88+1
+    v154 = call fn0(v153)
+    v155 = load.i8 v88+3
+    v156 = iadd_imm v155, -1
+    store v156, v88+3
+    v157 = uload8.i32 v88+3
+    v158 = call fn0(v157)
+    v159 = iadd_imm v88, 3
+    v163 = load.i8 v159
+    brif v163, block14(v159), block15(v159)
+
+block14(v161: i64):
+    v165 = iconst.i8 0
+    store v165, v161  ; v165 = 0
+    v166 = iadd_imm v161, -1
+    jump block13(v166)
+
+block13(v160: i64):
+    v164 = load.i8 v160
+    brif v164, block14(v160), block15(v160)
+
+block15(v162: i64):
+    v167 = iconst.i32 0
+    return v167  ; v167 = 0
+}

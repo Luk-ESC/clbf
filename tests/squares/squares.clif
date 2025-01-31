@@ -1,0 +1,230 @@
+function u0:0() -> i32 system_v {
+    gv0 = symbol colocated userextname2
+    sig0 = (i32) -> i32 system_v
+    sig1 = () -> i32 system_v
+    fn0 = u0:0 sig0
+    fn1 = u0:1 sig1
+
+block0:
+    v0 = global_value.i64 gv0
+    v1 = iadd_imm v0, 0x3a98
+    v2 = load.i8 v1
+    v3 = iadd_imm v2, 4
+    store v3, v1
+    v4 = load.i8 v1
+    v5 = load.i8 v1+1
+    v6 = imul_imm v4, 5
+    v7 = iadd v5, v6
+    store v7, v1+1
+    v8 = iconst.i8 0
+    store v8, v1  ; v8 = 0
+    v9 = load.i8 v1+1
+    v10 = load.i8 v1
+    v11 = imul_imm v9, 5
+    v12 = iadd v10, v11
+    store v12, v1
+    v13 = iconst.i8 0
+    store v13, v1+1  ; v13 = 0
+    v14 = iconst.i8 1
+    store v14, v1+1  ; v14 = 1
+    v15 = load.i8 v1
+    v16 = iadd_imm v15, 1
+    store v16, v1
+    v20 = load.i8 v1
+    brif v20, block2(v1), block3(v1)
+
+block2(v18: i64):
+    v22 = load.i8 v18+1
+    v23 = load.i8 v18+2
+    v24 = iadd v23, v22
+    store v24, v18+2
+    v25 = load.i8 v18+1
+    v26 = load.i8 v18+3
+    v27 = iadd v26, v25
+    store v27, v18+3
+    v28 = iconst.i8 0
+    store v28, v18+1  ; v28 = 0
+    v29 = iconst.i8 2
+    store v29, v18+1  ; v29 = 2
+    v30 = load.i8 v18+3
+    v31 = load.i8 v18+1
+    v32 = iadd v31, v30
+    store v32, v18+1
+    v33 = iconst.i8 0
+    store v33, v18+3  ; v33 = 0
+    v34 = iconst.i8 0
+    store v34, v18+6  ; v34 = 0
+    v35 = iconst.i8 2
+    store v35, v18+6  ; v35 = 2
+    v36 = iconst.i8 0
+    store v36, v18+7  ; v36 = 0
+    v37 = iconst.i8 1
+    store v37, v18+7  ; v37 = 1
+    v38 = load.i8 v18+10
+    v39 = iadd_imm v38, 1
+    store v39, v18+10
+    v40 = iadd_imm v18, 10
+    v44 = load.i8 v40
+    brif v44, block5(v40), block6(v40)
+
+block5(v42: i64):
+    v46 = iconst.i8 0
+    store v46, v42  ; v46 = 0
+    v47 = iconst.i8 6
+    store v47, v42  ; v47 = 6
+    v48 = iadd_imm v42, 3
+    jump block4(v48)
+
+block4(v41: i64):
+    v45 = load.i8 v41
+    brif v45, block5(v41), block6(v41)
+
+block6(v43: i64):
+    v49 = iadd_imm v43, -3
+    v53 = load.i8 v49
+    brif v53, block8(v49), block9(v49)
+
+block8(v51: i64):
+    v55 = load.i8 v51
+    v56 = load.i8 v51-1
+    v57 = imul_imm v55, 8
+    v58 = iadd v56, v57
+    store v58, v51-1
+    v59 = load.i8 v51
+    v60 = load.i8 v51-2
+    v61 = imul_imm v59, 2
+    v62 = iadd v60, v61
+    store v62, v51-2
+    v63 = iconst.i8 0
+    store v63, v51  ; v63 = 0
+    v64 = iconst.i8 1
+    store v64, v51  ; v64 = 1
+    v65 = uload8.i32 v51-1
+    v66 = call fn0(v65)
+    v67 = load.i8 v51-2
+    v68 = load.i8 v51-1
+    v69 = imul_imm v67, -4
+    v70 = iadd v68, v69
+    store v70, v51-1
+    v71 = iconst.i8 0
+    store v71, v51-2  ; v71 = 0
+    v72 = iadd_imm v51, -3
+    jump block7(v72)
+
+block7(v50: i64):
+    v54 = load.i8 v50
+    brif v54, block8(v50), block9(v50)
+
+block9(v52: i64):
+    v73 = iadd_imm v52, -2
+    v77 = load.i8 v73
+    brif v77, block11(v73), block12(v73)
+
+block11(v75: i64):
+    v79 = iadd_imm v75, 5
+    v83 = load.i8 v79
+    brif v83, block14(v79), block15(v79)
+
+block14(v81: i64):
+    v85 = iconst.i8 0
+    store v85, v81+3  ; v85 = 0
+    v86 = iconst.i8 9
+    store v86, v81+3  ; v86 = 9
+    v87 = load.i8 v81+2
+    v88 = load.i8 v81+3
+    v89 = isub v88, v87
+    store v89, v81+3
+    v90 = iconst.i8 0
+    store v90, v81+2  ; v90 = 0
+    v91 = iconst.i8 9
+    store v91, v81+2  ; v91 = 9
+    v92 = iadd_imm v81, 3
+    v96 = load.i8 v92
+    brif v96, block17(v92), block18(v92)
+
+block17(v94: i64):
+    v98 = load.i8 v94
+    v99 = iadd_imm v98, -1
+    store v99, v94
+    v100 = load.i8 v94
+    v101 = load.i8 v94-1
+    v102 = isub v101, v100
+    store v102, v94-1
+    v103 = iconst.i8 0
+    store v103, v94  ; v103 = 0
+    v104 = iconst.i8 1
+    store v104, v94  ; v104 = 1
+    v108 = load.i8 v94
+    brif v108, block20(v94), block21(v94)
+
+block20(v106: i64):
+    v110 = iadd_imm v106, -3
+    jump block19(v110)
+
+block19(v105: i64):
+    v109 = load.i8 v105
+    brif v109, block20(v105), block21(v105)
+
+block21(v107: i64):
+    jump block16(v107)
+
+block16(v93: i64):
+    v97 = load.i8 v93
+    brif v97, block17(v93), block18(v93)
+
+block18(v95: i64):
+    v111 = load.i8 v95-1
+    v112 = load.i8 v95
+    v113 = iadd v112, v111
+    store v113, v95
+    v114 = iconst.i8 0
+    store v114, v95-1  ; v114 = 0
+    jump block13(v95)
+
+block13(v80: i64):
+    v84 = load.i8 v80
+    brif v84, block14(v80), block15(v80)
+
+block15(v82: i64):
+    v115 = iadd_imm v82, -2
+    v116 = load.i8 v115
+    v117 = iadd_imm v116, -1
+    store v117, v115
+    jump block10(v115)
+
+block10(v74: i64):
+    v78 = load.i8 v74
+    brif v78, block11(v74), block12(v74)
+
+block12(v76: i64):
+    v118 = iadd_imm v76, -2
+    v119 = load.i8 v118
+    v120 = iadd_imm v119, -1
+    store v120, v118
+    jump block1(v118)
+
+block1(v17: i64):
+    v21 = load.i8 v17
+    brif v21, block2(v17), block3(v17)
+
+block3(v19: i64):
+    v124 = load.i8 v19
+    brif v124, block23(v19), block24(v19)
+
+block23(v122: i64):
+    v126 = uload8.i32 v122
+    v127 = call fn0(v126)
+    v128 = uload8.i32 v122
+    v129 = call fn0(v128)
+    v130 = uload8.i32 v122
+    v131 = call fn0(v130)
+    jump block22(v122)
+
+block22(v121: i64):
+    v125 = load.i8 v121
+    brif v125, block23(v121), block24(v121)
+
+block24(v123: i64):
+    v132 = iconst.i32 0
+    return v132  ; v132 = 0
+}
