@@ -7,14 +7,6 @@ fn main() {
 	let mut grid = [0u8; 30000];
 	let mut ptr = 15000;
 
-
-	while grid[ptr] != 0 {
-		putchar(grid[ptr] as i32);
-		grid[ptr] -= 2;
-		putchar(grid[ptr] as i32);
-		putchar(grid[ptr] as i32);
-	}
-
 	grid[ptr] = 8;
 	grid[ptr + 1] += grid[ptr];
 	grid[ptr + 2] += 4 * grid[ptr];
