@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cargo b -r || exit 1
 echo "# Built compiler successfully"
